@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS Jewellers - ग्राहक लॉगिन</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f6f0;
+            padding-bottom: 70px;
+        }
+        /* हेडर स्टाइल */
+        .app-header {
+            background-color: #fdfbf7;
+            padding: 15px;
+            border-bottom: 1px solid #e0d8c5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .shop-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #b8860b;
+            text-align: center;
+        }
+
+        /* मुख्य सामग्री क्षेत्र */
+        .main-content {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login-card {
+            background-color: #fdfbf7;
+            border: 1px solid #e0d8c5;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .login-card h2 {
+            color: #b8860b;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .action-btn {
+            width: 100%;
+            background-color: #b8860b;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        /* डैशबोर्ड / ग्राहक विवरण स्टाइल */
+        .dashboard {
+            display: none; /* लॉगिन के बाद दिखेगा */
+        }
+        .profile-box {
+            background: #fff;
+            border: 1px solid #e0d8c5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .profile-box h3 {
+            color: #b8860b;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        .order-history {
+            background: #fff;
+            border: 1px solid #e0d8c5;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .order-item {
+            font-size: 12px;
+            border-bottom: 1px dashed #ddd;
+            padding: 8px 0;
+            color: #666;
+        }
+
+        /* बॉटम नेविगेशन बार स्टाइल */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fdfbf7;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e0d8c5;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 12px;
+        }
+        .nav-icon {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        .nav-text {
+            font-weight: 500;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: #b8860b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- हेडर सेक्शन -->
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+    </header>
+
+    <!-- मुख्य सामग्री -->
+    <main class="main-content">
+        
+        <!-- स्टेप 1: लॉगिन फॉर्म -->
+        <div id="loginSection" class="login-card">
+            <h2>ग्राहक लॉगिन (OTP द्वारा) 📲</h2>
+            <div class="form-group">
+                <label>मोबाइल नंबर दर्ज करें</label>
+                <input type="tel" id="mobileInput" class="form-input" placeholder="9876543210" maxlength="10">
+            </div>
+            <div id="otpGroup" class="form-group" style="display:none;">
+                <label>OTP दर्ज करें (डिफ़ॉल्ट: 1234)</label>
+                <input type="text" id="otpInput" class="form-input" placeholder="1234" maxlength="4">
+            </div>
+            <button type="button" id="loginBtn" class="action-btn" onclick="handleLogin()">OTP भेजें</button>
+        </div>
+
+        <!-- स्टेप 2: ग्राहक डैशबोर्ड (लॉगिन के बाद दिखने वाला हिस्सा) -->
+        <div id="dashboardSection" class="dashboard">
+            <div class="profile-box">
+                <h3>🆔 ग्राहक विवरण (ID: #NS1001)</h3>
+                <div class="info-row"><span>नाम:</span> <strong>राहुल वर्मा</strong></div>
+                <div class="info-row"><span>पिता का नाम:</span> <strong>श्री मोहन वर्मा</strong></div>
+                <div class="info-row"><span>मोबाइल:</span> <strong id="userMobile">9876543210</strong></div>
+                <div class="info-row"><span>पता:</span> <strong>मुख्य बाजार, नागौर</strong></div>
+            </div>
+
+            <div class="order-history">
+                <h3>📜 पिछले आर्डर का इतिहास</h3>
+                <div class="order-item">🛍️ आर्डर #01 - सोने की अंगूठी डिजाइन (जमा)</div>
+                <div class="order-item">🛍️ आर्डर #02 - पारंपरिक हार सेट (प्रक्रिया में)</div>
+            </div>
+            
+            <button type="button" class="action-btn" style="background-color: #d9534f; margin-top: 15px;" onclick="handleLogout()">लॉग आउट करें</button>
+        </div>
+
+    </main>
+
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <span class="nav-icon">🆔</span>
+            <span class="nav-text">आईडी</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
+    <!-- सरल जावास्क्रिप्ट लॉगिन और डैशबोर्ड को स्विच करने के लिए -->
+    <script>
+        let isOtpSent = false;
+
+        function handleLogin() {
+            const mobile = document.getElementById('mobileInput').value;
+            const otpGroup = document.getElementById('otpGroup');
+            const loginBtn = document.getElementById('loginBtn');
+            const otpInput = document.getElementById('otpInput').value;
+
+            if (mobile.length !== 10) {
+                alert('कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!');
+                return;
+            }
+
+            if (!isOtpSent) {
+                // OTP भेजने की प्रक्रिया
+                otpGroup.style.display = 'block';
+                loginBtn.innerText = 'लॉगिन करें';
+                isOtpSent = true;
+                alert('आपके नंबर पर OTP भेजा गया है (टेस्ट हेतु: 1234 दर्ज करें)');
+            } else {
+                // OTP जाँच प्रक्रिया
+                if (otpInput === '1234' || otpInput === '') {
+                    document.getElementById('userMobile').innerText = mobile;
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('dashboardSection').style.display = 'block';
+                } else {
+                    alert('गलत OTP! कृपया सही OTP दर्ज करें।');
+                }
+            }
+        }
+
+        function handleLogout() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('dashboardSection').style.display = 'none';
+            document.getElementById('mobileInput').value = '';
+            document.getElementById('otpInput').value = '';
+            document.getElementById('otpGroup').style.display = 'none';
+            document.getElementById('loginBtn').innerText = 'OTP भेजें';
+            isOtpSent = false;
+        }
+    </script>
+
+</body>
+  </html>
+  
