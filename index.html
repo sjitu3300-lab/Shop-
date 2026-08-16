@@ -1,108 +1,136 @@
 <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS Jewellers</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f6f0;
+            padding-bottom: 70px; /* ताकि नीचे का नेविगेशन बार सामग्री को न ढंके */
+        }
+        /* हेडर स्टाइल */
+        .app-header {
+            background-color: #fdfbf7;
+            padding: 15px;
+            border-bottom: 1px solid #e0d8c5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .shop-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #b8860b;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .search-container {
+            display: flex;
+            gap: 8px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .search-btn {
+            background-color: #b8860b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Diamond Heritage Necklace | NS JEWELLERS</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Playfair+Display:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-secondary-container": "#646464",
-                    "on-surface": "#1c1b1b",
-                    "on-tertiary-fixed-variant": "#484828",
-                    "tertiary-container": "#b6b58c",
-                    "surface-bright": "#fcf9f8",
-                    "on-surface-variant": "#4d4635",
-                    "secondary-fixed": "#e2e2e2",
-                    "outline-variant": "#d0c5af",
-                    "secondary-fixed-dim": "#c6c6c6",
-                    "surface-container-low": "#f6f3f2",
-                    "inverse-primary": "#e9c349",
-                    "outline": "#7f7663",
-                    "on-error-container": "#93000a",
-                    "on-tertiary-fixed": "#1d1d03",
-                    "surface-dim": "#dcd9d9",
-                    "tertiary-fixed-dim": "#cac99f",
-                    "primary": "#735c00",
-                    "inverse-on-surface": "#f3f0ef",
-                    "on-secondary": "#ffffff",
-                    "surface-container": "#f0eded",
-                    "on-tertiary-container": "#474727",
-                    "tertiary-fixed": "#e6e5b9",
-                    "on-primary": "#ffffff",
-                    "surface-container-highest": "#e5e2e1",
-                    "secondary": "#5e5e5e",
-                    "on-secondary-fixed-variant": "#474747",
-                    "inverse-surface": "#313030",
-                    "error-container": "#ffdad6",
-                    "on-primary-fixed-variant": "#574500",
-                    "surface-variant": "#e5e2e1",
-                    "primary-container": "#d4af37",
-                    "secondary-container": "#e2e2e2",
-                    "tertiary": "#60603e",
-                    "surface": "#fcf9f8",
-                    "surface-container-lowest": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "on-primary-container": "#554300",
-                    "on-error": "#ffffff",
-                    "on-primary-fixed": "#241a00",
-                    "on-background": "#1c1b1b",
-                    "background": "#fcf9f8",
-                    "primary-fixed": "#ffe088",
-                    "on-secondary-fixed": "#1b1b1b",
-                    "surface-tint": "#735c00",
-                    "primary-fixed-dim": "#e9c349",
-                    "surface-container-high": "#eae7e7"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "20px",
-                    "margin-desktop": "64px",
-                    "section-gap": "120px",
-                    "container-max": "1280px",
-                    "gutter": "24px",
-                    "unit": "8px"
-            },
-            "fontFamily": {
-                    "quote": [
-                            "Playfair Display"
-                    ],
-                    "body-lg": [
-                            "Manrope"
-                    ],
-                    "display-lg-mobile": [
-                            "Playfair Display"
-                    ],
-                    "headline-lg": [
-                            "Playfair Display"
-                    ],
-                    "body-md": [
-                            "Manrope"
-                    ],
-                    "display-lg": [
-                            "Playfair Display"
-                    ],
-                    "headline-md": [
-                            "Playfair Display"
-                    ],
-                    "label-caps": [
-                            "Manrope"
-                    ]
-            },
-            "fontSize": {
+        /* मुख्य सामग्री क्षेत्र */
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* बॉटम नेविगेशन बार स्टाइल */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fdfbf7;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e0d8c5;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 12px;
+        }
+        .nav-icon {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        .nav-text {
+            font-weight: 500;
+        }
+        .nav-item:hover {
+            color: #b8860b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- हेडर और सर्च सेक्शन -->
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+        <div class="search-container">
+            <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input">
+            <button class="search-btn">🔍</button>
+        </div>
+    </header>
+
+    <!-- बीच का हिस्सा जहाँ उत्पाद या अन्य जानकारी दिखेगी -->
+    <main class="main-content">
+        <h2>स्वागत है आपका NS Jewellers में! ✨</h2>
+        <p>यहाँ आपके उत्पाद और अन्य विकल्प दिखाई देंगे।</p>
+    </main>
+
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">🆔</span>
+            <span class="nav-text">आईडी</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
+</body>
+</html>
                     "quote": [
                             "20px",
                             {
