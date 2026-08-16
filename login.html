@@ -7,47 +7,37 @@
         body { font-family: sans-serif; background-color: #f9f6f0; padding: 20px; }
         .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; display: block; box-sizing: border-box; }
+        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .link-text { text-align: center; margin-top: 15px; display: block; color: blue; text-decoration: underline; cursor: pointer; }
-        h2, h3 { color: #b8860b; text-align: center; }
-        p { margin: 8px 0; color: #333; }
+        h2 { color: #b8860b; text-align: center; }
     </style>
 </head>
 <body>
 
-<!-- लॉगिन सेक्शन -->
 <div id="loginSection" class="card">
     <h2>NS Jewellers 💍</h2>
-    <p style="text-align: center; font-size: 14px; color: #666;">सुरक्षित लॉगिन</p>
     <input type="tel" id="loginMobile" class="form-input" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
-    <input type="password" id="loginPin" class="form-input" placeholder="4 अंकों का गुप्त पिन (PIN)" maxlength="4">
+    <input type="password" id="loginPin" class="form-input" placeholder="4 अंकों का पिन" maxlength="4">
     <button class="action-btn" onclick="secureLogin()">लॉगिन करें</button>
-    
-    <span class="link-text" onclick="showRegister()">नया अकाउंट बनाएँ (Register)</span>
+    <span class="link-text" onclick="showRegister()">नया अकाउंट बनाएँ</span>
 </div>
 
-<!-- नया रजिस्ट्रेशन फॉर्म सेक्शन -->
 <div id="registerSection" class="card" style="display:none;">
     <h2>नया अकाउंट बनाएँ 📝</h2>
-    <p style="margin-bottom: 15px; color: #555; text-align: center;">नया खाता खोलने के लिए नीचे दिए गए फॉर्म को भरें:</p>
-    <a href="https://forms.gle/uyspQ5etPF7bgZTMA" target="_blank" class="action-btn">यहाँ अपना विवरण भरें</a>
-    <span class="link-text" onclick="showLogin()" style="margin-top: 20px;">वापस लॉगिन पर जाएँ</span>
+    <a href="https://forms.gle/uyspQ5etPF7bgZTMA" target="_blank" class="action-btn" style="text-decoration:none; display:block; text-align:center;">यहाँ रजिस्टर करें</a>
+    <span class="link-text" onclick="showLogin()">वापस लॉगिन पर जाएँ</span>
 </div>
 
-<!-- ग्राहक का डैशबोर्ड (प्रोफाइल) -->
 <div id="profileSection" class="card" style="display:none;">
-    <h3>🆔 ग्राहक आईडी: <span id="dispId"></span></h3>
+    <h3>👤 प्रोफाइल जानकारी</h3>
     <p><strong>नाम:</strong> <span id="dispName"></span></p>
     <p><strong>पिता का नाम:</strong> <span id="dispFather"></span></p>
     <p><strong>पता:</strong> <span id="dispAddr"></span></p>
-    <p><strong>आर्डर विवरण:</strong> <span id="dispOrder">अभी कोई आर्डर नहीं</span></p>
-    <p><strong>पेमेंट स्थिति:</strong> <span id="dispPayment">लागू नहीं</span></p>
-    <button class="action-btn" style="background-color: #666; margin-top: 15px;" onclick="location.reload()">लॉग आउट</button>
+    <button class="action-btn" onclick="location.reload()">लॉग आउट</button>
 </div>
 
 <script>
-    // आपका गूगल एप्स स्क्रिप्ट वेब ऐप यूआरएल
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyUohH_cV5WMtTdF2CDWDVTZvqFaYe6_H5VyeRMVXjqkOrEd-ifY9y0dmArkgnTo_yCqA/exec";
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw7h3Ifc9jDgqrLDxObiB94gFbQWhV6tRDv3Ax8pvfwFcCl2h8DavWwd7Bw6GvIS_s/exec";
 
     function showRegister() {
         document.getElementById('loginSection').style.display = 'none';
@@ -59,17 +49,15 @@
         document.getElementById('registerSection').style.display = 'none';
     }
 
-    // गूगल शीट से सीधे डेटा चेक करके लॉगिन करना
     function secureLogin() {
         const mob = document.getElementById('loginMobile').value;
         const pin = document.getElementById('loginPin').value;
 
         if(mob.length !== 10 || pin.length !== 4) {
-            alert("कृपया सही 10 अंकों का मोबाइल नंबर और 4 अंकों का पिन दर्ज करें!");
+            alert("कृपया सही मोबाइल नंबर और पिन डालें!");
             return;
         }
 
-        // सर्वर को रिक्वेस्ट भेजना
         fetch(WEB_APP_URL, {
             method: "POST",
             body: JSON.stringify({ action: "get", mobile: mob })
@@ -77,33 +65,25 @@
         .then(response => response.json())
         .then(data => {
             if(data.status === "found") {
-                // पिन मैच करना
                 if(String(data.pin) === String(pin)) {
-                    showProfile(data);
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('profileSection').style.display = 'block';
+                    document.getElementById('dispName').innerText = data.name;
+                    document.getElementById('dispFather').innerText = data.father;
+                    document.getElementById('dispAddr').innerText = data.address;
                 } else {
-                    alert("गलत पिन (PIN)! कृपया सही पिन दर्ज करें।");
+                    alert("गलत पिन!");
                 }
             } else {
-                alert("यह मोबाइल नंबर रजिस्टर्ड नहीं है या शीट में मौजूद नहीं है!");
+                alert("नंबर रजिस्टर नहीं है!");
             }
         })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("लॉगिन करने में समस्या आ रही है। कृपया पुनः प्रयास करें।");
-        });
+        .catch(err => alert("सर्वर एरर, कृपया बाद में प्रयास करें।"));
     }
-
-    function showProfile(user) {
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('registerSection').style.display = 'none';
-        document.getElementById('profileSection').style.display = 'block';
-        
-        document.getElementById('dispId').innerText = user.id || "उपलब्ध नहीं";
-        document.getElementById('dispName').innerText = user.name || "उपलब्ध नहीं";
-        document.getElementById('dispFather').innerText = user.father || "उपलब्ध नहीं";
-        document.getElementById('dispAddr').innerText = user.address || "उपलब्ध नहीं";
-        document.getElementById('dispOrder').innerText = user.order || "अभी कोई आर्डर नहीं";
-        document.getElementById('dispPayment').innerText = user.payment || "लागू नहीं";
+</script>
+</body>
+</html>
+document.getElementById('dispPayment').innerText = user.payment || "लागू नहीं";
     }
 </script>
 </body>
