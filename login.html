@@ -2,53 +2,54 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>NS Jewellers - रजिस्ट्रेशन</title>
+    <title>NS Jewellers - Login</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f9f6f0; padding: 20px; }
-        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: sans-serif; background-color: #f9f6f0; padding: 20px; }
+        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; }
         .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
-        h2 { color: #b8860b; text-align: center; }
+        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .link-text { text-align: center; margin-top: 15px; display: block; color: blue; text-decoration: underline; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>NS Jewellers 💍</h2>
-    <p style="text-align: center;">अपना विवरण भरें</p>
-    
-    <!-- यहाँ आप अपने Google Form का लिंक लगा सकते हैं, 
-         लेकिन अगर आप इसे सीधे इसी पेज पर भरना चाहते हैं, तो नीचे का फॉर्म उपयोग करें -->
-    
-    <input type="text" id="name" class="form-input" placeholder="आपका पूरा नाम">
-    <input type="text" id="fatherName" class="form-input" placeholder="पिता का नाम">
-    <input type="tel" id="mobile" class="form-input" placeholder="मोबाइल नंबर" maxlength="10">
-    <input type="text" id="address" class="form-input" placeholder="पूरा पता">
-    
-    <button class="action-btn" onclick="saveData()">डेटा सबमिट करें</button>
+<!-- लॉगिन सेक्शन -->
+<div id="loginSection" class="card">
+    <h2>लॉगिन करें 💍</h2>
+    <input type="tel" id="loginMobile" class="form-input" placeholder="अपना 10 अंकों का मोबाइल नंबर" maxlength="10">
+    <button class="action-btn" onclick="verifyLogin()">लॉगिन (OTP भेजें)</button>
+    <span class="link-text" onclick="showRegister()">नया अकाउंट बनाएँ (Register)</span>
+</div>
+
+<!-- रजिस्ट्रेशन सेक्शन (Google Form Link के साथ) -->
+<div id="registerSection" class="card" style="display:none;">
+    <h2>नया अकाउंट बनाएँ 📝</h2>
+    <p>विवरण भरने के लिए नीचे क्लिक करें:</p>
+    <!-- https://forms.gle/yyes6cZKNx6Ew9Xr8 -->
+    <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="action-btn" style="text-decoration: none; text-align: center; display: block;">यहाँ अपना विवरण भरें</a>
+    <span class="link-text" onclick="showLogin()">वापस लॉगिन पर जाएँ</span>
 </div>
 
 <script>
-    function saveData() {
-        const name = document.getElementById('name').value;
-        const father = document.getElementById('fatherName').value;
-        const mobile = document.getElementById('mobile').value;
-        const address = document.getElementById('address').value;
+    function showRegister() {
+        document.getElementById('loginSection').style.display = 'none';
+        document.getElementById('registerSection').style.display = 'block';
+    }
 
-        if(!name || !mobile) {
-            alert("कृपया नाम और मोबाइल नंबर भरें!");
-            return;
+    function showLogin() {
+        document.getElementById('loginSection').style.display = 'block';
+        document.getElementById('registerSection').style.display = 'none';
+    }
+
+    function verifyLogin() {
+        const mob = document.getElementById('loginMobile').value;
+        if(mob.length === 10) {
+            alert("OTP आपके मोबाइल नंबर पर भेजा गया है (सिमुलेशन)।");
+            // यहाँ आप भविष्य में असली OTP सर्विस जोड़ सकते हैं
+        } else {
+            alert("कृपया सही मोबाइल नंबर डालें!");
         }
-
-        // यह डेटा आपके ब्राउज़र में सेव हो रहा है।
-        // भविष्य में हम इसे Google Sheet से जोड़ देंगे।
-        const userData = { name, father, mobile, address };
-        localStorage.setItem(mobile, JSON.stringify(userData));
-        
-        alert("सफलतापूर्वक सबमिट हो गया! हम जल्द ही आपसे संपर्क करेंगे।");
-        location.reload();
     }
 </script>
-
 </body>
 </html>
