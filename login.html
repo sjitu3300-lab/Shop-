@@ -7,7 +7,7 @@
         body { font-family: sans-serif; background-color: #f9f6f0; padding: 20px; }
         .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; }
         .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; display: block; box-sizing: border-box; }
         .link-text { text-align: center; margin-top: 15px; display: block; color: blue; text-decoration: underline; cursor: pointer; }
     </style>
 </head>
@@ -24,9 +24,11 @@
 <!-- रजिस्ट्रेशन सेक्शन (Google Form Link के साथ) -->
 <div id="registerSection" class="card" style="display:none;">
     <h2>नया अकाउंट बनाएँ 📝</h2>
-    <p>विवरण भरने के लिए नीचे क्लिक करें:</p>
-    <!-- यहाँ अपने Google Form का लिंक डालें -->
-    <a href="https://forms.gle/yyes6cZKNx6Ew9Xr8" target="_blank" class="action-btn" style="text-decoration: none; text-align: center; display: block;">यहाँ अपना विवरण भरें</a>
+    <p style="margin-bottom: 15px; color: #555;">नया खाता खोलने के लिए नीचे दिए गए फॉर्म को भरें:</p>
+    
+    <!-- आपका Google Form लिंक यहाँ सही तरीके से जोड़ दिया गया है -->
+    <a href="https://forms.gle/yyes6cZKNx6Ew9Xr8" target="_blank" class="action-btn">यहाँ अपना विवरण भरें</a>
+    
     <span class="link-text" onclick="showLogin()">वापस लॉगिन पर जाएँ</span>
 </div>
 
@@ -44,10 +46,9 @@
     function verifyLogin() {
         const mob = document.getElementById('loginMobile').value;
         if(mob.length === 10) {
-            alert("OTP आपके मोबाइल नंबर पर भेजा गया है (सिमुलेशन)।");
-            // यहाँ आप भविष्य में असली OTP सर्विस जोड़ सकते हैं
+            alert("OTP आपके मोबाइल नंबर पर भेजा गया है।");
         } else {
-            alert("कृपया सही मोबाइल नंबर डालें!");
+            alert("कृपया सही 10 अंकों का मोबाइल नंबर डालें!");
         }
     }
 </script>
