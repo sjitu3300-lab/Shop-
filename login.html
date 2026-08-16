@@ -2,51 +2,76 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>NS Jewellers - सुरक्षित लॉगिन</title>
+    <title>NS Jewellers - ग्राहक पोर्टल</title>
     <style>
         body { font-family: sans-serif; background-color: #f9f6f0; padding: 20px; }
-        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 450px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
         .link-text { text-align: center; margin-top: 15px; display: block; color: blue; text-decoration: underline; cursor: pointer; }
-        h2 { color: #b8860b; text-align: center; }
+        h2, h3 { color: #b8860b; text-align: center; }
+        
+        /* अवतार और टैब के लिए स्टाइल */
+        .profile-header { text-align: center; margin-bottom: 20px; }
+        .avatar-circle { width: 80px; height: 80px; background-color: #e0d8c5; border-radius: 50%; margin: 0 auto 10px auto; display: flex; align-items: center; justify-content: center; font-size: 35px; border: 2px solid #b8860b; }
+        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 10px; background: #e0d8c5; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: #333; }
+        .tab-btn.active { background: #b8860b; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .data-row { margin: 10px 0; padding: 8px; background: #fdfbf7; border-left: 4px solid #b8860b; }
     </style>
 </head>
 <body>
 
+<!-- लॉगिन सेक्शन -->
 <div id="loginSection" class="card">
     <h2>NS Jewellers 💍</h2>
     <input type="tel" id="loginMobile" class="form-input" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
     <input type="password" id="loginPin" class="form-input" placeholder="4 अंकों का पिन" maxlength="4">
     <button class="action-btn" onclick="secureLogin()">लॉगिन करें</button>
-    <span class="link-text" onclick="showRegister()">नया अकाउंट बनाएँ</span>
 </div>
 
-<div id="registerSection" class="card" style="display:none;">
-    <h2>नया अकाउंट बनाएँ 📝</h2>
-    <a href="https://forms.gle/uyspQ5etPF7bgZTMA" target="_blank" class="action-btn" style="text-decoration:none; display:block; text-align:center;">यहाँ रजिस्टर करें</a>
-    <span class="link-text" onclick="showLogin()">वापस लॉगिन पर जाएँ</span>
-</div>
-
+<!-- प्रोफाइल और डैशबोर्ड सेक्शन -->
 <div id="profileSection" class="card" style="display:none;">
-    <h3>👤 प्रोफाइल जानकारी</h3>
-    <p><strong>नाम:</strong> <span id="dispName"></span></p>
-    <p><strong>पिता का नाम:</strong> <span id="dispFather"></span></p>
-    <p><strong>पता:</strong> <span id="dispAddr"></span></p>
-    <button class="action-btn" onclick="location.reload()">लॉग आउट</button>
+    <div class="profile-header">
+        <div class="avatar-circle">👤</div>
+        <h3 id="dispName" style="margin: 5px 0;">नाम</h3>
+        <p style="color: #666; font-size: 14px; margin: 0;">स्वागत है!</p>
+    </div>
+
+    <!-- टैब चयन बटन -->
+    <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab('infoTab', this)">कस्टमर जानकारी</button>
+        <button class="tab-btn" onclick="switchTab('dashTab', this)">डैशबोर्ड (हिसाब)</button>
+    </div>
+
+    <!-- टैब 1: कस्टमर जानकारी -->
+    <div id="infoTab" class="tab-content active">
+        <div class="data-row"><strong>पिता का नाम:</strong> <span id="dispFather">उपलब्ध नहीं</span></div>
+        <div class="data-row"><strong>मोबाइल नंबर:</strong> <span id="dispMobile">उपलब्ध नहीं</span></div>
+        <div class="data-row"><strong>पता:</strong> <span id="dispAddr">उपलब्ध नहीं</span></div>
+    </div>
+
+    <!-- टैब 2: डैशबोर्ड (हिसाब) -->
+    <div id="dashTab" class="tab-content">
+        <div class="data-row"><strong>ऑर्डर सूची (Order List):</strong> <span id="dispOrder">कोई ऑर्डर नहीं</span></div>
+        <div class="data-row"><strong>जमा पेमेंट (Jamaa Payment):</strong> ₹<span id="dispJamaa">0</span></div>
+        <div class="data-row"><strong>बकाया पेमेंट (Baki Payment):</strong> ₹<span id="dispBaki">0</span></div>
+        <div class="data-row" style="background-color: #f4ebd0;"><strong>कुल पेमेंट (Total Payment):</strong> ₹<span id="dispTotal">0</span></div>
+    </div>
+
+    <button class="action-btn" style="background-color: #666; margin-top: 20px;" onclick="location.reload()">लॉग आउट</button>
 </div>
 
 <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw7h3Ifc9jDgqrLDxObiB94gFbQWhV6tRDv3Ax8pvfwFcCl2h8DavWwd7Bw6GvIS_s/exec";
 
-    function showRegister() {
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('registerSection').style.display = 'block';
-    }
-
-    function showLogin() {
-        document.getElementById('loginSection').style.display = 'block';
-        document.getElementById('registerSection').style.display = 'none';
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
     }
 
     function secureLogin() {
@@ -68,9 +93,16 @@
                 if(String(data.pin) === String(pin)) {
                     document.getElementById('loginSection').style.display = 'none';
                     document.getElementById('profileSection').style.display = 'block';
-                    document.getElementById('dispName').innerText = data.name;
-                    document.getElementById('dispFather').innerText = data.father;
-                    document.getElementById('dispAddr').innerText = data.address;
+                    
+                    // डेटा को स्क्रीन पर दिखाना
+                    document.getElementById('dispName').innerText = data.name || "उपलब्ध नहीं";
+                    document.getElementById('dispFather').innerText = data.father || "उपलब्ध नहीं";
+                    document.getElementById('dispMobile').innerText = data.mobile || "उपलब्ध नहीं";
+                    document.getElementById('dispAddr').innerText = data.address || "उपलब्ध नहीं";
+                    document.getElementById('dispOrder').innerText = data.order || "कोई ऑर्डर नहीं";
+                    document.getElementById('dispJamaa').innerText = data.jamaa || "0";
+                    document.getElementById('dispBaki').innerText = data.baki || "0";
+                    document.getElementById('dispTotal').innerText = data.total || "0";
                 } else {
                     alert("गलत पिन!");
                 }
