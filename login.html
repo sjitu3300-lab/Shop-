@@ -2,107 +2,81 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NS Jewellers - ग्राहक लॉगिन</title>
+    <title>NS Jewellers - लॉगिन पोर्टल</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f6f0;
-            padding-bottom: 70px;
-        }
-        /* हेडर स्टाइल */
-        .app-header {
-            background-color: #fdfbf7;
-            padding: 15px;
-            border-bottom: 1px solid #e0d8c5;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .shop-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #b8860b;
-            text-align: center;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f9f6f0; padding: 20px; }
+        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 400px; margin: auto; }
+        .form-input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        .action-btn { width: 100%; background: #b8860b; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
 
-        /* मुख्य सामग्री क्षेत्र */
-        .main-content {
-            padding: 20px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        .login-card {
-            background-color: #fdfbf7;
-            border: 1px solid #e0d8c5;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .login-card h2 {
-            color: #b8860b;
-            font-size: 18px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 5px;
-        }
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        .action-btn {
-            width: 100%;
-            background-color: #b8860b;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 5px;
-        }
+<!-- लॉगिन सेक्शन -->
+<div id="authSection" class="card">
+    <h2>स्वागत है! 💍</h2>
+    <input type="tel" id="mobile" class="form-input" placeholder="मोबाइल नंबर (या एडमिन)" maxlength="10">
+    <button class="action-btn" onclick="checkUser()">लॉगिन करें</button>
+</div>
 
-        /* डैशबोर्ड / ग्राहक विवरण स्टाइल */
-        .dashboard {
-            display: none; /* लॉगिन के बाद दिखेगा */
+<!-- ग्राहक का विवरण पेज -->
+<div id="profileSection" class="card" style="display:none;">
+    <h3>🆔 ग्राहक आईडी: <span id="dispId"></span></h3>
+    <p>नाम: <span id="dispName"></span></p>
+    <p>आर्डर विवरण: <span id="dispOrder"></span></p>
+    <p>पेमेंट स्थिति: <span id="dispPayment"></span></p>
+</div>
+
+<!-- दुकानदार के लिए एडमिन सेक्शन -->
+<div id="adminSection" class="card" style="display:none; background:#eee;">
+    <h3>🛠️ एडमिन पैनल (केवल मालिक के लिए)</h3>
+    <input type="text" id="targetMobile" class="form-input" placeholder="ग्राहक का मोबाइल नंबर">
+    <input type="text" id="newOrder" class="form-input" placeholder="प्रोडक्ट का नाम">
+    <input type="text" id="newPayment" class="form-input" placeholder="पेमेंट (जैसे - 5000 जमा)">
+    <button class="action-btn" onclick="updateCustomer()">डिटेल्स अपडेट करें</button>
+</div>
+
+<script>
+    function checkUser() {
+        const mob = document.getElementById('mobile').value;
+        
+        // एडमिन चेक (अगर आपने 'admin' डाला)
+        if(mob === "admin123") {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('adminSection').style.display = 'block';
+        } else {
+            const userData = JSON.parse(localStorage.getItem(mob));
+            if(userData) {
+                showProfile(userData);
+            } else {
+                alert("यह नंबर रजिस्टर्ड नहीं है। कृपया पहले रजिस्टर करें।");
+            }
         }
-        .profile-box {
-            background: #fff;
-            border: 1px solid #e0d8c5;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .profile-box h3 {
-            color: #b8860b;
-            font-size: 16px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 8px;
+    }
+
+    function updateCustomer() {
+        const mob = document.getElementById('targetMobile').value;
+        const data = {
+            id: 'NS' + mob.slice(-4),
+            name: "ग्राहक",
+            order: document.getElementById('newOrder').value,
+            payment: document.getElementById('newPayment').value
+        };
+        localStorage.setItem(mob, JSON.stringify(data));
+        alert("डिटेल्स अपडेट हो गई हैं!");
+    }
+
+    function showProfile(user) {
+        document.getElementById('authSection').style.display = 'none';
+        document.getElementById('profileSection').style.display = 'block';
+        document.getElementById('dispId').innerText = user.id;
+        document.getElementById('dispName').innerText = user.name;
+        document.getElementById('dispOrder').innerText = user.order;
+        document.getElementById('dispPayment').innerText = user.payment;
+    }
+</script>
+</body>
+</html>
             color: #444;
         }
         .order-history {
