@@ -65,26 +65,27 @@
         .items-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
             padding-bottom: 20px;
         }
         .item-card {
             background-color: #fdfbf7;
             border: 1px solid #e0d8c5;
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 12px;
             text-align: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
+        /* 1:1 वर्ग (Square) आकार के लिए */
         .item-img-container {
             width: 100%;
-            height: 110px;
+            aspect-ratio: 1 / 1;
             background-color: #f4efe6;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             overflow: hidden;
         }
         .item-img-container img {
@@ -142,43 +143,49 @@
         </div>
     </header>
 
-    <!-- मुख्य सामग्री - सभी उत्पाद तस्वीरों के साथ (बिना कीमत के) -->
+    <!-- मुख्य सामग्री - सटीक उत्पादों की सूची (1:1 वर्ग आकार में) -->
     <main class="main-content">
         <h2>उत्पाद सूची 💍</h2>
         <div class="items-grid">
+            <!-- अंगूठी -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQ4bV4zwHi8g_wrgVwAjn9FA0oVoiYuW__iPlOFm4BJq2wCB51BobsStlhe_KC9NtKpFUaVye72rpEWmIM" alt="अंगूठी डिजाइन">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी डिजाइन">
                 </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
+            <!-- हार (Necklace) -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTx-eNTyTTVQ2N8ZZdCXg_9mhIgPgMSyJ8aavroI5d6EI_taP7g6UORI1csC4qWggvyEd2bgKJFASiWkt4" alt="हार">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार">
                 </div>
                 <h3>हार (Necklace)</h3>
             </div>
+            <!-- पारंपरिक हार -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQWevyTq00q17TqdWbtBqHMfxW-5gJGwa-mc8Tviym42u1gwhD4aAZdMXwSCa3gsY1vBFL9PYAeHpvOmdE" alt="पारंपरिक हार">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार">
                 </div>
                 <h3>पारंपरिक हार</h3>
             </div>
+            <!-- राखड़ी सेट -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQ5gp3oeLbJ-IK8eMnJfIXieehiu8P8qTG3_iiVXuIvSY5KE6Rr1rbOwQNbQe2apMfvgHxgsgqlK5K-yew" alt="राखड़ी सेट">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट">
                 </div>
                 <h3>राखड़ी सेट</h3>
             </div>
+            <!-- इयररिंग्स -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRCrcTLxEv-xc85nWWkV1M-EeDP5GjBrNBME7jvNjzA9MPQvhK1h2kIUOoT3JAsJo9NegB3LENCPOSEgXk" alt="इयररिंग्स">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स">
                 </div>
                 <h3>इयररिंग्स (कान के झुमके)</h3>
             </div>
+            <!-- कंगन और चूड़ियाँ -->
             <div class="item-card">
                 <div class="item-img-container">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTtFp9jaCY1T42hx84Q-q_g6giCUHWlzWek22IrD7r6LqHVtF8K_snX2sDvvANkd5a4BIlOkEI2uh4ZD-o" alt="कंगन और चूड़ियाँ">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
                 </div>
                 <h3>कंगन और चूड़ियाँ</h3>
             </div>
@@ -207,4 +214,4 @@
 
 </body>
                 </html>
-                
+            
