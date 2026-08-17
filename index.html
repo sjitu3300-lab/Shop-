@@ -301,8 +301,10 @@
 
         // कैटेगरी क्लिक होने पर Google Sheet से डेटा मंगाने वाला फंक्शन
         function openCategory(categoryName) {
-            // अपने असली Google Web App URL को नीचे कोट्स (" ") के बीच में पेस्ट करें:
-            const webAppUrl = "https://script.google.com/macros/s/AKfycbwBTfvW5z-AeKE0dY4zQ0oY-wEcZNKjRgP3oAba6Vvz2u0dd4efnntkTYDhnOCf-Mnp/exec"; 
+            const rawUrl = "https://script.google.com/macros/s/AKfycbwBTfvW5z-AeKE0dY4zQ0oY-wEcZNKjRgP3oAba6Vvz2u0dd4efnntkTYDhnOCf-Mnp/exec";
+            
+            // CORS प्रॉक्सी का उपयोग ताकि ब्राउज़र ब्लॉक न करे
+            const webAppUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(rawUrl);
             
             console.log("चयनित कैटेगरी:", categoryName);
             
@@ -310,8 +312,14 @@
             fetch(webAppUrl)
                 .then(response => response.json())
                 .then(data => {
+                    // सुनिश्चित करें कि डेटा सही फॉर्मेट में है
+                    let items = data;
+                    if (typeof data === 'string') {
+                        items = JSON.parse(data);
+                    }
+                    
                     // चुनी गई कैटेगरी के अनुसार डेटा को अलग करना
-                    const filteredData = data.filter(item => item.category === categoryName);
+                    const filteredData = items.filter(item => item.category === categoryName);
                     console.log("शीट से मिला डेटा:", filteredData);
                     
                     alert(categoryName + " के " + filteredData.length + " प्रोडक्ट्स मिले हैं!");
@@ -323,5 +331,4 @@
         }
     </script>
 </body>
-        </html>
-        
+</html>
