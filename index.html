@@ -318,8 +318,12 @@
                         items = JSON.parse(data);
                     }
                     
-                    // चुनी गई कैटेगरी के अनुसार डेटा को अलग करना
-                    const filteredData = items.filter(item => item.category === categoryName);
+                    // .trim() और .toLowerCase() के साथ सुरक्षित फ़िल्टरिंग
+                    const filteredData = items.filter(item => {
+                        if (!item.category) return false;
+                        return item.category.toString().trim().toLowerCase() === categoryName.toString().trim().toLowerCase();
+                    });
+                    
                     console.log("शीट से मिला डेटा:", filteredData);
                     
                     alert(categoryName + " के " + filteredData.length + " प्रोडक्ट्स मिले हैं!");
@@ -331,4 +335,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
