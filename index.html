@@ -299,20 +299,29 @@
             document.getElementById('welcomeBanner').style.display = 'none';
         }
 
-        // कैटेगरी क्लिक होने पर चलने वाला फंक्शन
+        // कैटेगरी क्लिक होने पर Google Sheet से डेटा मंगाने वाला फंक्शन
         function openCategory(categoryName) {
-            // यहाँ आप अपने Google Web App URL का उपयोग करके डेटा फेच कर सकते हैं
-            const webAppUrl = "https://script.google.com/macros/s/AKfycbwJEBkRLRWsEsP5wyTlJmp4olho0UYWBd2d82WY6xJEkWY9wV1s0KC1JGlxLMBq9yIA/exec"; // अपना वेब ऐप यूआरएल यहाँ डालें
+            // अपने असली Google Web App URL को नीचे कोट्स (" ") के बीच में पेस्ट करें:
+            const webAppUrl = "https://script.google.com/macros/s/AKfycbwJEBkRLRWsEsP5wyTlJmp4olho0UYWBd2d82WY6xJEkWY9wV1s0KC1JGlxLMBq9yIA/exec"; 
             
-            console.log("Selected Category:", categoryName);
+            console.log("चयनित कैटेगरी:", categoryName);
             
-            // उदाहरण के लिए यूजर को संबंधित डेटा पेज पर भेजना:
-            // window.location.href = `products.html?category=${categoryName}`;
-            
-            // फ़िलहाल टेस्टिंग के लिए अलर्ट दिखा रहे हैं:
-            alert(categoryName + " कैटेगरी चुनी गई है!");
+            // Google Sheet से डेटा फेच करना
+            fetch(webAppUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // चुनी गई कैटेगरी के अनुसार डेटा को अलग करना
+                    const filteredData = data.filter(item => item.category === categoryName);
+                    console.log("शीट से मिला डेटा:", filteredData);
+                    
+                    alert(categoryName + " के " + filteredData.length + " प्रोडक्ट्स मिले हैं!");
+                })
+                .catch(error => {
+                    console.error("डेटा लोड करने में त्रुटि:", error);
+                    alert("डेटा लोड नहीं हो पाया, कृपया URL जाँचें।");
+                });
         }
     </script>
 </body>
-    </html>
-                        
+        </html>
+        
