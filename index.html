@@ -75,6 +75,11 @@
             padding: 12px;
             text-align: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            cursor: pointer; /* कर्सर को पॉइंटर बनाने के लिए ताकि पता चले कि यह क्लिकेबल है */
+            transition: transform 0.2s;
+        }
+        .item-card:hover {
+            transform: scale(1.02);
         }
         /* 1:1 वर्ग (Square) आकार के लिए */
         .item-img-container {
@@ -131,86 +136,85 @@
             color: #b8860b;
         }
         /* Welcome Popup Modal Overlay */
-.welcome-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 140%;
-    height: 140%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
 
-/* Welcome Card Box */
-.welcome-box {
-    background-color: #fdfbf7;
-    border: 2px solid #b8860b;
-    border-radius: 12px;
-    padding: 25px 20px;
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
+        /* Welcome Card Box */
+        .welcome-box {
+            background-color: #fdfbf7;
+            border: 2px solid #b8860b;
+            border-radius: 12px;
+            padding: 25px 20px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
 
-/* Close (Cross) Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    color: #b8860b;
-    cursor: pointer;
-    font-weight: bold;
-}
+        /* Close (Cross) Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            color: #b8860b;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-/* Owner Circular Image */
-.owner-img-container {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 12px auto;
-    border: 2px solid #b8860b;
-    box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
-}
+        /* Owner Circular Image */
+        .owner-img-container {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 12px auto;
+            border: 2px solid #b8860b;
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+        }
 
-.owner-img-container img {
-    width: 140%;
-    height: 140%;
-    object-fit: cover;
-}
+        .owner-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-/* Owner Name & Tagline */
-.welcome-box h2 {
-    color: #b8860b;
-    font-size: 18px;
-    margin-bottom: 8px;
-}
+        /* Owner Name & Tagline */
+        .welcome-box h2 {
+            color: #b8860b;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
 
-.welcome-tagline {
-    font-size: 13px;
-    color: #444;
-    line-height: 1.4;
-}
-        
+        .welcome-tagline {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
-<div id="welcomeBanner" class="welcome-overlay">
-    <div class="welcome-box">
-        <span class="close-btn" onclick="closeWelcomeBanner()">&times;</span>
-        <div class="owner-img-container">
-            <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni">
+    <div id="welcomeBanner" class="welcome-overlay">
+        <div class="welcome-box">
+            <span class="close-btn" onclick="closeWelcomeBanner()">&times;</span>
+            <div class="owner-img-container">
+                <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni">
+            </div>
+            <h2>Nirmal ji Soni</h2>
+            <p class="welcome-tagline">पीढ़ियों का भरोसा, स्वर्ण की शुद्धता और हर रिश्ते की चमक को समर्पित एक अनमोल विरासत ✨</p>
         </div>
-        <h2>Nirmal ji Soni</h2>
-        <p class="welcome-tagline">पीढ़ियों का भरोसा, स्वर्ण की शुद्धता और हर रिश्ते की चमक को समर्पित एक अनमोल विरासत ✨"।✨</p>
     </div>
-</div>
     
     <!-- हेडर और सर्च सेक्शन -->
     <header class="app-header">
@@ -221,47 +225,47 @@
         </div>
     </header>
 
-    <!-- मुख्य सामग्री - सटीक उत्पादों की सूची (1:1 वर्ग आकार में) -->
+    <!-- मुख्य सामग्री - सटीक उत्पादों की सूची (अब क्लिकेबल हैं) -->
     <main class="main-content">
         <h2>उत्पाद सूची 💍</h2>
         <div class="items-grid">
             <!-- अंगूठी -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('ring')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी डिजाइन">
                 </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
             <!-- हार (Necklace) -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('necklace')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार">
                 </div>
                 <h3>हार (Necklace)</h3>
             </div>
             <!-- पारंपरिक हार -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('traditional_necklace')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार">
                 </div>
                 <h3>पारंपरिक हार</h3>
             </div>
             <!-- राखड़ी सेट -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('rakhdi_set')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट">
                 </div>
                 <h3>राखड़ी सेट</h3>
             </div>
             <!-- इयररिंग्स -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('earrings')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स">
                 </div>
                 <h3>इयररिंग्स (कान के झुमके)</h3>
             </div>
             <!-- कंगन और चूड़ियाँ -->
-            <div class="item-card">
+            <div class="item-card" onclick="openCategory('bangles')">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
                 </div>
@@ -289,12 +293,26 @@
             <span class="nav-text">लॉगिन</span>
         </a>
     </nav>
-<script>
-function closeWelcomeBanner() {
-    document.getElementById('welcomeBanner').style.display = 'none';
-}
-</script>
-    
-</body>
-                </html>
+
+    <script>
+        function closeWelcomeBanner() {
+            document.getElementById('welcomeBanner').style.display = 'none';
+        }
+
+        // कैटेगरी क्लिक होने पर चलने वाला फंक्शन
+        function openCategory(categoryName) {
+            // यहाँ आप अपने Google Web App URL का उपयोग करके डेटा फेच कर सकते हैं
+            const webAppUrl = "YOUR_GOOGLE_WEB_APP_URL_HERE"; // अपना वेब ऐप यूआरएल यहाँ डालें
             
+            console.log("Selected Category:", categoryName);
+            
+            // उदाहरण के लिए यूजर को संबंधित डेटा पेज पर भेजना:
+            // window.location.href = `products.html?category=${categoryName}`;
+            
+            // फ़िलहाल टेस्टिंग के लिए अलर्ट दिखा रहे हैं:
+            alert(categoryName + " कैटेगरी चुनी गई है!");
+        }
+    </script>
+</body>
+    </html>
+                        
