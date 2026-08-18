@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS Jewellers</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f9f6f0; padding-bottom: 70px; }
+        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; position: sticky; top: 0; z-index: 100; }
+        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; text-align: center; margin-bottom: 10px; }
+        .main-content { padding: 20px; }
+        .main-content h2 { color: #b8860b; margin-bottom: 15px; font-size: 18px; text-align: center; }
+        .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding-bottom: 20px; }
+        .item-card { background-color: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; }
+        .item-img-container { width: 100%; aspect-ratio: 1 / 1; background-color: #f4efe6; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+        .item-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .item-card h3 { font-size: 14px; color: #333; }
+        .back-btn { display: block; width: 100%; padding: 10px; background-color: #b8860b; color: white; border: none; border-radius: 5px; margin-bottom: 15px; cursor: pointer; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+    </header>
+
+    <main class="main-content">
+        <h2 id="sectionTitle">उत्पाद सूची 💍</h2>
+        <button class="back-btn" id="backBtn" style="display:none;" onclick="showCategories()">← सभी कैटेगरी देखें</button>
+        <div class="items-grid" id="productGrid">
+            <!-- शुरुआत में मुख्य कैटेगरी दिखेंगी -->
+            <div class="item-card" onclick="openCategory('ring')">
+                <div class="item-img-container"><img src="https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg" alt="अंगूठी"></div>
+                <h3>अंगूठी डिजाइन</h3>
+            </div>
+            <div class="item-card" onclick="openCategory('necklace')">
+                <div class="item-img-container"><img src="https://i.ibb.co/9kbbTWg/1786976078487.png" alt="हार"></div>
+                <h3>हार (Necklace)</h3>
+            </div>
+            <div class="item-card" onclick="openCategory('earrings')">
+                <div class="item-img-container"><img src="https://i.ibb.co/0y3nPHNZ/1786976067004.png" alt="इयररिंग्स"></div>
+                <h3>इयररिंग्स</h3>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // आपकी Google Sheet वाला डेटा सीधे यहाँ सेट किया गया है 📋
+        const allProducts = [
+            { category: 'ring', name: 'LADY RING', image: 'https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg' },
+            { category: 'necklace', name: 'FUNCY KANTHI', image: 'https://i.ibb.co/9kbbTWg/1786976078487.png' },
+            { category: 'earrings', name: 'JHUMARI', image: 'https://i.ibb.co/0y3nPHNZ/1786976067004.png' },
+            { category: 'necklace', name: 'MANGALSUTRA', image: 'https://i.ibb.co/Pzh3qzHb/1786976057672.png' },
+            { category: 'necklace', name: 'AAD', image: 'https://i.ibb.co/3550sv37/1786976021020.png' }
+        ];
+
+        function openCategory(categoryName) {
+            const filteredData = allProducts.filter(item => item.category === categoryName);
+            const gridContainer = document.getElementById('productGrid');
+            const sectionTitle = document.getElementById('sectionTitle');
+            const backBtn = document.getElementById('backBtn');
+            
+            gridContainer.innerHTML = '';
+            sectionTitle.innerText = categoryName.toUpperCase() + " के प्रोडक्ट्स 💎";
+            backBtn.style.display = 'block';
+
+            if (filteredData.length === 0) {
+                gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center;">कोई प्रोडक्ट नहीं मिला 📭</p>';
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <div class="item-img-container">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <h3>${item.name}</h3>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        function showCategories() {
+            location.reload(); // पेज रीसेट करके वापस होम पर ले जाने के लिए
+        }
+    </script>
+</body>
+</html>
+
