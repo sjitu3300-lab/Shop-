@@ -12,7 +12,8 @@
         .main-content { padding: 20px; }
         .main-content h2 { color: #b8860b; margin-bottom: 15px; font-size: 18px; text-align: center; }
         .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding-bottom: 20px; }
-        .item-card { background-color: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 10px; padding: 12px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .item-card { background-color: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 10px; padding: 12px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; }
+        .item-card:hover { transform: scale(1.02); }
         .item-img-container { width: 100%; aspect-ratio: 1 / 1; background-color: #f4efe6; border-radius: 8px; overflow: hidden; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
         .item-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .item-card h3 { font-size: 14px; color: #333; }
@@ -111,6 +112,17 @@
                 filteredData.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'item-card';
+                    
+                    // कार्ड पर क्लिक करने पर detail.html पर भेजने का कोड 🔗
+                    card.onclick = () => {
+                        const queryParams = new URLSearchParams({
+                            name: item.name,
+                            category: item.category,
+                            image: item.image
+                        });
+                        window.location.href = `detail.html?${queryParams.toString()}`;
+                    };
+
                     card.innerHTML = `
                         <div class="item-img-container">
                             <img src="${item.image}" alt="${item.name}">
