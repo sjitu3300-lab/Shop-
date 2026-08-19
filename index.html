@@ -138,7 +138,7 @@
             color: #b8860b;
         }
 
-        /* Welcome Popup Modal Overlay */
+        /* Welcome Popup Modal Overlay - बिल्कुल सही किया गया X बटन */
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -164,14 +164,14 @@
         }
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
+            top: 8px;
+            right: 12px;
+            font-size: 28px;
             color: #b8860b;
             cursor: pointer;
             font-weight: bold;
-            background: none;
-            border: none;
+            line-height: 1;
+            padding: 5px;
         }
         .owner-img-container {
             width: 90px;
@@ -197,13 +197,38 @@
             color: #444;
             line-height: 1.4;
         }
+
+        /* ऑटो स्लाइडर के लिए फिक्स CSS */
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            max-width: 340px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 12px;
+            background: #fdfbf7;
+            border: 1px solid #e0d8c5;
+            padding: 12px;
+            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.1);
+        }
+        .slide-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
-    <!-- वेलकम बैनर -->
+    <!-- 1. फिक्स किया गया वेलकम बैनर (अब X बटन पर क्लिक करते ही बंद हो जाएगा) -->
     <div id="welcomeBanner" class="welcome-overlay">
         <div class="welcome-box">
-            <button class="close-btn" onclick="closeWelcomeBanner()">&times;</button>
+            <span class="close-btn" onclick="closeWelcomeBanner()">&times;</span>
             <div class="owner-img-container">
                 <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni">
             </div>
@@ -212,7 +237,7 @@
         </div>
     </div>
     
-    <!-- यूनीक स्टाइल के साथ हेडर और नाम -->
+    <!-- हेडर और नाम -->
     <header class="app-header" style="background: linear-gradient(135deg, #fdfbf7 0%, #f4efe6 100%); padding: 20px; text-align: center; border-bottom: 2px solid #b8860b;">
         <h1 style="font-size: 26px; font-weight: 900; color: #b8860b; text-transform: uppercase; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
             NS Jewellers <span style="font-size: 20px;">💍</span>
@@ -226,20 +251,20 @@
         </div>
     </header>
 
-    <!-- ऑटोमैटिक प्रोडक्ट्स स्लाइडर सेक्शन -->
+    <!-- 2. फिक्स किया गया ऑटोमैटिक प्रोडक्ट्स स्लाइडर -->
     <section style="margin: 20px 0 10px 0; padding: 0 15px;">
         <h3 style="color: #b8860b; font-size: 16px; margin-bottom: 8px; font-weight: bold; text-align: center;">लेटेस्ट प्रोडक्ट्स ✨</h3>
-        <div class="auto-slider" style="overflow: hidden; width: 100%; max-width: 340px; margin: 0 auto; position: relative; border-radius: 12px; background: #fdfbf7; border: 1px solid #e0d8c5; padding: 12px; box-shadow: 0 4px 10px rgba(184, 134, 11, 0.1);">
-            <div class="slide-track" id="productSlideTrack" style="display: flex; transition: transform 0.6s ease-in-out;">
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+        <div class="slider-container">
+            <div class="slide-track" id="productSlideTrack">
+                <div class="slide-item">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">फैंसी डायमंड रिंग</p>
                 </div>
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                <div class="slide-item">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">शाही गोल्ड हार</p>
                 </div>
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                <div class="slide-item">
                     <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">पारंपरिक राखड़ी सेट</p>
                 </div>
@@ -247,19 +272,19 @@
         </div>
     </section>
 
-    <!-- ऑटोमैटिक सूचना और ऑफर्स स्लाइडर सेक्शन -->
+    <!-- 3. फिक्स किया गया नोटिस / इन्फॉर्मेशन स्लाइडर -->
     <section style="margin: 10px 0 20px 0; padding: 0 15px;">
-        <div class="auto-slider" style="overflow: hidden; width: 100%; max-width: 340px; margin: 0 auto; position: relative; border-radius: 12px; background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%); border: 1px solid #b8860b; padding: 14px; box-shadow: 0 4px 10px rgba(184, 134, 11, 0.1);">
-            <div class="slide-track" id="infoSlideTrack" style="display: flex; transition: transform 0.6s ease-in-out;">
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+        <div class="slider-container" style="background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%);">
+            <div class="slide-track" id="infoSlideTrack">
+                <div class="slide-item">
                     <p style="font-size: 14px; color: #b8860b; font-weight: bold;">📢 विशेष घोषणा & ऑफर्स</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">हमारे यहाँ सभी आभूषण 100% BIS हॉलमार्क शुद्धता के साथ उपलब्ध हैं।</p>
                 </div>
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                <div class="slide-item">
                     <p style="font-size: 14px; color: #b8860b; font-weight: bold;">💍 कस्टम डिज़ाइन सुविधा</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">आप अपनी पसंद के अनुसार नए डिज़ाइन ऑर्डर पर भी तैयार करवा सकते हैं।</p>
                 </div>
-                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                <div class="slide-item">
                     <p style="font-size: 14px; color: #b8860b; font-weight: bold;">📞 सहायता और संपर्क</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">किसी भी जानकारी के लिए नीचे दिए गए 'संपर्क करें' विकल्प पर जाएं।</p>
                 </div>
@@ -413,3 +438,67 @@
                 </div>
                 
                 <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
+                    &copy; 2026 NS Jewellers. All Rights Reserved.
+                                    <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
+                    &copy; 2026 NS Jewellers. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
+            
+    </main>
+
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद सूची</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
+    <script>
+        // वेलकम बैनर बंद करने का फंक्शन
+        function closeWelcomeBanner() {
+            const banner = document.getElementById('welcomeBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        // उत्पाद स्लाइडर के लिए ऑटोमैटिक फंक्शन
+        let productIndex = 0;
+        function autoProductSlide() {
+            const track = document.getElementById('productSlideTrack');
+            if (!track) return;
+            const slides = track.children;
+            productIndex = (productIndex + 1) % slides.length;
+            track.style.transform = `translateX(-${productIndex * 100}%)`;
+        }
+        setInterval(autoProductSlide, 3000);
+
+        // सूचना/ऑफर स्लाइडर के लिए ऑटोमैटिक फंक्शन
+        let infoIndex = 0;
+        function autoInfoSlide() {
+            const track = document.getElementById('infoSlideTrack');
+            if (!track) return;
+            const slides = track.children;
+            infoIndex = (infoIndex + 1) % slides.length;
+            track.style.transform = `translateX(-${infoIndex * 100}%)`;
+        }
+        setInterval(autoInfoSlide, 4000);
+    </script>
+</body>
+</html>
+
+             
