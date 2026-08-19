@@ -2,83 +2,70 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>उत्पाद विवरण - NS Jewellers</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fdfbf7; padding: 20px; color: #333; }
-        .container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; }
-        .image-section { flex: 1; min-width: 350px; }
-        .main-img { width: 100%; aspect-ratio: 1/1; border-radius: 15px; border: 2px solid #e0d8c5; object-fit: cover; }
-        .thumbnail-container { display: flex; gap: 10px; margin-top: 15px; }
-        .thumb-img { width: 80px; height: 80px; border-radius: 8px; border: 1px solid #e0d8c5; cursor: pointer; object-fit: cover; }
-        .details-section { flex: 1; min-width: 350px; }
-        .title { color: #b8860b; font-size: 32px; margin-bottom: 10px; }
-        .desc-box { background: #fffaf0; padding: 25px; border-radius: 12px; border-left: 6px solid #b8860b; line-height: 1.8; font-size: 16px; }
-        .related-section { margin-top: 50px; }
-        .items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
-        .item-card { background: white; padding: 12px; border-radius: 10px; border: 1px solid #e0d8c5; text-align: center; cursor: pointer; }
-        .item-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding: 20px; padding-bottom: 80px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .main-img { width: 100%; aspect-ratio: 1/1; border-radius: 15px; border: 1px solid #e0d8c5; object-fit: cover; }
+        .thumb-container { display: flex; gap: 10px; margin: 15px 0; }
+        .thumb { width: 70px; height: 70px; border-radius: 8px; border: 1px solid #b8860b; cursor: pointer; object-fit: cover; }
+        .details { background: white; padding: 20px; border-radius: 15px; border: 1px solid #e0d8c5; }
+        .title { color: #b8860b; font-size: 24px; margin-bottom: 5px; }
+        .purity-box { margin: 20px 0; }
+        .purity-btn { padding: 8px 20px; border: 1px solid #b8860b; background: none; cursor: pointer; border-radius: 5px; margin-right: 10px; }
+        .active { background: #b8860b; color: white; }
+        .desc-long { line-height: 1.8; color: #444; text-align: justify; }
+        
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fdfbf7; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e0d8c5; z-index: 1000; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-section">
-            <img id="mainImage" class="main-img" src="" alt="Main Product">
-            <div class="thumbnail-container" id="thumbs"></div>
+
+<div class="container">
+    <img id="mainImage" class="main-img" src="">
+    <div class="thumb-container" id="thumbs"></div>
+    
+    <div class="details">
+        <h1 id="productName" class="title"></h1>
+        <p id="productCategory" style="color:#888;"></p>
+        
+        <div class="purity-box">
+            <p>शुद्धता चुनें:</p>
+            <button class="purity-btn active" onclick="this.classList.add('active')">22K (916)</button>
+            <button class="purity-btn" onclick="this.classList.add('active')">18K (750)</button>
         </div>
-        <div class="details-section">
-            <h1 id="productName" class="title"></h1>
-            <p id="productCategory" style="color:#b8860b; font-weight:bold;"></p>
-            <div id="productDesc" class="desc-box"></div>
-        </div>
+
+        <div id="productDesc" class="desc-long"></div>
     </div>
+</div>
 
-    <div class="related-section">
-        <h2>मिलते-जुलते उत्पाद 💍</h2>
-        <div class="items-grid" id="relatedGrid"></div>
-    </div>
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><span>🏠</span> होम</a>
+    <a href="productlist.html" class="nav-item"><span>💍</span> सूची</a>
+    <a href="history.html" class="nav-item"><span>📜</span> इतिहास</a>
+    <a href="login.html" class="nav-item"><span>👤</span> लॉगिन</a>
+</nav>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get('name');
-        const cat = urlParams.get('category');
-        const img1 = urlParams.get('image');
-        // बाकी 3 इमेज भी URL से लेंगे
-        const img2 = urlParams.get('img2');
-        const img3 = urlParams.get('img3');
-        const img4 = urlParams.get('img4');
+<script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('productName').innerText = params.get('name');
+    document.getElementById('productCategory').innerText = "श्रेणी: " + params.get('category').toUpperCase();
+    document.getElementById('mainImage').src = params.get('image');
 
-        document.getElementById('productName').innerText = name;
-        document.getElementById('productCategory').innerText = "श्रेणी: " + cat.toUpperCase();
-        document.getElementById('mainImage').src = img1;
-
-        // थंबनेल सेट करना
-        const thumbs = document.getElementById('thumbs');
-        [img1, img2, img3, img4].forEach(src => {
-            if(src) thumbs.innerHTML += `<img class="thumb-img" src="${src}" onclick="document.getElementById('mainImage').src='${src}'">`;
-        });
-
-        // विस्तृत विवरण (History & Making Process)
-        const longDesc = `
-            <h3>हमारी कलाकारी का इतिहास</h3>
-            <p>NS Jewellers में, हम आभूषण नहीं, बल्कि एक विरासत बनाते हैं। ${name} का यह डिज़ाइन हमारे पूर्वजों द्वारा अपनाई गई पारंपरिक तकनीकों और आधुनिक बारीकियों का संगम है।</p>
-            <h3>निर्माण प्रक्रिया (Making Process)</h3>
-            <p>इस अद्भुत आभूषण को बनाने में 15 से अधिक कारीगरों की कड़ी मेहनत शामिल है। पहले शुद्ध सोने को पिघलाकर सांचे में ढाला जाता है, फिर बारीक हथौड़ों से आकार दिया जाता है। अंत में, कुशल कारीगरों द्वारा की गई नक्काशी इसे एक जीवंत रूप देती है। हम शुद्धता की गारंटी के लिए हॉलमार्क का उपयोग करते हैं, ताकि यह आभूषण पीढ़ियों तक अपनी चमक बनाए रखे।</p>
-        `;
-        document.getElementById('productDesc').innerHTML = longDesc;
-
-        // RELATED PRODUCTS - यहाँ Fetch कॉल करें
-        async function loadRelated() {
-            const res = await fetch("https://script.google.com/macros/s/AKfycbwCTZUilH9wnAww-__NcGbRzTk02sQsuwEYxIWBZm6GNwz9mnU-36NASZFtXtyD4OXD/exec");
-            const all = await res.json();
-            const related = all.filter(item => item.category.toLowerCase() === cat.toLowerCase() && item.name !== name);
-            const grid = document.getElementById('relatedGrid');
-            related.slice(0, 4).forEach(item => {
-                grid.innerHTML += `<div class="item-card" onclick="location.href='detail.html?name=${item.name}&category=${item.category}&image=${item.image}'">
-                    <img src="${item.image}"><h4>${item.name}</h4>
-                </div>`;
-            });
-        }
-        loadRelated();
-    </script>
+    // विस्तृत भावनात्मक विवरण
+    document.getElementById('productDesc').innerHTML = `
+        <h3>यह आभूषण ही क्यों चुनें?</h3>
+        <p>आभूषण केवल धातु नहीं, बल्कि भावनाएं हैं। ${params.get('name')} न केवल आपकी सुंदरता को निखारता है, बल्कि यह एक सुरक्षित निवेश भी है जो समय के साथ अपनी चमक और मूल्य दोनों बढ़ाता है।</p>
+        <h3>कारीगरी और इतिहास</h3>
+        <p>इसे तैयार करने में हमारे अनुभवी कारीगरों ने हफ़्तों का समय लिया है। प्राचीन तकनीक और आधुनिक फिनिशिंग का मिश्रण इसे एक 'मास्टरपीस' बनाता है।</p>
+        <h3>महत्व</h3>
+        <p>किसी भी खास मौके पर इसे पहनना आपकी पहचान को अलग बनाता है। यह आभूषण आने वाली पीढ़ियों के लिए एक अमूल्य उपहार है जो परिवार की परंपरा और प्रेम को दर्शाता है। इसे पहनना मतलब खुद को गर्व और आत्मविश्वास से सजाना है।</p>
+    `;
+</script>
 </body>
 </html>
