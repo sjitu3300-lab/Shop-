@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हमारे बारे में - NS Jewellers</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f9f6f0; padding-bottom: 80px; color: #333; }
+        
+        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; position: sticky; top: 0; z-index: 100; text-align: center; }
+        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
+        
+        .main-content { padding: 20px; max-width: 600px; margin: 0 auto; }
+        
+        .section-heading {
+            text-align: center;
+            color: #b8860b;
+            font-size: 20px;
+            font-weight: 800;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #b8860b);
+            border-radius: 2px;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #fdfbf7 0%, #fffaf0 100%);
+            border: 1px solid #b8860b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.1);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .highlight-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .highlight-icon { font-size: 24px; }
+
+        /* बॉटम नेविगेशन बार */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fdfbf7; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #e0d8c5; z-index: 1000; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; }
+        .nav-text { font-weight: 500; }
+        .nav-item:hover { color: #b8860b; }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-heading">हमारे बारे में ✨</h2>
+
+        <div class="about-card">
+            <h3 style="color: #b8860b; margin-bottom: 10px; font-size: 16px;">हमारी अनमोल विरासत 🏛️</h3>
+            <p>
+                <strong>NS Jewellers</strong> में आभूषण केवल धातु या पत्थर नहीं हैं; यह पीढ़ियों के विश्वास, परंपरा और कला का जीवंत रूप हैं। हर गहने के पीछे एक कहानी होती है, और हमारा प्रयास उस कहानी को आपकी जिंदगी के सबसे खास पलों का हिस्सा बनाना है।
+            </p>
+        </div>
+
+        <div class="about-card">
+            <div class="highlight-box">
+                <span class="highlight-icon">✨</span>
+                <div>
+                    <h4 style="color: #b8860b; margin-bottom: 4px;">शुद्धता की गारंटी</h4>
+                    <p>सोने और चांदी के प्रत्येक आभूषण में पूर्ण शुद्धता और बारीक कलाकारी का विशेष ध्यान रखा जाता है ताकि आपको हमेशा सर्वश्रेष्ठ मिले।</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <span class="highlight-icon">👑</span>
+                <div>
+                    <h4 style="color: #b8860b; margin-bottom: 4px;">पारंपरिक व आधुनिक डिज़ाइन</h4>
+                    <p>पारंपरिक राजस्थानी गहनों (जैसे आड़, राखड़ी सेट, बाजूबंद) से लेकर आधुनिक ट्रेंडी डिज़ाइनों का अनूठा और भव्य संग्रह उपलब्ध है।</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-card" style="text-align: center;">
+            <h3 style="color: #b8860b; margin-bottom: 8px; font-size: 16px;">संस्थापक का संदेश 🤝</h3>
+            <p style="font-style: italic; color: #555;">
+                "ग्राहकों का भरोसा ही हमारी सबसे बड़ी पूंजी है। हम आभूषणों के साथ-साथ रिश्तों की चमक को भी हमेशा कायम रखने के लिए प्रतिबद्ध हैं।"
+            </p>
+            <p style="margin-top: 10px; font-weight: bold; color: #b8860b;">— Nirmal ji Soni</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद सूची</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
+</body>
+  </html>
+
