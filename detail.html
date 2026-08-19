@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उत्पाद विवरण - NS Jewellers</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f6f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fdfbf7;
+            border: 1px solid #e0d8c5;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        /* इमेज सेक्शन */
+        .image-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        .main-img-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 1px solid #e0d8c5;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background-color: #f4efe6;
+        }
+        .main-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+        }
+        .thumb-img {
+            width: calc(33.333% - 7px);
+            aspect-ratio: 1 / 1;
+            border: 1px solid #e0d8c5;
+            border-radius: 6px;
+            cursor: pointer;
+            object-fit: cover;
+            transition: border-color 0.2s;
+        }
+        .thumb-img:hover {
+            border-color: #b8860b;
+        }
+        /* विवरण सेक्शन */
+        .details-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .product-title {
+            font-size: 22px;
+            color: #b8860b;
+            font-weight: bold;
+        }
+        .product-category {
+            font-size: 14px;
+            color: #666;
+        }
+        .purity-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .purity-btn {
+            padding: 6px 12px;
+            border: 1px solid #b8860b;
+            background-color: transparent;
+            color: #b8860b;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .purity-btn.active {
+            background-color: #b8860b;
+            color: white;
+        }
+        .product-desc {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+            border-top: 1px solid #e0d8c5;
+            padding-top: 10px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #b8860b;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- बाईं ओर: इमेज और थंबनेल -->
+        <div class="image-section">
+            <div class="main-img-container">
+                <!-- मुख्य इमेज (यहाँ डिफ़ॉल्ट इमेज है, जो जावास्क्रिप्ट से बदलेगी) -->
+                <img id="mainImage" src="" alt="उत्पाद मुख्य तस्वीर">
+            </div>
+            <div class="thumbnail-container">
+                <!-- 3 छोटी तस्वीरें (थंबनेल) -->
+                <img class="thumb-img" src="" alt="View 1" onclick="changeImage(this)">
+                <img class="thumb-img" src="" alt="View 2" onclick="changeImage(this)">
+                <img class="thumb-img" src="" alt="View 3" onclick="changeImage(this)">
+            </div>
+        </div>
+
+        <!-- दाईं ओर: नाम, श्रेणी, शुद्धता और विवरण -->
+        <div class="details-section">
+            <h1 class="product-title" id="productName">उत्पाद का नाम</h1>
+            <div class="product-category" id="productCategory">श्रेणी: -</div>
+            
+            <div class="purity-selector">
+                <span style="font-size: 14px; font-weight: bold; color: #333;">शुद्धता चुनें:</span>
+                <button class="purity-btn active" onclick="selectPurity(this)">22K</button>
+                <button class="purity-btn" onclick="selectPurity(this)">18K</button>
+            </div>
+
+            <div class="product-desc" id="productDesc">
+                यहाँ उत्पाद का विस्तृत विवरण (Description) दिखाई देगा। यह आभूषण उच्च गुणवत्ता और हॉलमार्क शुद्धता के साथ उपलब्ध है।
+            </div>
+
+            <a href="productlist.html" class="back-btn">← उत्पाद सूची पर वापस जाएं</a>
+        </div>
+    </div>
+
+    <script>
+        // छोटी तस्वीर पर क्लिक करने पर मुख्य तस्वीर बदलने का फंक्शन
+        function changeImage(element) {
+            const mainImg = document.getElementById('mainImage');
+            mainImg.src = element.src;
+        }
+
+        // शुद्धता (22K / 18K) बटन चुनने का फंक्शन
+        function selectPurity(button) {
+            const buttons = document.querySelectorAll('.purity-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+    </script>
+</body>
+  </html>
+  
