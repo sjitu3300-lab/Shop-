@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NS Jewellers</title>
+    <title>उत्पाद सूची - NS Jewellers</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: Arial, sans-serif; background-color: #f9f6f0; padding-bottom: 70px; }
@@ -12,11 +12,36 @@
         .main-content { padding: 20px; }
         .main-content h2 { color: #b8860b; margin-bottom: 15px; font-size: 18px; text-align: center; }
         .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding-bottom: 20px; }
-        .item-card { background-color: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; }
-        .item-img-container { width: 100%; aspect-ratio: 1 / 1; background-color: #f4efe6; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+        .item-card { background-color: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 10px; padding: 12px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .item-img-container { width: 100%; aspect-ratio: 1 / 1; background-color: #f4efe6; border-radius: 8px; overflow: hidden; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
         .item-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .item-card h3 { font-size: 14px; color: #333; }
-        .back-btn { display: block; width: 100%; padding: 10px; background-color: #b8860b; color: white; border: none; border-radius: 5px; margin-bottom: 15px; cursor: pointer; font-size: 14px; }
+        
+        /* बॉटम नेविगेशन बार फिक्स स्टाइल (लॉगिन पेज की तरह) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fdfbf7;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e0d8c5;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 12px;
+        }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; }
+        .nav-text { font-weight: 500; }
+        .nav-item:hover { color: #b8860b; }
     </style>
 </head>
 <body>
@@ -25,59 +50,36 @@
     </header>
 
     <main class="main-content">
-        <h2 id="sectionTitle">उत्पाद सूची 💍</h2>
-        <button class="back-btn" id="backBtn" style="display:none;" onclick="showCategories()">← सभी कैटेगरी देखें</button>
+        <h2 id="sectionTitle">उत्पाद सूची 💎</h2>
         <div class="items-grid" id="productGrid">
-            <!-- शुरुआत में मुख्य कैटेगरी दिखेंगी -->
-            <div class="item-card" onclick="openCategory('ring')">
-                <div class="item-img-container"><img src="https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg" alt="अंगूठी"></div>
-                <h3>अंगूठी डिजाइन</h3>
-            </div>
-            <div class="item-card" onclick="openCategory('necklace')">
-                <div class="item-img-container"><img src="https://i.ibb.co/9kbbTWg/1786976078487.png" alt="हार"></div>
-                <h3>हार (Necklace)</h3>
-            </div>
-            <div class="item-card" onclick="openCategory('earrings')">
-                <div class="item-img-container"><img src="https://i.ibb.co/0y3nPHNZ/1786976067004.png" alt="इयररिंग्स"></div>
-                <h3>इयररिंग्स</h3>
-            </div>
+            <!-- यहाँ JavaScript के जरिए प्रोडक्ट्स लोड होंगे -->
         </div>
     </main>
 
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद सूची</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
     <script>
-                /* बॉटम नेविगेशन बार फिक्स स्टाइल */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fdfbf7;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-top: 1px solid #e0d8c5;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    z-index: 1000;
-}
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #555;
-    font-size: 12px;
-}
-.nav-icon {
-    font-size: 18px;
-    margin-bottom: 2px;
-}
-.nav-text {
-    font-weight: 500;
-}
-.nav-item:hover {
-    color: #b8860b;
-}
-        // आपकी Google Sheet वाला डेटा सीधे यहाँ सेट किया गया है 📋
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategory = urlParams.get('cat');
+
         const allProducts = [
             { category: 'ring', name: 'LADY RING', image: 'https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg' },
             { category: 'necklace', name: 'FUNCY KANTHI', image: 'https://i.ibb.co/9kbbTWg/1786976078487.png' },
@@ -86,18 +88,22 @@
             { category: 'necklace', name: 'AAD', image: 'https://i.ibb.co/3550sv37/1786976021020.png' }
         ];
 
-        function openCategory(categoryName) {
-            const filteredData = allProducts.filter(item => item.category === categoryName);
+        function loadProducts() {
             const gridContainer = document.getElementById('productGrid');
             const sectionTitle = document.getElementById('sectionTitle');
-            const backBtn = document.getElementById('backBtn');
             
             gridContainer.innerHTML = '';
-            sectionTitle.innerText = categoryName.toUpperCase() + " के प्रोडक्ट्स 💎";
-            backBtn.style.display = 'block';
+
+            const filteredData = selectedCategory 
+                ? allProducts.filter(item => item.category === selectedCategory)
+                : allProducts;
+
+            if (selectedCategory) {
+                sectionTitle.innerText = selectedCategory.toUpperCase() + " के प्रोडक्ट्स 💎";
+            }
 
             if (filteredData.length === 0) {
-                gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center;">कोई प्रोडक्ट नहीं मिला 📭</p>';
+                gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center; color: #555;">इस कैटेगरी में कोई प्रोडक्ट नहीं मिला 📭</p>';
                 return;
             }
 
@@ -114,79 +120,7 @@
             });
         }
 
-        function showCategories() {
-            location.reload(); // पेज रीसेट करके वापस होम पर ले जाने के लिए
-        }
+        window.onload = loadProducts;
     </script>
-    <nav class="bottom-nav">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-text">होम</span>
-    </a>
-    <a href="productlist.html" class="nav-item">
-        <span class="nav-icon">💍</span>
-        <span class="nav-text">उत्पाद सूची</span>
-    </a>
-    <a href="history.html" class="nav-item">
-        <span class="nav-icon">📜</span>
-        <span class="nav-text">इतिहास</span>
-    </a>
-    <a href="login.html" class="nav-item">
-        <span class="nav-icon">👤</span>
-        <span class="nav-text">लॉगिन</span>
-    </a>
-    </nav>
-    <script>
-    // URL से कैटेगरी का नाम पढ़ने के लिए
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedCategory = urlParams.get('cat');
-
-    // सभी प्रोडक्ट्स की सूची
-    const allProducts = [
-        { category: 'ring', name: 'LADY RING', image: 'https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg' },
-        { category: 'necklace', name: 'FUNCY KANTHI', image: 'https://i.ibb.co/9kbbTWg/1786976078487.png' },
-        { category: 'earrings', name: 'JHUMARI', image: 'https://i.ibb.co/0y3nPHNZ/1786976067004.png' },
-        { category: 'necklace', name: 'MANGALSUTRA', image: 'https://i.ibb.co/Pzh3qzHb/1786976057672.png' },
-        { category: 'necklace', name: 'AAD', image: 'https://i.ibb.co/3550sv37/1786976021020.png' }
-    ];
-
-    function loadProducts() {
-        const gridContainer = document.getElementById('productGrid');
-        const sectionTitle = document.getElementById('sectionTitle');
-        
-        gridContainer.innerHTML = '';
-
-        const filteredData = selectedCategory 
-            ? allProducts.filter(item => item.category === selectedCategory)
-            : allProducts;
-
-        if (selectedCategory) {
-            sectionTitle.innerText = selectedCategory.toUpperCase() + " के प्रोडक्ट्स 💎";
-        }
-
-        if (filteredData.length === 0) {
-            gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center;">इस कैटेगरी में कोई प्रोडक्ट नहीं मिला 📭</p>';
-            return;
-        }
-
-        filteredData.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'item-card';
-            card.innerHTML = `
-                <div class="item-img-container">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
-                <h3>${item.name}</h3>
-            `;
-            gridContainer.appendChild(card);
-        });
-    }
-
-    window.onload = loadProducts;
-
-    
-</script>
-    
 </body>
 </html>
-
