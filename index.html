@@ -11,45 +11,54 @@
             padding: 0;
         }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f6f0;
-            padding-bottom: 80px;
-        }
-        /* हेडर स्टाइल */
-        .app-header {
-            background-color: #fdfbf7;
-            padding: 15px;
-            border-bottom: 1px solid #e0d8c5;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .shop-name {
-            font-size: 20px;
-            font-weight: bold;
-            color: #b8860b;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .search-container {
-            display: flex;
-            gap: 8px;
-        }
-        .search-input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .search-btn {
-            background-color: #b8860b;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
+            <!-- यूनीक स्टाइल के साथ हेडर और नाम -->
+<header class="app-header" style="background: linear-gradient(135deg, #fdfbf7 0%, #f4efe6 100%); padding: 20px; text-align: center; border-bottom: 2px solid #b8860b;">
+    <h1 style="font-size: 26px; font-weight: 900; color: #b8860b; text-transform: uppercase; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+        NS Jewellers <span style="font-size: 20px;">💍</span>
+    </h1>
+    <p style="font-size: 12px; color: #777; margin-top: 4px; letter-spacing: 1px;">पारंपरिक और आधुनिक स्वर्ण आभूषण</p>
+    
+    <!-- सर्च बार -->
+    <div class="search-container" style="margin-top: 15px; display: flex; gap: 8px;">
+        <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input" style="flex: 1; padding: 8px 12px; border: 1px solid #b8860b; border-radius: 6px; font-size: 14px;">
+        <button class="search-btn" style="background-color: #b8860b; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer;">🔍</button>
+    </div>
+</header>
+
+<!-- लेटेस्ट प्रोडक्ट्स स्लाइडर सेक्शन -->
+<section style="margin: 20px 0; padding: 0 15px;">
+    <h3 style="color: #b8860b; font-size: 16px; margin-bottom: 10px; font-weight: bold; text-align: center;">लेटेस्ट प्रोडक्ट्स ✨</h3>
+    
+    <!-- स्लाइडर कंटेनर -->
+    <div class="product-slider" style="display: flex; overflow-x: auto; gap: 12px; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none;">
+        
+        <!-- स्लाइड 1 -->
+        <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=300&q=80" alt="Ring" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
+            <p style="font-size: 12px; color: #333; font-weight: 500;">फैंसी रिंग</p>
+        </div>
+
+        <!-- स्लाइड 2 -->
+        <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=300&q=80" alt="Necklace" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
+            <p style="font-size: 12px; color: #333; font-weight: 500;">गोल्ड हार</p>
+        </div>
+
+        <!-- स्लाइड 3 -->
+        <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=300&q=80" alt="Rakhdi" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
+            <p style="font-size: 12px; color: #333; font-weight: 500;">राखड़ी सेट</p>
+        </div>
+
+        <!-- स्लाइड 4 -->
+        <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=300&q=80" alt="Payal" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
+            <p style="font-size: 12px; color: #333; font-weight: 500;">चांदी पायल</p>
+        </div>
+
+    </div>
+</section>
+;
         }
 
         /* मुख्य सामग्री क्षेत्र और उत्पाद सूची स्टाइल */
