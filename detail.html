@@ -2,25 +2,24 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>उत्पाद विवरण - NS Jewellers</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding: 20px; padding-bottom: 80px; }
-        .container { max-width: 800px; margin: 0 auto; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding-bottom: 80px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
         .main-img { width: 100%; aspect-ratio: 1/1; border-radius: 15px; border: 1px solid #e0d8c5; object-fit: cover; }
         .thumb-container { display: flex; gap: 10px; margin: 15px 0; }
         .thumb { width: 70px; height: 70px; border-radius: 8px; border: 1px solid #b8860b; cursor: pointer; object-fit: cover; }
-        .details { background: white; padding: 20px; border-radius: 15px; border: 1px solid #e0d8c5; }
-        .title { color: #b8860b; font-size: 24px; margin-bottom: 5px; }
-        .purity-box { margin: 20px 0; }
+        .details { background: white; padding: 20px; border-radius: 15px; border: 1px solid #e0d8c5; margin-bottom: 20px; }
+        .title { color: #b8860b; font-size: 24px; }
         .purity-btn { padding: 8px 20px; border: 1px solid #b8860b; background: none; cursor: pointer; border-radius: 5px; margin-right: 10px; }
-        .active { background: #b8860b; color: white; }
-        .desc-long { line-height: 1.8; color: #444; text-align: justify; }
-        
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fdfbf7; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e0d8c5; z-index: 1000; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
+        .purity-btn.active { background: #b8860b; color: white; }
+        .desc-long { line-height: 1.8; color: #444; margin: 20px 0; }
+        .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .item-card { background: white; padding: 10px; border-radius: 10px; border: 1px solid #e0d8c5; text-align: center; cursor: pointer; }
+        .item-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #fdfbf7; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e0d8c5; z-index: 1000; }
+        .nav-item { text-decoration: none; color: #555; text-align: center; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -31,24 +30,26 @@
     
     <div class="details">
         <h1 id="productName" class="title"></h1>
-        <p id="productCategory" style="color:#888;"></p>
+        <p id="productCategory" style="color:#888; margin-bottom:15px;"></p>
         
-        <div class="purity-box">
-            <p>शुद्धता चुनें:</p>
-            <button class="purity-btn active" onclick="this.classList.add('active')">22K (916)</button>
-            <button class="purity-btn" onclick="this.classList.add('active')">18K (750)</button>
+        <p>शुद्धता का चयन करें:</p>
+        <div style="margin: 10px 0;">
+            <button class="purity-btn active" onclick="selectPurity(this)">22K (916)</button>
+            <button class="purity-btn" onclick="selectPurity(this)">18K (750)</button>
         </div>
 
         <div id="productDesc" class="desc-long"></div>
     </div>
+
+    <h2>मिलते-जुलते उत्पाद 💍</h2>
+    <div class="related-grid" id="relatedGrid"></div>
 </div>
 
-<!-- Bottom Navigation -->
 <nav class="bottom-nav">
-    <a href="index.html" class="nav-item"><span>🏠</span> होम</a>
-    <a href="productlist.html" class="nav-item"><span>💍</span> सूची</a>
-    <a href="history.html" class="nav-item"><span>📜</span> इतिहास</a>
-    <a href="login.html" class="nav-item"><span>👤</span> लॉगिन</a>
+    <a href="index.html" class="nav-item">🏠<br>होम</a>
+    <a href="productlist.html" class="nav-item">💍<br>सूची</a>
+    <a href="history.html" class="nav-item">📜<br>इतिहास</a>
+    <a href="login.html" class="nav-item">👤<br>लॉगिन</a>
 </nav>
 
 <script>
@@ -57,15 +58,42 @@
     document.getElementById('productCategory').innerText = "श्रेणी: " + params.get('category').toUpperCase();
     document.getElementById('mainImage').src = params.get('image');
 
-    // विस्तृत भावनात्मक विवरण
+    // 4 इमेज सेट करना (URL से)
+    const images = [params.get('image'), params.get('img2'), params.get('img3'), params.get('img4')];
+    const thumbContainer = document.getElementById('thumbs');
+    images.forEach(img => {
+        if(img && img !== 'null') {
+            thumbContainer.innerHTML += `<img class="thumb" src="${img}" onclick="document.getElementById('mainImage').src='${img}'">`;
+        }
+    });
+
+    // Purity Selection Logic
+    function selectPurity(btn) {
+        document.querySelectorAll('.purity-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    // Long Description
     document.getElementById('productDesc').innerHTML = `
-        <h3>यह आभूषण ही क्यों चुनें?</h3>
-        <p>आभूषण केवल धातु नहीं, बल्कि भावनाएं हैं। ${params.get('name')} न केवल आपकी सुंदरता को निखारता है, बल्कि यह एक सुरक्षित निवेश भी है जो समय के साथ अपनी चमक और मूल्य दोनों बढ़ाता है।</p>
-        <h3>कारीगरी और इतिहास</h3>
-        <p>इसे तैयार करने में हमारे अनुभवी कारीगरों ने हफ़्तों का समय लिया है। प्राचीन तकनीक और आधुनिक फिनिशिंग का मिश्रण इसे एक 'मास्टरपीस' बनाता है।</p>
+        <h3>NS Jewellers की पहचान</h3>
+        <p>यह आभूषण केवल एक एक्सेसरी नहीं, बल्कि हमारे कारीगरों के 30 वर्षों के अनुभव का निचोड़ है। इसे बनाने में हमने पारंपरिक राजस्थानी नक्काशी और आधुनिक फिनिशिंग का उपयोग किया है।</p>
         <h3>महत्व</h3>
-        <p>किसी भी खास मौके पर इसे पहनना आपकी पहचान को अलग बनाता है। यह आभूषण आने वाली पीढ़ियों के लिए एक अमूल्य उपहार है जो परिवार की परंपरा और प्रेम को दर्शाता है। इसे पहनना मतलब खुद को गर्व और आत्मविश्वास से सजाना है।</p>
+        <p>यह पीस आपके कलेक्शन का सबसे कीमती हिस्सा बनेगा। चाहे शादी हो या कोई त्यौहार, यह आभूषण आपको भीड़ से अलग और प्रभावशाली दिखाएगा। इसे पहनना आपकी परंपरा के प्रति सम्मान और अपनी सुंदरता के प्रति आत्मविश्वास को दर्शाता है।</p>
     `;
+
+    // Load Related Items
+    async function loadRelated() {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbwCTZUilH9wnAww-__NcGbRzTk02sQsuwEYxIWBZm6GNwz9mnU-36NASZFtXtyD4OXD/exec");
+        const all = await res.json();
+        const related = all.filter(item => item.category && item.category.toLowerCase() === params.get('category').toLowerCase());
+        const grid = document.getElementById('relatedGrid');
+        related.slice(0, 4).forEach(item => {
+            grid.innerHTML += `<div class="item-card" onclick="location.href='detail.html?name=${item.name}&category=${item.category}&image=${item.image}'">
+                <img src="${item.image}"><h4>${item.name}</h4>
+            </div>`;
+        });
+    }
+    loadRelated();
 </script>
 </body>
 </html>
