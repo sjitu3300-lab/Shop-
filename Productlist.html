@@ -104,6 +104,54 @@
         <span class="nav-text">लॉगिन</span>
     </a>
     </nav>
+    <script>
+    // URL से कैटेगरी का नाम पढ़ने के लिए
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('cat');
+
+    // सभी प्रोडक्ट्स की सूची
+    const allProducts = [
+        { category: 'ring', name: 'LADY RING', image: 'https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a00a61e02a54.jpg' },
+        { category: 'necklace', name: 'FUNCY KANTHI', image: 'https://i.ibb.co/9kbbTWg/1786976078487.png' },
+        { category: 'earrings', name: 'JHUMARI', image: 'https://i.ibb.co/0y3nPHNZ/1786976067004.png' },
+        { category: 'necklace', name: 'MANGALSUTRA', image: 'https://i.ibb.co/Pzh3qzHb/1786976057672.png' },
+        { category: 'necklace', name: 'AAD', image: 'https://i.ibb.co/3550sv37/1786976021020.png' }
+    ];
+
+    function loadProducts() {
+        const gridContainer = document.getElementById('productGrid');
+        const sectionTitle = document.getElementById('sectionTitle');
+        
+        gridContainer.innerHTML = '';
+
+        const filteredData = selectedCategory 
+            ? allProducts.filter(item => item.category === selectedCategory)
+            : allProducts;
+
+        if (selectedCategory) {
+            sectionTitle.innerText = selectedCategory.toUpperCase() + " के प्रोडक्ट्स 💎";
+        }
+
+        if (filteredData.length === 0) {
+            gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center;">इस कैटेगरी में कोई प्रोडक्ट नहीं मिला 📭</p>';
+            return;
+        }
+
+        filteredData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.innerHTML = `
+                <div class="item-img-container">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <h3>${item.name}</h3>
+            `;
+            gridContainer.appendChild(card);
+        });
+    }
+
+    window.onload = loadProducts;
+</script>
     
 </body>
 </html>
