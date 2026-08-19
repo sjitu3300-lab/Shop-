@@ -439,8 +439,7 @@
                 
                 <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
                     &copy; 2026 NS Jewellers. All Rights Reserved.
-                                    <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
-                    &copy; 2026 NS Jewellers. All Rights Reserved.
+                                
                 </p>
             </div>
         </footer>
@@ -475,29 +474,34 @@
                 banner.style.display = 'none';
             }
         }
+<!-- 1. फुल विड्थ इमेज स्लाइडर -->
+<section style="width: 100%; overflow: hidden; margin-bottom: 10px;">
+    <div class="slider-container" id="mainSlider" style="display: flex; transition: transform 1s ease-in-out; width: 300%;">
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
+        <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
+    </div>
+</section>
 
-        // उत्पाद स्लाइडर के लिए ऑटोमैटिक फंक्शन
-        let productIndex = 0;
-        function autoProductSlide() {
-            const track = document.getElementById('productSlideTrack');
-            if (!track) return;
-            const slides = track.children;
-            productIndex = (productIndex + 1) % slides.length;
-            track.style.transform = `translateX(-${productIndex * 100}%)`;
-        }
-        setInterval(autoProductSlide, 3000);
+<!-- 2. ऑटोमैटिक चलने वाली नोटिस पट्टी (Marquee) -->
+<section style="background: #b8860b; color: white; padding: 8px 0; overflow: hidden; white-space: nowrap; margin-bottom: 15px; border-radius: 4px;">
+    <marquee behavior="scroll" direction="left" scrollamount="5" style="font-size: 14px; font-weight: bold;">
+        ✨ NS Jewellers: 100% हॉलमार्क शुद्धता का भरोसा | 💍 नए डायमंड कलेक्शन पर विशेष छूट | 📞 कस्टम आभूषण के लिए संपर्क करें
+    </marquee>
+</section>
 
-        // सूचना/ऑफर स्लाइडर के लिए ऑटोमैटिक फंक्शन
-        let infoIndex = 0;
-        function autoInfoSlide() {
-            const track = document.getElementById('infoSlideTrack');
-            if (!track) return;
-            const slides = track.children;
-            infoIndex = (infoIndex + 1) % slides.length;
-            track.style.transform = `translateX(-${infoIndex * 100}%)`;
-        }
-        setInterval(autoInfoSlide, 4000);
-    </script>
+<script>
+    // फुल विड्थ स्लाइडर की ऑटो-स्लाइडिंग स्क्रिप्ट
+    let slideIndex = 0;
+    const slider = document.getElementById('mainSlider');
+    function slideShow() {
+        slideIndex++;
+        if (slideIndex >= 3) slideIndex = 0;
+        slider.style.transform = `translateX(-${slideIndex * 33.33}%)`;
+    }
+    setInterval(slideShow, 3000);
+</script>
+
 </body>
 </html>
 
