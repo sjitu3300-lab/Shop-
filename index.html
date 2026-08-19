@@ -220,42 +220,42 @@
         <h2 id="sectionTitle">उत्पाद सूची 💍</h2>
         <div class="items-grid">
             <!-- अंगूठी -->
-            <div class="item-card" onclick="openCategory('ring')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=ring'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी डिजाइन">
                 </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
             <!-- हार (Necklace) -->
-            <div class="item-card" onclick="openCategory('necklace')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=necklace'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार">
                 </div>
                 <h3>हार (Necklace)</h3>
             </div>
             <!-- पारंपरिक हार -->
-            <div class="item-card" onclick="openCategory('traditional_necklace')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=traditional_necklace'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार">
                 </div>
                 <h3>पारंपरिक हार</h3>
             </div>
             <!-- राखड़ी सेट -->
-            <div class="item-card" onclick="openCategory('rakhdi_set')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=rakhdi_set'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट">
                 </div>
                 <h3>राखड़ी सेट</h3>
             </div>
             <!-- इयररिंग्स -->
-            <div class="item-card" onclick="openCategory('earrings')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=earrings'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स">
                 </div>
                 <h3>इयररिंग्स (कान के झुमके)</h3>
             </div>
             <!-- कंगन और चूड़ियाँ -->
-            <div class="item-card" onclick="openCategory('bangles')">
+            <div class="item-card" onclick="location.href='productlist.html?cat=bangles'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
                 </div>
@@ -266,85 +266,29 @@
 
     <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-text">होम</span>
-    </a>
-    <a href="productlist.html" class="nav-item">
-        <span class="nav-icon">💍</span>
-        <span class="nav-text">उत्पाद सूची</span>
-    </a>
-    <a href="history.html" class="nav-item">
-        <span class="nav-icon">📜</span>
-        <span class="nav-text">इतिहास</span>
-    </a>
-    <a href="login.html" class="nav-item">
-        <span class="nav-icon">👤</span>
-        <span class="nav-text">लॉगिन</span>
-    </a>
-</nav>
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद सूची</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
 
     <script>
         function closeWelcomeBanner() {
             document.getElementById('welcomeBanner').style.display = 'none';
         }
-
-        // कैटेगरी क्लिक होने पर Google Sheet से सही कॉलम मैच करके डेटा दिखाने वाला फंक्शन 📱
-        function openCategory(categoryName) {
-            const rawUrl = "https://script.google.com/macros/s/AKfycbytExhnoTjqWDSJLxCPtMAKj6IldF1lgFTqhcs4pEJgCOdo1T3pD4tCEFz_h6AlKsIh/exec";
-            const webAppUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(rawUrl);
-            
-            console.log("चयनित कैटेगरी:", categoryName);
-            
-            fetch(webAppUrl)
-                .then(response => response.json())
-                .then(data => {
-                    let items = data;
-                    if (typeof data === 'string') {
-                        items = JSON.parse(data);
-                    }
-                    
-                    // शीट के 'category' कॉलम से मैच करना
-                    const filteredData = items.filter(item => {
-                        if (!item.category) return false;
-                        return item.category.toString().trim().toLowerCase() === categoryName.toString().trim().toLowerCase();
-                    });
-                    
-                    console.log("शीट से मिला फ़िल्टर किया गया डेटा:", filteredData);
-                    
-                    const gridContainer = document.querySelector('.items-grid');
-                    const sectionTitle = document.getElementById('sectionTitle');
-                    
-                    gridContainer.innerHTML = ''; // पुराना डेटा साफ करें 🧹
-                    sectionTitle.innerText = categoryName + " के प्रोडक्ट्स 💍";
-
-                    if (filteredData.length === 0) {
-                        gridContainer.innerHTML = '<p style="grid-column: span 2; text-align: center; color: #555;">इस कैटेगरी में अभी कोई प्रोडक्ट उपलब्ध नहीं है 📭।</p>';
-                        return;
-                    }
-
-                    // यहाँ 'item name' और 'photo url' का उपयोग किया गया है जो आपकी शीट के कॉलम नाम हैं 💎
-                    filteredData.forEach(item => {
-                        const card = document.createElement('div');
-                        card.className = 'item-card';
-                        card.innerHTML = `
-                            <div class="item-img-container">
-                                <img src="${item['photo url']}" alt="${item['item name']}">
-                            </div>
-                            <h3>${item['item name']}</h3>
-                        `;
-                        gridContainer.appendChild(card);
-                    });
-                })
-                .catch(error => {
-                    console.error("डेटा लोड करने में त्रुटि:", error);
-                    alert("डेटा लोड नहीं हो पाया, कृपया URL जाँचें ⚠️।");
-                });
-        }
     </script>
 </body>
-</html>
->
-</html>
-
-    
+            </html>
+            
