@@ -16,53 +16,6 @@
             padding-bottom: 80px;
         }
 
-        /* यूनीक स्टाइल के साथ हेडर */
-        .app-header {
-            background: linear-gradient(135deg, #fdfbf7 0%, #f4efe6 100%);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid #b8860b;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .shop-name {
-            font-size: 26px;
-            font-weight: 900;
-            color: #b8860b;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            margin-bottom: 4px;
-        }
-        .shop-tagline {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-        .search-container {
-            display: flex;
-            gap: 8px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .search-input {
-            flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #b8860b;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-        .search-btn {
-            background-color: #b8860b;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
         /* मुख्य सामग्री क्षेत्र और उत्पाद सूची स्टाइल */
         .main-content {
             padding: 20px;
@@ -257,112 +210,124 @@
     </div>
     
     <!-- यूनीक स्टाइल के साथ हेडर और नाम -->
-    <header class="app-header">
-        <h1 class="shop-name">NS Jewellers 💍</h1>
-        <p class="shop-tagline">पारंपरिक और आधुनिक स्वर्ण आभूषण</p>
-        <div class="search-container">
-            <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input">
-            <button class="search-btn">🔍</button>
+    <header class="app-header" style="background: linear-gradient(135deg, #fdfbf7 0%, #f4efe6 100%); padding: 20px; text-align: center; border-bottom: 2px solid #b8860b;">
+        <h1 style="font-size: 26px; font-weight: 900; color: #b8860b; text-transform: uppercase; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+            NS Jewellers <span style="font-size: 20px;">💍</span>
+        </h1>
+        <p style="font-size: 12px; color: #777; margin-top: 4px; letter-spacing: 1px;">पारंपरिक और आधुनिक स्वर्ण आभूषण</p>
+        
+        <!-- सर्च बार -->
+        <div class="search-container" style="margin-top: 15px; display: flex; gap: 8px;">
+            <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input" style="flex: 1; padding: 8px 12px; border: 1px solid #b8860b; border-radius: 6px; font-size: 14px;">
+            <button class="search-btn" style="background-color: #b8860b; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer;">🔍</button>
         </div>
     </header>
 
-    <!-- मुख्य सामग्री - उत्पादों की सूची और स्लाइडर्स -->
-    <main class="main-content">
-        
-        <!-- 1. लेटेस्ट प्रोडक्ट्स स्लाइडर सेक्शन -->
-        <section style="margin-bottom: 20px;">
-            <h3 style="color: #b8860b; font-size: 16px; margin-bottom: 10px; font-weight: bold; text-align: center;">लेटेस्ट प्रोडक्ट्स ✨</h3>
-            <div class="product-slider" style="display: flex; overflow-x: auto; gap: 12px; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none;">
-                
-                <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=300&q=80" alt="Ring" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
-                    <p style="font-size: 12px; color: #333; font-weight: 500;">फैंसी रिंग</p>
+    <!-- 1. ऑटोमैटिक प्रोडक्ट्स स्लाइडर सेक्शन -->
+    <section style="margin: 20px 0 10px 0; padding: 0 15px;">
+        <h3 style="color: #b8860b; font-size: 16px; margin-bottom: 8px; font-weight: bold; text-align: center;">लेटेस्ट प्रोडक्ट्स ✨</h3>
+        <div class="auto-slider" style="overflow: hidden; width: 100%; max-width: 320px; margin: 0 auto; position: relative; border-radius: 10px; background: #fdfbf7; border: 1px solid #e0d8c5; padding: 10px;">
+            <div class="slide-track" id="productSlideTrack" style="display: flex; transition: transform 0.5s ease-in-out;">
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=300&q=80" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px;">
+                    <p style="font-size: 13px; margin-top: 6px; font-weight: 500; color: #333;">फैंसी रिंग</p>
                 </div>
-
-                <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=300&q=80" alt="Necklace" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
-                    <p style="font-size: 12px; color: #333; font-weight: 500;">गोल्ड हार</p>
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=300&q=80" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px;">
+                    <p style="font-size: 13px; margin-top: 6px; font-weight: 500; color: #333;">गोल्ड हार</p>
                 </div>
-
-                <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
-                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=300&q=80" alt="Rakhdi" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
-                    <p style="font-size: 12px; color: #333; font-weight: 500;">राखड़ी सेट</p>
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=300&q=80" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px;">
+                    <p style="font-size: 13px; margin-top: 6px; font-weight: 500; color: #333;">राखड़ी सेट</p>
                 </div>
-
-                <div class="slider-card" style="min-width: 140px; background: #fdfbf7; border: 1px solid #e0d8c5; border-radius: 8px; padding: 8px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=300&q=80" alt="Payal" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; margin-bottom: 6px;">
-                    <p style="font-size: 12px; color: #333; font-weight: 500;">चांदी पायल</p>
-                </div>
-
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 2. सूचना और ऑफर्स स्लाइडर सेक्शन -->
-        <section style="margin-bottom: 25px;">
-            <div class="info-slider" style="display: flex; overflow-x: auto; gap: 10px; scroll-snap-type: x mandatory; padding-bottom: 5px; scrollbar-width: none;">
-                
-                <div class="info-slide-card" style="min-width: 260px; background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%); border: 1px solid #b8860b; border-radius: 8px; padding: 12px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+    <!-- 2. ऑटोमैटिक सूचना और ऑफर्स स्लाइडर सेक्शन -->
+    <section style="margin: 10px 0 20px 0; padding: 0 15px;">
+        <div class="auto-slider" style="overflow: hidden; width: 100%; max-width: 320px; margin: 0 auto; position: relative; border-radius: 10px; background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%); border: 1px solid #b8860b; padding: 12px;">
+            <div class="slide-track" id="infoSlideTrack" style="display: flex; transition: transform 0.5s ease-in-out;">
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
                     <p style="font-size: 13px; color: #b8860b; font-weight: bold;">✨ विशेष घोषणा</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">हमारे यहाँ सभी आभूषण 100% हॉलमार्क शुद्धता के साथ उपलब्ध हैं।</p>
                 </div>
-
-                <div class="info-slide-card" style="min-width: 260px; background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%); border: 1px solid #b8860b; border-radius: 8px; padding: 12px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
                     <p style="font-size: 13px; color: #b8860b; font-weight: bold;">💍 कस्टम डिज़ाइन</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">आप अपनी पसंद के अनुसार नए डिज़ाइन भी ऑर्डर पर बनवा सकते हैं।</p>
                 </div>
-
-                <div class="info-slide-card" style="min-width: 260px; background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%); border: 1px solid #b8860b; border-radius: 8px; padding: 12px; text-align: center; scroll-snap-align: start; flex-shrink: 0;">
+                <div class="slide" style="min-width: 100%; text-align: center; flex-shrink: 0;">
                     <p style="font-size: 13px; color: #b8860b; font-weight: bold;">📞 सहायता और संपर्क</p>
                     <p style="font-size: 12px; color: #444; margin-top: 4px;">किसी भी जानकारी के लिए नीचे दिए गए 'संपर्क करें' विकल्प पर जाएं।</p>
                 </div>
-
             </div>
-        </section>
+        </div>
+    </section>
 
+    <!-- मुख्य सामग्री - उत्पादों की सूची -->
+    <main class="main-content">
         <h2 style="color: #b8860b; text-align: center; margin-bottom: 10px;">उत्पाद सूची 💍</h2>
         
         <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी -->
         <h3 class="section-heading">गोल्ड और मुख्य आभूषण ✨</h3>
         <div class="items-grid">
             <div class="item-card" onclick="location.href='productlist.html?cat=ring'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी डिजाइन">
+                </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=necklace'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार">
+                </div>
                 <h3>हार (Necklace)</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=traditional_necklace'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार">
+                </div>
                 <h3>पारंपरिक हार</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=rakhdi_set'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट">
+                </div>
                 <h3>राखड़ी सेट</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=earrings'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स">
+                </div>
                 <h3>इयररिंग्स (झुमके)</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=bangles'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
+                </div>
                 <h3>कंगन और चूड़ियाँ</h3>
             </div>
         </div>
 
-        <!-- पारंपरिक और विशेष आभूषण -->
+        <!-- पारंपरिक और विशेष आभूषण (बाजूबंद, पोंछा, चेन आदि) -->
         <h3 class="section-heading">पारंपरिक और अन्य आभूषण 👑</h3>
         <div class="items-grid">
             <div class="item-card" onclick="location.href='productlist.html?cat=bazuband'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=500&q=80" alt="बाजूबंद"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=500&q=80" alt="बाजूबंद">
+                </div>
                 <h3>बाजूबंद</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=puncha'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="पोंछा"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="पोंछा">
+                </div>
                 <h3>पोंछा</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=gants_chain'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="जेंट्स चेन"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="जेंट्स चेन">
+                </div>
                 <h3>जेंट्स चेन / कड़ा</h3>
             </div>
         </div>
@@ -371,27 +336,39 @@
         <h3 class="section-heading">चांदी (Silver) के आभूषण 🪙</h3>
         <div class="items-grid">
             <div class="item-card" onclick="location.href='productlist.html?cat=silver_ring'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="सिल्वर रिंग"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="सिल्वर रिंग">
+                </div>
                 <h3>सिल्वर रिंग</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=payal'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पायल"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पायल">
+                </div>
                 <h3>पायल</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=silver_kada'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="सिल्वर कड़ा"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="सिल्वर कड़ा">
+                </div>
                 <h3>सिल्वर कड़ा</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=bracelet'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="ब्रेसलेट"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="ब्रेसलेट">
+                </div>
                 <h3>ब्रेसलेट</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=silver_chain'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="सिल्वर चेन"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="सिल्वर चेन">
+                </div>
                 <h3>सिल्वर चेन</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=bichudi'">
-                <div class="item-img-container"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="बिछिया"></div>
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="बिछिया">
+                </div>
                 <h3>बिछिया</h3>
             </div>
         </div>
@@ -405,7 +382,7 @@
                     <p style="margin: 0; font-size: 13px; color: #856404; font-weight: bold;">संस्थापक - NS Jewellers</p>
                 </div>
             </div>
-            <p style="font-size: 14px; color: #444; line-height: 1.6; font-style: italic; border-top: 1px solid #e0d8c5; padding-top: 10px;">
+            <p style="font-size: 14px; color: #444; line-height: 1.6; font-style: italic; border-top: 1px solid #e0d8c5; padding-top: 10px; text-align: left;">
                 "NS Jewellers में हम केवल आभूषण नहीं, बल्कि विश्वास और विरासत बेचते हैं। 
                 हमारी हर कृति में पीढ़ियों का अनुभव, शुद्धता और कलाकारी का संगम है। 
                 हमारा लक्ष्य आपकी हर खुशी और उत्सव को अपनी ज्वेलरी के माध्यम से यादगार बनाना है।"
@@ -424,4 +401,21 @@
                 <h3 style="color: #b8860b; font-size: 18px; margin-bottom: 8px;">NS Jewellers 💍</h3>
                 <p style="font-size: 12px; color: #666; margin-bottom: 20px;">पीढ़ियों का भरोसा, शुद्धता की पहचान ✨</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; margin-bottom: 20px; text-align: ce
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; margin-bottom: 20px; text-align: center;">
+                    <a href="about.html" style="color: #b8860b; text-decoration: none; font-weight: bold;">हमारे बारे में (About Us)</a>
+                    <a href="guide.html" style="color: #b8860b; text-decoration: none; font-weight: bold;">ज्वेलरी गाइड (Jewellery Guide)</a>
+                    <a href="privacy.html" style="color: #b8860b; text-decoration: none; font-weight: bold;">प्राइवेसी पॉलिसी (Privacy Policy)</a>
+                    <a href="contact.html" style="color: #b8860b; text-decoration: none; font-weight: bold;">संपर्क करें (Contact Us)</a>
+                    <a href="disclaimer.html" style="color: #b8860b; text-decoration: none; font-weight: bold; grid-column: span 2;">डिस्क्लेमर (Disclaimer)</a>
+                </div>
+                
+                <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
+                    &copy; 2026 NS Jewellers. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
+            
+    </main>
+
+    <!-- बॉटम नेविगेशन बार -->
+    
