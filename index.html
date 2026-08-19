@@ -138,7 +138,7 @@
             color: #b8860b;
         }
 
-        /* Welcome Popup Modal Overlay - बिल्कुल सही किया गया X बटन */
+        /* Welcome Popup Modal Overlay */
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -172,6 +172,8 @@
             font-weight: bold;
             line-height: 1;
             padding: 5px;
+            background: none;
+            border: none;
         }
         .owner-img-container {
             width: 90px;
@@ -197,38 +199,13 @@
             color: #444;
             line-height: 1.4;
         }
-
-        /* ऑटो स्लाइडर के लिए फिक्स CSS */
-        .slider-container {
-            overflow: hidden;
-            width: 100%;
-            max-width: 340px;
-            margin: 0 auto;
-            position: relative;
-            border-radius: 12px;
-            background: #fdfbf7;
-            border: 1px solid #e0d8c5;
-            padding: 12px;
-            box-shadow: 0 4px 10px rgba(184, 134, 11, 0.1);
-        }
-        .slide-track {
-            display: flex;
-            width: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide-item {
-            min-width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-            flex-shrink: 0;
-        }
     </style>
 </head>
 <body>
-    <!-- 1. फिक्स किया गया वेलकम बैनर (अब X बटन पर क्लिक करते ही बंद हो जाएगा) -->
+    <!-- वेलकम बैनर -->
     <div id="welcomeBanner" class="welcome-overlay">
         <div class="welcome-box">
-            <span class="close-btn" onclick="closeWelcomeBanner()">&times;</span>
+            <button class="close-btn" onclick="closeWelcomeBanner()">&times;</button>
             <div class="owner-img-container">
                 <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni">
             </div>
@@ -251,49 +228,24 @@
         </div>
     </header>
 
-    <!-- 2. फिक्स किया गया ऑटोमैटिक प्रोडक्ट्स स्लाइडर -->
-    <section style="margin: 20px 0 10px 0; padding: 0 15px;">
-        <h3 style="color: #b8860b; font-size: 16px; margin-bottom: 8px; font-weight: bold; text-align: center;">लेटेस्ट प्रोडक्ट्स ✨</h3>
-        <div class="slider-container">
-            <div class="slide-track" id="productSlideTrack">
-                <div class="slide-item">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">फैंसी डायमंड रिंग</p>
-                </div>
-                <div class="slide-item">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">शाही गोल्ड हार</p>
-                </div>
-                <div class="slide-item">
-                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=400&q=80" style="width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px;">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: #b8860b;">पारंपरिक राखड़ी सेट</p>
-                </div>
-            </div>
+    <!-- 1. फुल-विड्थ इमेज स्लाइडर -->
+    <section style="width: 100%; overflow: hidden; margin-bottom: 5px;">
+        <div id="mainSlider" style="display: flex; transition: transform 1s ease-in-out; width: 300%;">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
+            <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
         </div>
     </section>
 
-    <!-- 3. फिक्स किया गया नोटिस / इन्फॉर्मेशन स्लाइडर -->
-    <section style="margin: 10px 0 20px 0; padding: 0 15px;">
-        <div class="slider-container" style="background: linear-gradient(135deg, #fffaf0 100%, #fdfbf7 0%);">
-            <div class="slide-track" id="infoSlideTrack">
-                <div class="slide-item">
-                    <p style="font-size: 14px; color: #b8860b; font-weight: bold;">📢 विशेष घोषणा & ऑफर्स</p>
-                    <p style="font-size: 12px; color: #444; margin-top: 4px;">हमारे यहाँ सभी आभूषण 100% BIS हॉलमार्क शुद्धता के साथ उपलब्ध हैं।</p>
-                </div>
-                <div class="slide-item">
-                    <p style="font-size: 14px; color: #b8860b; font-weight: bold;">💍 कस्टम डिज़ाइन सुविधा</p>
-                    <p style="font-size: 12px; color: #444; margin-top: 4px;">आप अपनी पसंद के अनुसार नए डिज़ाइन ऑर्डर पर भी तैयार करवा सकते हैं।</p>
-                </div>
-                <div class="slide-item">
-                    <p style="font-size: 14px; color: #b8860b; font-weight: bold;">📞 सहायता और संपर्क</p>
-                    <p style="font-size: 12px; color: #444; margin-top: 4px;">किसी भी जानकारी के लिए नीचे दिए गए 'संपर्क करें' विकल्प पर जाएं।</p>
-                </div>
-            </div>
-        </div>
+    <!-- 2. ऑटोमैटिक चलने वाली नोटिस पट्टी (Marquee) -->
+    <section style="background: #b8860b; color: white; padding: 8px 0; overflow: hidden; white-space: nowrap; margin-bottom: 15px;">
+        <marquee behavior="scroll" direction="left" scrollamount="5" style="font-size: 13px; font-weight: bold;">
+            ✨ NS Jewellers: 100% हॉलमार्क शुद्धता का भरोसा | 💍 नए डायमंड और गोल्ड कलेक्शन उपलब्ध | 📞 अधिक जानकारी के लिए संपर्क करें
+        </marquee>
     </section>
 
     <!-- मुख्य सामग्री - उत्पादों की सूची -->
-    <main class="main-content">
+    <main class="main-content" style="padding-top: 5px;">
         <h2 style="color: #b8860b; text-align: center; margin-bottom: 10px;">उत्पाद सूची 💍</h2>
         
         <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी -->
@@ -439,7 +391,6 @@
                 
                 <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
                     &copy; 2026 NS Jewellers. All Rights Reserved.
-                                
                 </p>
             </div>
         </footer>
@@ -474,35 +425,19 @@
                 banner.style.display = 'none';
             }
         }
-<!-- 1. फुल विड्थ इमेज स्लाइडर -->
-<section style="width: 100%; overflow: hidden; margin-bottom: 10px;">
-    <div class="slider-container" id="mainSlider" style="display: flex; transition: transform 1s ease-in-out; width: 300%;">
-        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
-        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
-        <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=800&q=80" style="width: 33.33%; aspect-ratio: 16/9; object-fit: cover;">
-    </div>
-</section>
 
-<!-- 2. ऑटोमैटिक चलने वाली नोटिस पट्टी (Marquee) -->
-<section style="background: #b8860b; color: white; padding: 8px 0; overflow: hidden; white-space: nowrap; margin-bottom: 15px; border-radius: 4px;">
-    <marquee behavior="scroll" direction="left" scrollamount="5" style="font-size: 14px; font-weight: bold;">
-        ✨ NS Jewellers: 100% हॉलमार्क शुद्धता का भरोसा | 💍 नए डायमंड कलेक्शन पर विशेष छूट | 📞 कस्टम आभूषण के लिए संपर्क करें
-    </marquee>
-</section>
-
-<script>
-    // फुल विड्थ स्लाइडर की ऑटो-स्लाइडिंग स्क्रिप्ट
-    let slideIndex = 0;
-    const slider = document.getElementById('mainSlider');
-    function slideShow() {
-        slideIndex++;
-        if (slideIndex >= 3) slideIndex = 0;
-        slider.style.transform = `translateX(-${slideIndex * 33.33}%)`;
-    }
-    setInterval(slideShow, 3000);
-</script>
-
+        // फुल-विड्थ इमेज स्लाइडर के लिए ऑटोमैटिक फंक्शन
+        let slideIndex = 0;
+        const slider = document.getElementById('mainSlider');
+        function slideShow() {
+            if (!slider) return;
+            slideIndex++;
+            if (slideIndex >= 3) {
+                slideIndex = 0;
+            }
+            slider.style.transform = `translateX(-${slideIndex * 33.33}%)`;
+        }
+        setInterval(slideShow, 3000);
+    </script>
 </body>
 </html>
-
-             
