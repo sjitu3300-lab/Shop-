@@ -13,7 +13,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f6f0;
-            padding-bottom: 70px;
+            padding-bottom: 80px;
         }
         /* हेडर स्टाइल */
         .app-header {
@@ -56,17 +56,18 @@
         .main-content {
             padding: 20px;
         }
-        .main-content h2 {
+        .section-heading {
             color: #b8860b;
-            margin-bottom: 15px;
-            font-size: 18px;
-            text-align: center;
+            margin: 15px 0 10px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #e0d8c5;
+            padding-bottom: 5px;
         }
         .items-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
         .item-card {
             background-color: #fdfbf7;
@@ -100,6 +101,44 @@
         .item-card h3 {
             font-size: 14px;
             color: #333;
+        }
+
+        /* ओनर और रिव्यू कार्ड स्टाइल */
+        .info-card {
+            background-color: #fdfbf7;
+            border: 1px solid #e0d8c5;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .owner-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #b8860b;
+            margin: 0 auto 10px auto;
+        }
+        .info-card h3 {
+            color: #b8860b;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .info-card p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .review-btn {
+            background-color: #b8860b;
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
         }
 
         /* बॉटम नेविगेशन बार स्टाइल */
@@ -217,50 +256,124 @@
 
     <!-- मुख्य सामग्री - उत्पादों की सूची -->
     <main class="main-content">
-        <h2 id="sectionTitle">उत्पाद सूची 💍</h2>
+        <h2 style="color: #b8860b; text-align: center; margin-bottom: 10px;">उत्पाद सूची 💍</h2>
+        
+        <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी -->
+        <h3 class="section-heading">गोल्ड और मुख्य आभूषण ✨</h3>
         <div class="items-grid">
-            <!-- अंगूठी -->
             <div class="item-card" onclick="location.href='productlist.html?cat=ring'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="अंगूठी डिजाइन">
                 </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
-            <!-- हार (Necklace) -->
             <div class="item-card" onclick="location.href='productlist.html?cat=necklace'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="हार">
                 </div>
                 <h3>हार (Necklace)</h3>
             </div>
-            <!-- पारंपरिक हार -->
             <div class="item-card" onclick="location.href='productlist.html?cat=traditional_necklace'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पारंपरिक हार">
                 </div>
                 <h3>पारंपरिक हार</h3>
             </div>
-            <!-- राखड़ी सेट -->
             <div class="item-card" onclick="location.href='productlist.html?cat=rakhdi_set'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="राखड़ी सेट">
                 </div>
                 <h3>राखड़ी सेट</h3>
             </div>
-            <!-- इयररिंग्स -->
             <div class="item-card" onclick="location.href='productlist.html?cat=earrings'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="इयररिंग्स">
                 </div>
-                <h3>इयररिंग्स (कान के झुमके)</h3>
+                <h3>इयररिंग्स (झुमके)</h3>
             </div>
-            <!-- कंगन और चूड़ियाँ -->
             <div class="item-card" onclick="location.href='productlist.html?cat=bangles'">
                 <div class="item-img-container">
                     <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
                 </div>
                 <h3>कंगन और चूड़ियाँ</h3>
             </div>
+        </div>
+
+        <!-- पारंपरिक और विशेष आभूषण (बाजूबंद, पोंछा, चेन आदि) -->
+        <h3 class="section-heading">पारंपरिक और अन्य आभूषण 👑</h3>
+        <div class="items-grid">
+            <div class="item-card" onclick="location.href='productlist.html?cat=bazuband'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=500&q=80" alt="बाजूबंद">
+                </div>
+                <h3>बाजूबंद</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=puncha'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="पोंछा">
+                </div>
+                <h3>पोंछा</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=gants_chain'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="जेंट्स चेन">
+                </div>
+                <h3>जेंट्स चेन / कड़ा</h3>
+            </div>
+        </div>
+
+        <!-- सिल्वर (चांदी) प्रोडक्ट्स -->
+        <h3 class="section-heading">चांदी (Silver) के आभूषण 🪙</h3>
+        <div class="items-grid">
+            <div class="item-card" onclick="location.href='productlist.html?cat=silver_ring'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="सिल्वर रिंग">
+                </div>
+                <h3>सिल्वर रिंग</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=payal'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=500&q=80" alt="पायल">
+                </div>
+                <h3>पायल</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=silver_kada'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="सिल्वर कड़ा">
+                </div>
+                <h3>सिल्वर कड़ा</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=bracelet'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1611591475249-16b797825501?auto=format&fit=crop&w=500&q=80" alt="ब्रेसलेट">
+                </div>
+                <h3>ब्रेसलेट</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=silver_chain'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="सिल्वर चेन">
+                </div>
+                <h3>सिल्वर चेन</h3>
+            </div>
+            <div class="item-card" onclick="location.href='productlist.html?cat=bichudi'">
+                <div class="item-img-container">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="बिछिया">
+                </div>
+                <h3>बिछिया</h3>
+            </div>
+        </div>
+
+        <!-- ओनर कार्ड और रिव्यू सेक्शन -->
+        <div class="info-card">
+            <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni" class="owner-img">
+            <h3>Nirmal ji Soni</h3>
+            <p>संस्थापक - NS Jewellers<br>पीढ़ियों का भरोसा और स्वर्ण की शुद्धता ✨</p>
+        </div>
+
+        <div class="info-card">
+            <h3>अपनी समीक्षा लिखें (Write a Review) ⭐</h3>
+            <p>हमारी सेवा या ज्वेलरी के बारे में अपना अनुभव साझा करें।</p>
+            <button class="review-btn" onclick="alert('रिव्यू फॉर्म जल्द यहाँ जुड़ेगा!')">रिव्यू लिखें</button>
         </div>
     </main>
 
@@ -290,5 +403,6 @@
         }
     </script>
 </body>
-            </html>
+    </html>
+            
             
