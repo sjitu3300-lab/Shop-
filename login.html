@@ -6,20 +6,56 @@
     <title>लॉगिन - NS Jewellers</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 80px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding-bottom: 80px; }
         
         .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; text-align: center; }
         .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
         
-        /* सेंटर में लॉगिन कंटेनर */
-        .main-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .login-container { width: 100%; max-width: 400px; background: white; padding: 30px; border-radius: 12px; border: 1px solid #e0d8c5; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; }
+        /* लॉगिन बॉक्स को सेंटर में रखने की स्टाइल */
+        .login-container { 
+            max-width: 400px; 
+            margin: 60px auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            border: 1px solid #e0d8c5; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            text-align: center; 
+        }
+        
+        /* आईडी लोगो और अवतार के लिए स्टाइल 🆔 */
+        .avatar-container {
+            margin-bottom: 20px;
+        }
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #b8860b;
+            object-fit: cover;
+            background-color: #f4efe6;
+        }
+        .id-badge {
+            display: inline-block;
+            background: #fffaf0;
+            color: #b8860b;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #e0d8c5;
+            margin-top: 10px;
+        }
+
         .login-container h2 { color: #b8860b; margin-bottom: 15px; }
         .login-container p { color: #666; font-size: 14px; margin-bottom: 20px; }
         
         .input-box { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; text-align: center; }
         .login-btn { width: 100%; padding: 12px; background: #b8860b; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; }
         .login-btn:hover { background: #996d08; }
+        
+        .logout-btn { background: #d9534f; margin-top: 10px; }
+        .logout-btn:hover { background: #c9302c; }
 
         /* बॉटम नेविगेशन बार */
         .bottom-nav {
@@ -32,13 +68,10 @@
             justify-content: space-around;
             padding: 10px 0;
             border-top: 1px solid #e0d8c5;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
             z-index: 1000;
         }
         .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
         .nav-icon { font-size: 18px; margin-bottom: 2px; }
-        .nav-text { font-weight: 500; }
-        .nav-item:hover { color: #b8860b; }
     </style>
 </head>
 <body>
@@ -47,37 +80,46 @@
         <div class="shop-name">NS Jewellers 💍</div>
     </header>
 
-    <div class="main-container">
-        <div class="login-container">
-            <h2>ग्राहक खाता 👤</h2>
-            <p>अपनी प्रोफाइल और इतिहास देखने के लिए मोबाइल नंबर दर्ज करें</p>
-            
-            <input type="tel" id="mobileNumber" class="input-box" placeholder="मोबाइल नंबर (10 अंक)" maxlength="10">
-            <button class="login-btn" onclick="handleLogin()">खाता बनाएं / लॉगिन करें</button>
-        </div>
+    <div class="login-container" id="loginBox">
+        <!-- यह हिस्सा जावास्क्रिप्ट से डायनेमिक रूप से बदलेगा (लॉगिन होने पर प्रोफाइल और बिना लॉगिन के फॉर्म) -->
     </div>
 
     <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">होम</span>
-        </a>
-        <a href="productlist.html" class="nav-item">
-            <span class="nav-icon">💍</span>
-            <span class="nav-text">सूची</span>
-        </a>
-        <a href="history.html" class="nav-item">
-            <span class="nav-icon">📜</span>
-            <span class="nav-text">इतिहास</span>
-        </a>
-        <a href="login.html" class="nav-item" style="color: #b8860b;">
-            <span class="nav-icon">👤</span>
-            <span class="nav-text">लॉगिन</span>
-        </a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>होम</a>
+        <a href="productlist.html" class="nav-item"><span class="nav-icon">💍</span>सूची</a>
+        <a href="history.html" class="nav-item"><span class="nav-icon">📜</span>इतिहास</a>
+        <a href="login.html" class="nav-item" style="color: #b8860b;"><span class="nav-icon">👤</span>लॉगिन</a>
     </nav>
 
     <script>
+        const loginBox = document.getElementById('loginBox');
+        const savedNumber = localStorage.getItem('userNumber');
+        const savedId = localStorage.getItem('customerId');
+        const savedAvatar = localStorage.getItem('userAvatar');
+
+        // अगर यूजर पहले से लॉगिन है तो उसकी प्रोफाइल और आईडी दिखाएं 🆔
+        if (savedNumber && savedId) {
+            loginBox.innerHTML = `
+                <div class="avatar-container">
+                    <img src="${savedAvatar}" alt="AI Avatar" class="user-avatar">
+                    <div><span class="id-badge">🆔 ${savedId}</span></div>
+                </div>
+                <h2>स्वागत है! ✨</h2>
+                <p>मोबाइल नंबर: <strong>${savedNumber}</strong></p>
+                <p style="color: #2e7d32; font-weight: 500;">आपका खाता सक्रिय है ✅</p>
+                <button class="login-btn logout-btn" onclick="handleLogout()">लॉग आउट करें 🚪</button>
+            `;
+        } else {
+            // यदि यूजर लॉगिन नहीं है तो पुराना लॉगिन फॉर्म दिखाएं 👤
+            loginBox.innerHTML = `
+                <h2>ग्राहक खाता 👤</h2>
+                <p>खाता बनाने या लॉगिन करने के लिए मोबाइल नंबर दर्ज करें</p>
+                <input type="tel" id="mobileNumber" class="input-box" placeholder="मोबाइल नंबर (10 अंक)" maxlength="10">
+                <button class="login-btn" onclick="handleLogin()">खाता बनाएं / लॉगिन करें</button>
+            `;
+        }
+
         function handleLogin() {
             const number = document.getElementById('mobileNumber').value.trim();
 
@@ -86,19 +128,26 @@
                 return;
             }
 
-            // यूनिक कस्टमर आईडी बनाना (जैसे: NSJ-54321)
+            // यूनिक कस्टमर आईडी और AI अवतार जनरेट करना 🤖
             const customerId = "NSJ-" + Math.floor(10000 + Math.random() * 90000);
-            
-            // AI अवतार जनरेट करना
             const aiAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${number}`;
 
-            // ब्राउज़र में डेटा सेव करना ताकि अपने आप लॉग आउट न हो
+            // ब्राउज़र में हमेशा के लिए डेटा सेव करना ताकि अपने आप लॉग आउट न हो 💾
             localStorage.setItem('userNumber', number);
             localStorage.setItem('customerId', customerId);
             localStorage.setItem('userAvatar', aiAvatar);
 
             alert('खाता सफलतापूर्वक बन गया! 🎉');
-            window.location.href = 'history.html';
+            window.location.reload(); // पेज रीफ्रेश करके प्रोफाइल दिखाएं
+        }
+
+        function handleLogout() {
+            // केवल लॉग आउट बटन दबाने पर ही डेटा डिलीट होगा 🚪
+            localStorage.removeItem('userNumber');
+            localStorage.removeItem('customerId');
+            localStorage.removeItem('userAvatar');
+            alert('आप सफलतापूर्वक लॉग आउट हो गए हैं! 👋');
+            window.location.reload();
         }
     </script>
 </body>
