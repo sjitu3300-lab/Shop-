@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मेरा इतिहास - NS Jewellers</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; text-align: center; padding: 20px; padding-bottom: 80px; }
+        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; margin-bottom: 30px; }
+        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
+        .msg-box { max-width: 500px; margin: 40px auto; padding: 30px; border: 1px solid #e0d8c5; border-radius: 15px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .msg-box h2 { color: #b8860b; margin-bottom: 15px; font-size: 20px; }
+        .msg-box p { color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .btn-login { display: inline-block; padding: 10px 25px; background: #b8860b; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        
+        /* बॉटम नेविगेशन बार */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fdfbf7;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e0d8c5;
+            box-shadow: {0 -2px 5px rgba(0,0,0,0.05)};
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #555;
+            font-size: 12px;
+        }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; }
+        .nav-text { font-weight: 500; }
+        .nav-item:hover { color: #b8860b; }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+    </header>
+
+    <div id="content">
+        <!-- यहाँ जावास्क्रिप्ट से कंटेंट लोड होगा -->
+    </div>
+
+    <!-- बॉटम नेविगेशन बार -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">उत्पाद सूची</span>
+        </a>
+        <a href="history.html" class="nav-item" style="color: #b8860b;">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
+    </nav>
+
+<script>
+    // चेक करें कि क्या यूजर लॉगिन है (userNumber की जांच)
+    const userNumber = localStorage.getItem('userNumber'); 
+    const contentDiv = document.getElementById('content');
+
+    if (!userNumber) {
+        // अगर यूजर लॉगिन नहीं है
+        contentDiv.innerHTML = `
+            <div class="msg-box">
+                <h2>लॉगिन आवश्यक है 🔒</h2>
+                <p>Please first step Login after seen your history.</p>
+                <a href="login.html" class="btn-login">लॉगिन करें 👤</a>
+            </div>
+        `;
+    } else {
+        // अगर यूजर लॉगिन है
+        contentDiv.innerHTML = `
+            <div class="msg-box">
+                <h2>स्वागत है, ${userNumber} ✨</h2>
+                <p>यहाँ आपके पुराने इतिहास और पसंदीदा उत्पादों का रिकॉर्ड दिखाई देगा।</p>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>
+
