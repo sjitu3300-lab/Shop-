@@ -2,189 +2,104 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>NS Jewellers - ग्राहक पोर्टल</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लॉगिन - NS Jewellers</title>
     <style>
-        /* बॉटम नेविगेशन बार फिक्स स्टाइल */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fdfbf7;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-top: 1px solid #e0d8c5;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    z-index: 1000;
-}
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #555;
-    font-size: 12px;
-}
-.nav-icon {
-    font-size: 18px;
-    margin-bottom: 2px;
-}
-.nav-text {
-    font-weight: 500;
-}
-.nav-item:hover {
-    color: #b8860b;
-}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 80px; }
         
-        body { font-family: sans-serif; background-color: #f9f6f0; padding: 20px; }
-        .card { background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e0d8c5; max-width: 450px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .form-input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .action-btn { width: 100%; background: #b8860b; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .link-text { text-align: center; margin-top: 15px; display: block; color: blue; text-decoration: underline; cursor: pointer; }
-        h2, h3 { color: #b8860b; text-align: center; }
+        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; text-align: center; }
+        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
         
-        /* अवतार और टैब के लिए स्टाइल */
-        .profile-header { text-align: center; margin-bottom: 20px; }
-        .avatar-circle { width: 80px; height: 80px; background-color: #e0d8c5; border-radius: 50%; margin: 0 auto 10px auto; display: flex; align-items: center; justify-content: center; font-size: 35px; border: 2px solid #b8860b; }
-        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
-        .tab-btn { flex: 1; padding: 10px; background: #e0d8c5; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: #333; }
-        .tab-btn.active { background: #b8860b; color: white; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .data-row { margin: 10px 0; padding: 8px; background: #fdfbf7; border-left: 4px solid #b8860b; }
+        /* सेंटर में लॉगिन कंटेनर */
+        .main-container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-container { width: 100%; max-width: 400px; background: white; padding: 30px; border-radius: 12px; border: 1px solid #e0d8c5; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; }
+        .login-container h2 { color: #b8860b; margin-bottom: 15px; }
+        .login-container p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        
+        .input-box { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; text-align: center; }
+        .login-btn { width: 100%; padding: 12px; background: #b8860b; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; }
+        .login-btn:hover { background: #996d08; }
+
+        /* बॉटम नेविगेशन बार */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fdfbf7;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #e0d8c5;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; }
+        .nav-text { font-weight: 500; }
+        .nav-item:hover { color: #b8860b; }
     </style>
 </head>
 <body>
 
-<!-- लॉगिन सेक्शन -->
-<div id="loginSection" class="card">
-    <h2>NS Jewellers 💍</h2>
-    <input type="tel" id="loginMobile" class="form-input" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
-    <input type="password" id="loginPin" class="form-input" placeholder="4 अंकों का पिन" maxlength="4">
-    <button class="action-btn" onclick="secureLogin()">लॉगिन करें</button>
-    
-    <!-- नया अकाउंट बनाने का लिंक -->
-    <span class="link-text" onclick="showRegister()">नया अकाउंट बनाएँ</span>
-</div>
+    <header class="app-header">
+        <div class="shop-name">NS Jewellers 💍</div>
+    </header>
 
-<!-- नया अकाउंट (रजिस्ट्रेशन) सेक्शन -->
-<div id="registerSection" class="card" style="display:none;">
-    <h2>नया अकाउंट बनाएँ 📝</h2>
-    <a href="https://forms.gle/uyspQ5etPF7bgZTMA" target="_blank" class="action-btn" style="text-decoration:none; display:block; text-align:center;">यहाँ रजिस्टर करें</a>
-    <span class="link-text" onclick="showLogin()">वापस लॉगिन पर जाएँ</span>
-</div>
-
-<!-- प्रोफाइल और डैशबोर्ड सेक्शन -->
-<div id="profileSection" class="card" style="display:none;">
-    <div class="profile-header">
-        <div class="avatar-circle">👤</div>
-        <h3 id="dispName" style="margin: 5px 0;">नाम</h3>
-        <p style="color: #666; font-size: 14px; margin: 0;">स्वागत है!</p>
+    <div class="main-container">
+        <div class="login-container">
+            <h2>ग्राहक खाता 👤</h2>
+            <p>अपनी प्रोफाइल और इतिहास देखने के लिए मोबाइल नंबर दर्ज करें</p>
+            
+            <input type="tel" id="mobileNumber" class="input-box" placeholder="मोबाइल नंबर (10 अंक)" maxlength="10">
+            <button class="login-btn" onclick="handleLogin()">खाता बनाएं / लॉगिन करें</button>
+        </div>
     </div>
 
-    <!-- टैब चयन बटन -->
-    <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab('infoTab', this)">कस्टमर जानकारी</button>
-        <button class="tab-btn" onclick="switchTab('dashTab', this)">डैशबोर्ड (हिसाब)</button>
-    </div>
-
-    <!-- टैब 1: कस्टमर जानकारी -->
-    <div id="infoTab" class="tab-content active">
-        <div class="data-row"><strong>पिता का नाम:</strong> <span id="dispFather">उपलब्ध नहीं</span></div>
-        <div class="data-row"><strong>मोबाइल नंबर:</strong> <span id="dispMobile">उपलब्ध नहीं</span></div>
-        <div class="data-row"><strong>पता:</strong> <span id="dispAddr">उपलब्ध नहीं</span></div>
-    </div>
-
-    <!-- टैब 2: डैशबोर्ड (हिसाब) -->
-    <div id="dashTab" class="tab-content">
-        <div class="data-row"><strong>ऑर्डर सूची (Order List):</strong> <span id="dispOrder">कोई ऑर्डर नहीं</span></div>
-        <div class="data-row"><strong>जमा पेमेंट (Jamaa Payment):</strong> ₹<span id="dispJamaa">0</span></div>
-        <div class="data-row"><strong>बकाया पेमेंट (Baki Payment):</strong> ₹<span id="dispBaki">0</span></div>
-        <div class="data-row" style="background-color: #f4ebd0;"><strong>कुल पेमेंट (Total Payment):</strong> ₹<span id="dispTotal">0</span></div>
-    </div>
-
-    <button class="action-btn" style="background-color: #666; margin-top: 20px;" onclick="location.reload()">लॉग आउट</button>
-</div>
-
-<script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyeKtM8xipkahTeIDgUcFJ-TFaF65H-4Z0lqOBv3t6Xk0m1DsAFARz7mHvRLVZknraC/exec";
-
-    function showRegister() {
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('registerSection').style.display = 'block';
-    }
-
-    function showLogin() {
-        document.getElementById('loginSection').style.display = 'block';
-        document.getElementById('registerSection').style.display = 'none';
-    }
-
-    function switchTab(tabId, btn) {
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        btn.classList.add('active');
-    }
-
-    function secureLogin() {
-        const mob = document.getElementById('loginMobile').value;
-        const pin = document.getElementById('loginPin').value;
-
-        if(mob.length !== 10 || pin.length !== 4) {
-            alert("कृपया सही मोबाइल नंबर और पिन डालें!");
-            return;
-        }
-
-        fetch(WEB_APP_URL, {
-            method: "POST",
-            body: JSON.stringify({ action: "get", mobile: mob })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.status === "found") {
-                if(String(data.pin) === String(pin)) {
-                    document.getElementById('loginSection').style.display = 'none';
-                    document.getElementById('registerSection').style.display = 'none';
-                    document.getElementById('profileSection').style.display = 'block';
-                    
-                    // डेटा को स्क्रीन पर दिखाना
-                    document.getElementById('dispName').innerText = data.name || "उपलब्ध नहीं";
-                    document.getElementById('dispFather').innerText = data.father || "उपलब्ध नहीं";
-                    document.getElementById('dispMobile').innerText = data.mobile || "उपलब्ध नहीं";
-                    document.getElementById('dispAddr').innerText = data.address || "उपलब्ध नहीं";
-                    document.getElementById('dispOrder').innerText = data.order || "कोई ऑर्डर नहीं";
-                    document.getElementById('dispJamaa').innerText = data.jamaa || "0";
-                    document.getElementById('dispBaki').innerText = data.baki || "0";
-                    document.getElementById('dispTotal').innerText = data.total || "0";
-                } else {
-                    alert("गलत पिन!");
-                }
-            } else {
-                alert("नंबर रजिस्टर नहीं है!");
-            }
-        })
-        .catch(err => alert("सर्वर एरर, कृपया बाद में प्रयास करें।"));
-    }
-</script>
+    <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-    <a href="index.html" class="nav-item">
-        <span class="nav-icon">🏠</span>
-        <span class="nav-text">होम</span>
-    </a>
-    <a href="productlist.html" class="nav-item">
-        <span class="nav-icon">💍</span>
-        <span class="nav-text">उत्पाद सूची</span>
-    </a>
-    <a href="history.html" class="nav-item">
-        <span class="nav-icon">📜</span>
-        <span class="nav-text">इतिहास</span>
-    </a>
-    <a href="login.html" class="nav-item">
-        <span class="nav-icon">👤</span>
-        <span class="nav-text">लॉगिन</span>
-    </a>
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">होम</span>
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>
+            <span class="nav-text">सूची</span>
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>
+            <span class="nav-text">इतिहास</span>
+        </a>
+        <a href="login.html" class="nav-item" style="color: #b8860b;">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">लॉगिन</span>
+        </a>
     </nav>
-    
+
+    <script>
+        function handleLogin() {
+            const number = document.getElementById('mobileNumber').value.trim();
+
+            if (number.length !== 10 || isNaN(number)) {
+                alert('कृपया वैध 10 अंकों का मोबाइल नंबर दर्ज करें ⚠️');
+                return;
+            }
+
+            // यूनिक कस्टमर आईडी बनाना (जैसे: NSJ-54321)
+            const customerId = "NSJ-" + Math.floor(10000 + Math.random() * 90000);
+            
+            // AI अवतार जनरेट करना
+            const aiAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${number}`;
+
+            // ब्राउज़र में डेटा सेव करना ताकि अपने आप लॉग आउट न हो
+            localStorage.setItem('userNumber', number);
+            localStorage.setItem('customerId', customerId);
+            localStorage.setItem('userAvatar', aiAvatar);
+
+            alert('खाता सफलतापूर्वक बन गया! 🎉');
+            window.location.href = 'history.html';
+        }
+    </script>
 </body>
 </html>
