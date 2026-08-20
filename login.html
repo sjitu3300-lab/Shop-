@@ -3,167 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>लॉगिन - NS Jewellers</title>
+    <title>NS Jewellers - लॉगिन</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding-bottom: 80px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fdfbf7; margin: 0; padding-bottom: 70px; }
+        .login-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 85%; max-width: 350px; margin: 50px auto; text-align: center; }
+        .avatar-preview { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 15px; border: 3px solid #b8860b; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #b8860b; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .create-link { color: #007bff; text-decoration: underline; margin-top: 15px; display: block; font-size: 14px; }
         
-        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; text-align: center; }
-        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
-        
-        /* सेंटर में लॉगिन और प्रोफाइल बॉक्स */
-        .login-container { 
-            max-width: 400px; 
-            margin: 40px auto; 
-            background: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            border: 1px solid #e0d8c5; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-            text-align: center; 
-        }
-        
-        /* प्रोफाइल और अवतार स्टाइल */
-        .user-avatar {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            border: 2px solid #b8860b;
-            object-fit: cover;
-            background-color: #f4efe6;
-            margin-bottom: 10px;
-        }
-        .profile-info { text-align: left; margin: 15px 0; background: #fffaf0; padding: 12px; border-radius: 8px; border: 1px solid #e0d8c5; font-size: 14px; color: #444; }
-        .profile-info p { margin-bottom: 6px; }
-
-        .login-container h2 { color: #b8860b; margin-bottom: 15px; }
-        .login-container p { color: #666; font-size: 14px; margin-bottom: 15px; }
-        
-        .input-box { width: 100%; padding: 11px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; text-align: center; }
-        .login-btn { width: 100%; padding: 11px; background: #b8860b; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; }
-        .login-btn:hover { background: #996d08; }
-        
-        .logout-btn { background: #d9534f; margin-top: 10px; }
-        .logout-btn:hover { background: #c9302c; }
-
-        /* नया अकाउंट बनाने के लिए नीला लिंक */
-        .create-link { display: inline-block; margin-top: 15px; color: #0066cc; text-decoration: none; font-size: 14px; font-weight: 500; }
-        .create-link:hover { text-decoration: underline; }
-
-        /* बॉटम नेविगेशन बार */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #fdfbf7;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #e0d8c5;
-            z-index: 1000;
-        }
-        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
-        .nav-icon { font-size: 18px; margin-bottom: 2px; }
-        .nav-avatar { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #b8860b; object-fit: cover; margin-bottom: 2px; }
+        /* Bottom Navigation Bar */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #ddd; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+        .nav-item { text-decoration: none; color: #555; font-size: 14px; text-align: center; }
+        .nav-avatar { width: 30px; height: 30px; border-radius: 50%; display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
 
-    <header class="app-header">
-        <div class="shop-name">NS Jewellers 💍</div>
-    </header>
+<!-- लॉगिन सेक्शन -->
+<div class="login-card" id="loginArea">
+    <h2>ग्राहक लॉगिन 💍</h2>
+    <input type="text" id="userInput" placeholder="मोबाइल नंबर या नाम">
+    <input type="password" id="pinInput" placeholder="पिन कोड">
+    <button onclick="login()">लॉगिन करें</button>
+    <a href="https://forms.gle/31VbtUEn8jtcwamA6" class="create-link">नया अकाउंट बनाएं?</a>
+</div>
 
-    <div class="login-container" id="loginBox">
-        <!-- जावास्क्रिप्ट द्वारा यहाँ फॉर्म या प्रोफाइल लोड होगी -->
-    </div>
+<!-- प्रोफाइल सेक्शन (लॉगिन के बाद दिखेगा) -->
+<div class="login-card" id="profileArea" style="display:none;">
+    <img id="userAvatar" class="avatar-preview" src="">
+    <h3 id="displayName"></h3>
+    <p>पिता: <span id="displayFather"></span></p>
+    <p>पता: <span id="displayAddress"></span></p>
+    <button style="background: #27ae60; margin-top:10px;" onclick="showPayments()">पेमेंट डिटेल्स</button>
+    <button style="background: #e74c3c; margin-top:10px;" onclick="logout()">लॉग आउट</button>
+</div>
 
-    <!-- बॉटम नेविगेशन बार -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>होम</a>
-        <a href="productlist.html" class="nav-item"><span class="nav-icon">💍</span>सूची</a>
-        <a href="history.html" class="nav-item"><span class="nav-icon">📜</span>इतिहास</a>
-        <a href="login.html" class="nav-item" style="color: #b8860b;" id="navLoginItem"><span class="nav-icon">👤</span>लॉगिन</a>
-    </nav>
+<!-- बॉटम नेविगेशन बार -->
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item">🏠<br>होम</a>
+    <a href="productlist.html" class="nav-item">💍<br>सूची</a>
+    <a href="history.html" class="nav-item">📜<br>इतिहास</a>
+    <a href="login.html" class="nav-item" id="navLogin">👤<br>लॉगिन</a>
+</nav>
 
-    <script>
-        const loginBox = document.getElementById('loginBox');
-        const navLoginItem = document.getElementById('navLoginItem');
-        
-        // लोकल स्टोरेज से डेटा निकालना
-        const savedNumber = localStorage.getItem('userNumber');
-        const savedName = localStorage.getItem('userName');
-        const savedFather = localStorage.getItem('userFather');
-        const savedAddress = localStorage.getItem('userAddress');
-        const savedAvatar = localStorage.getItem('userAvatar');
+<script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyopB6eWob-BYwPyrHPPOqhmwL4bFxIa7-u1yP7vDtfMsnZPaEOcyW-SMuM5urT0v1/exec"; 
 
-        // अगर ग्राहक पहले से लॉगिन है
-        if (savedNumber) {
-            loginBox.innerHTML = `
-                <img src="${savedAvatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + savedNumber}" alt="Avatar" class="user-avatar">
-                <h2>मेरी प्रोफाइल ✨</h2>
-                <div class="profile-info">
-                    <p>👤 <strong>नाम:</strong> ${savedName || 'ग्राहक'}</p>
-                    <p>👨‍👦 <strong>पिता का नाम:</strong> ${savedFather || 'उपलब्ध नहीं'}</p>
-                    <p>📞 <strong>मोबाइल नंबर:</strong> ${savedNumber}</p>
-                    <p>🏠 <strong>पता:</strong> ${savedAddress || 'उपलब्ध नहीं'}</p>
-                </div>
-                <p style="color: #2e7d32; font-weight: 500; font-size: 13px;">खाता सक्रिय है ✅</p>
-                <button class="login-btn logout-btn" onclick="handleLogout()">लॉग आउट करें 🚪</button>
-            `;
-
-            navLoginItem.innerHTML = `
-                <img src="${savedAvatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + savedNumber}" alt="Profile" class="nav-avatar">
-                <span>प्रोफाइल</span>
-            `;
-        } else {
-            // यदि लॉगिन नहीं है, तो लॉगिन फॉर्म दिखाएं
-            loginBox.innerHTML = `
-                <h2>ग्राहक लॉगिन 👤</h2>
-                <p>लॉगिन करने के लिए विवरण दर्ज करें</p>
-                <input type="text" id="loginIdentifier" class="input-box" placeholder="मोबाइल नंबर या नाम दर्ज करें">
-                <input type="password" id="loginPin" class="input-box" placeholder="पिन कोड (PIN Code) दर्ज करें" maxlength="6">
-                <button class="login-btn" onclick="handleLogin()">लॉगिन करें</button>
-                <br>
-                <!-- आपके गूगल फॉर्म का लिंक यहाँ जोड़ा गया है -->
-                <a href="https://forms.gle/WACZ1GRbGM8STBZL7" target="_blank" class="create-link">नया अकाउंट बनाएं? यहाँ क्लिक करें 📝</a>
-            `;
-
-            navLoginItem.innerHTML = `<span class="nav-icon">👤</span>लॉगिन`;
+    // चेक करें कि क्या यूजर पहले से लॉग इन है
+    window.onload = function() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            showProfile(user);
+            // नेविगेशन बार में अवतार अपडेट करें
+            document.getElementById('navLogin').innerHTML = `<img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${user.mobile}" class="nav-avatar">लॉगिन`;
         }
+    };
 
-        function handleLogin() {
-            const identifier = document.getElementById('loginIdentifier').value.trim();
-            const pin = document.getElementById('loginPin').value.trim();
+    async function login() {
+        const input = document.getElementById('userInput').value;
+        const pin = document.getElementById('pinInput').value;
+        const res = await fetch(`${SCRIPT_URL}?input=${input}&pin=${pin}`);
+        const data = await res.json();
+        if (data.status === "success") {
+            localStorage.setItem('user', JSON.stringify(data));
+            location.reload();
+        } else { alert("गलत नंबर या पिन!"); }
+    }
 
-            if (!identifier || pin.length < 4) {
-                alert('कृपया सही मोबाइल नंबर/नाम और पिन कोड दर्ज करें ⚠️');
-                return;
-            }
+    function showProfile(data) {
+        document.getElementById('loginArea').style.display = 'none';
+        document.getElementById('profileArea').style.display = 'block';
+        document.getElementById('displayName').innerText = data.name;
+        document.getElementById('displayFather').innerText = data.fatherName;
+        document.getElementById('displayAddress').innerText = data.address;
+        document.getElementById('userAvatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.mobile}`;
+    }
 
-            // डेमो के लिए डेटा सेट किया गया है (आप इसे अपनी गूगल शीट से भी जोड़ सकते हैं)
-            const customerName = identifier.length === 10 ? "NS Jewellers Cutomer" : identifier;
-            const fatherName = "राजेश कुमार";
-            const address = "मुख्य बाजार, नागौर, राजस्थान";
-            const mobileNumber = identifier.length === 10 ? identifier : "9876543210";
-            const aiAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${mobileNumber}`;
-
-            // ब्राउज़र में हमेशा के लिए डेटा सेव करना
-            localStorage.setItem('userNumber', mobileNumber);
-            localStorage.setItem('userName', customerName);
-            localStorage.setItem('userFather', fatherName);
-            localStorage.setItem('userAddress', address);
-            localStorage.setItem('userAvatar', aiAvatar);
-
-            alert('लॉगिन सफल रहा! 🎉');
-            window.location.reload();
-        }
-
-        function handleLogout() {
-            localStorage.clear(); // सभी डेटा हटाना
-            alert('आप सफलतापूर्वक लॉग आउट हो गए हैं! 👋');
-            window.location.reload();
-        }
-    </script>
+    function logout() { localStorage.clear(); location.reload(); }
+    function showPayments() { 
+        const user = JSON.parse(localStorage.getItem('user'));
+        alert(`जमा: ₹${user.jama}\nबाकी: ₹${user.baki}\nकुल भुगतान: ₹${user.total}`);
+    }
+</script>
 </body>
 </html>
