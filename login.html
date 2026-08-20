@@ -8,10 +8,11 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; padding-bottom: 80px; }
         
+        /* हेडर स्टाइल */
         .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; text-align: center; }
         .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
         
-        /* लॉगिन बॉक्स को सेंटर में रखने की स्टाइल */
+        /* सेंटर में लॉगिन और प्रोफाइल बॉक्स */
         .login-container { 
             max-width: 400px; 
             margin: 60px auto; 
@@ -23,10 +24,8 @@
             text-align: center; 
         }
         
-        /* आईडी लोगो और अवतार के लिए स्टाइल 🆔 */
-        .avatar-container {
-            margin-bottom: 20px;
-        }
+        /* AI अवतार और आईडी बैज */
+        .avatar-container { margin-bottom: 20px; }
         .user-avatar {
             width: 80px;
             height: 80px;
@@ -57,7 +56,7 @@
         .logout-btn { background: #d9534f; margin-top: 10px; }
         .logout-btn:hover { background: #c9302c; }
 
-        /* बॉटम नेविगेशन बार */
+        /* फिक्स्ड बॉटम नेविगेशन बार */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -72,6 +71,16 @@
         }
         .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #555; font-size: 12px; }
         .nav-icon { font-size: 18px; margin-bottom: 2px; }
+        
+        /* बॉटम नेविगेशन के लिए छोटा AI अवतार */
+        .nav-avatar {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid #b8860b;
+            object-fit: cover;
+            margin-bottom: 2px;
+        }
     </style>
 </head>
 <body>
@@ -80,26 +89,39 @@
         <div class="shop-name">NS Jewellers 💍</div>
     </header>
 
+    <!-- सेंटर में दिखने वाला बॉक्स -->
     <div class="login-container" id="loginBox">
-        <!-- यह हिस्सा जावास्क्रिप्ट से डायनेमिक रूप से बदलेगा (लॉगिन होने पर प्रोफाइल और बिना लॉगिन के फॉर्म) -->
+        <!-- जावास्क्रिप्ट द्वारा यहाँ लॉगिन फॉर्म या प्रोफाइल लोड होगी -->
     </div>
 
     <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>होम</a>
-        <a href="productlist.html" class="nav-item"><span class="nav-icon">💍</span>सूची</a>
-        <a href="history.html" class="nav-item"><span class="nav-icon">📜</span>इतिहास</a>
-        <a href="login.html" class="nav-item" style="color: #b8860b;"><span class="nav-icon">👤</span>लॉगिन</a>
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>होम
+        </a>
+        <a href="productlist.html" class="nav-item">
+            <span class="nav-icon">💍</span>सूची
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📜</span>इतिहास
+        </a>
+        <!-- डायनेमिक नेविगेशन लॉगिन/अवतार आइकन -->
+        <a href="login.html" class="nav-item" style="color: #b8860b;" id="navLoginItem">
+            <span class="nav-icon">👤</span>लॉगिन
+        </a>
     </nav>
 
     <script>
         const loginBox = document.getElementById('loginBox');
+        const navLoginItem = document.getElementById('navLoginItem');
+        
         const savedNumber = localStorage.getItem('userNumber');
         const savedId = localStorage.getItem('customerId');
         const savedAvatar = localStorage.getItem('userAvatar');
 
-        // अगर यूजर पहले से लॉगिन है तो उसकी प्रोफाइल और आईडी दिखाएं 🆔
+        // जांचें कि क्या ग्राहक पहले से लॉगिन है
         if (savedNumber && savedId) {
+            // 1. यदि लॉगिन है, तो सेंटर में उसकी प्रोफाइल, आईडी और लॉग आउट बटन दिखाएं
             loginBox.innerHTML = `
                 <div class="avatar-container">
                     <img src="${savedAvatar}" alt="AI Avatar" class="user-avatar">
@@ -107,19 +129,30 @@
                 </div>
                 <h2>स्वागत है! ✨</h2>
                 <p>मोबाइल नंबर: <strong>${savedNumber}</strong></p>
-                <p style="color: #2e7d32; font-weight: 500;">आपका खाता सक्रिय है ✅</p>
+                <p style="color: #2e7d32; font-weight: 500; margin-bottom: 15px;">आपका खाता सक्रिय है ✅</p>
                 <button class="login-btn logout-btn" onclick="handleLogout()">लॉग आउट करें 🚪</button>
             `;
+
+            // 2. बॉटम नेविगेशन में सामान्य 'लॉगिन' टेक्स्ट की जगह उसका AI अवतार सेट करें
+            navLoginItem.innerHTML = `
+                <img src="${savedAvatar}" alt="Profile" class="nav-avatar">
+                <span>प्रोफाइल</span>
+            `;
         } else {
-            // यदि यूजर लॉगिन नहीं है तो पुराना लॉगिन फॉर्म दिखाएं 👤
+            // यदि लॉगिन नहीं है, तो सेंटर में पुराना लॉगिन फॉर्म और बॉटम में सामान्य आइकन दिखाएं
             loginBox.innerHTML = `
                 <h2>ग्राहक खाता 👤</h2>
                 <p>खाता बनाने या लॉगिन करने के लिए मोबाइल नंबर दर्ज करें</p>
                 <input type="tel" id="mobileNumber" class="input-box" placeholder="मोबाइल नंबर (10 अंक)" maxlength="10">
                 <button class="login-btn" onclick="handleLogin()">खाता बनाएं / लॉगिन करें</button>
             `;
+
+            navLoginItem.innerHTML = `
+                <span class="nav-icon">👤</span>लॉगिन
+            `;
         }
 
+        // लॉगिन और अकाउंट क्रिएट करने का फंक्शन
         function handleLogin() {
             const number = document.getElementById('mobileNumber').value.trim();
 
@@ -132,17 +165,17 @@
             const customerId = "NSJ-" + Math.floor(10000 + Math.random() * 90000);
             const aiAvatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${number}`;
 
-            // ब्राउज़र में हमेशा के लिए डेटा सेव करना ताकि अपने आप लॉग आउट न हो 💾
+            // ब्राउज़र में डेटा सेव करना ताकि अपने आप लॉग आउट न हो 💾
             localStorage.setItem('userNumber', number);
             localStorage.setItem('customerId', customerId);
             localStorage.setItem('userAvatar', aiAvatar);
 
             alert('खाता सफलतापूर्वक बन गया! 🎉');
-            window.location.reload(); // पेज रीफ्रेश करके प्रोफाइल दिखाएं
+            window.location.reload(); // पेज रीफ्रेश करें ताकि अवतार और प्रोफाइल लागू हो जाए
         }
 
+        // लॉग आउट करने का फंक्शन (जब ग्राहक खुद लॉग आउट बटन दबाएगा)
         function handleLogout() {
-            // केवल लॉग आउट बटन दबाने पर ही डेटा डिलीट होगा 🚪
             localStorage.removeItem('userNumber');
             localStorage.removeItem('customerId');
             localStorage.removeItem('userAvatar');
