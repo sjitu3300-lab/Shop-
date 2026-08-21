@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NS Jewellers - लॉगिन और प्रोफाइल</title>
+    <title>NS Jewellers - डैशबोर्ड और इतिहास</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; margin: 0; padding-bottom: 70px; display: flex; justify-content: center; align-items: center; min-height: 100vh; box-sizing: border-box; }
         .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 380px; text-align: center; border: 1px solid #e0d8c5; box-sizing: border-box; }
@@ -12,7 +12,7 @@
         .btn { width: 100%; padding: 12px; background: #b8860b; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
         .btn:hover { background: #996d08; }
         
-        /* नया अकाउंट बनाने के लिए नीला लिंक स्टाइल */
+        /* नया अकाउंट बनाने के लिए नीला लिंक */
         .create-account-link { 
             display: block; 
             margin-top: 15px; 
@@ -23,52 +23,30 @@
         }
         .create-account-link:hover { text-decoration: underline; }
 
-        /* प्रोफाइल और AI अवतार के लिए यूनिक स्टाइल */
+        /* प्रोफाइल और AI अवतार स्टाइल */
         .avatar-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #b8860b; margin-bottom: 15px; object-fit: cover; }
         .profile-info { text-align: left; background: #fdfbf7; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #eae3d2; }
         .profile-info p { margin: 8px 0; font-size: 14px; color: #333; }
         .profile-info span { font-weight: bold; color: #b8860b; }
 
-        /* Step 5: बॉटम नेविगेशन बार स्टाइल */
+        /* Step 9: पेमेंट डिटेल्स कार्ड के अंदर स्टाइल */
+        .payment-summary { background: #f4eee1; padding: 10px; border-radius: 8px; margin-bottom: 15px; text-align: left; border: 1px solid #d4c5a9; }
+        .payment-summary p { margin: 5px 0; font-size: 13px; color: #444; }
+
+        /* बॉटम नेविगेशन बार स्टाइल */
         .bottom-nav { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: #ffffff; 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 10px 0; 
-            border-top: 1px solid #e0d8c5; 
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05); 
-            z-index: 1000;
+            position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; 
+            display: flex; justify-content: space-around; padding: 10px 0; 
+            border-top: 1px solid #e0d8c5; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 1000;
         }
-        .nav-item { 
-            text-decoration: none; 
-            color: #555; 
-            font-size: 13px; 
-            text-align: center; 
-            font-weight: 500; 
-        }
-        .nav-item:hover { color: #b8860b; }
-        .nav-icon { 
-            font-size: 20px; 
-            display: block; 
-            margin-bottom: 3px; 
-        }
-        .nav-avatar-img { 
-            width: 24px; 
-            height: 24px; 
-            border-radius: 50%; 
-            display: inline-block; 
-            border: 1.5px solid #b8860b; 
-            vertical-align: middle; 
-        }
+        .nav-item { text-decoration: none; color: #555; font-size: 13px; text-align: center; font-weight: 500; }
+        .nav-icon { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-avatar-img { width: 24px; height: 24px; border-radius: 50%; display: inline-block; border: 1.5px solid #b8860b; vertical-align: middle; }
     </style>
 </head>
 <body>
 
-    <!-- लॉगिन सेक्शन (Step 1, 2, 3) -->
+    <!-- लॉगिन सेक्शन -->
     <div class="card" id="loginSection">
         <h2>NS Jewellers 💍</h2>
         <input type="text" id="userInput" class="input-box" placeholder="मोबाइल नंबर या नाम दर्ज करें">
@@ -76,13 +54,12 @@
         
         <button class="btn" onclick="checkLogin()">लॉगिन करें</button>
         
-        <!-- Google Form लिंक -->
         <a href="https://forms.gle/xxdjBBhyNjNX25Cb6" target="_blank" class="create-account-link">
             नया अकाउंट बनाएं? यहाँ क्लिक करें 📝
         </a>
     </div>
 
-    <!-- प्रोफाइल सेक्शन (Step 4: AI अवतार और ऑटोमैटिक डेटा) -->
+    <!-- प्रोफाइल सेक्शन (Step 9 के साथ अपडेटेड) -->
     <div class="card" id="profileSection" style="display: none;">
         <h2>ग्राहक प्रोफाइल ✨</h2>
         <img id="userAvatar" class="avatar-img" src="" alt="AI Avatar">
@@ -94,30 +71,28 @@
             <p>पता: <span id="displayAddress"></span></p>
         </div>
 
-        <button class="btn" style="background-color: #27ae60;">पेमेंट डिटेल्स</button>
+        <!-- Step 9: प्रोफाइल के अंदर पेमेंट डिटेल्स (जमा, बाकी, कुल) -->
+        <div class="payment-summary">
+            <p>💳 <strong>कुल जमा (Jama):</strong> ₹<span id="displayJama">0</span></p>
+            <p>⏳ <strong>कुल बाकी (Baki):</strong> ₹<span id="displayBaki">0</span></p>
+            <p>📊 <strong>कुल योग (Total):</strong> ₹<span id="displayTotal">0</span></p>
+        </div>
+
         <button class="btn" style="background-color: #c0392b;" onclick="logoutUser()">लॉग आउट</button>
     </div>
 
-    <!-- Step 5: बॉटम नेविगेशन बार (Home, Product List, History, Login) -->
+    <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <span class="nav-icon">🏠</span>होम
-        </a>
-        <a href="productlist.html" class="nav-item">
-            <span class="nav-icon">💍</span>उत्पाद सूची
-        </a>
-        <a href="history.html" class="nav-item">
-            <span class="nav-icon">📜</span>इतिहास
-        </a>
-        <a href="login.html" class="nav-item" id="navLoginTab">
-            <span class="nav-icon" id="navIconContainer">👤</span>लॉगिन
-        </a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>होम</a>
+        <a href="productlist.html" class="nav-item"><span class="nav-icon">💍</span>सूची</a>
+        <a href="history.html" class="nav-item"><span class="nav-icon">📜</span>इतिहास</a>
+        <a href="login.html" class="nav-item" id="navLoginTab"><span class="nav-icon" id="navIconContainer">👤</span>लॉगिन</a>
     </nav>
 
 <script>
+    // अपडेटेड Google Apps Script लिंक
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxhf5k3DlfeQ_AIehJdb9DMLINg1VIgF8xu372ZdhY7V5mMQpD7MnObFzodEnbNgkeiTg/exec";
 
-    // पेज लोड होने पर चेक करें कि क्या यूजर पहले से लॉग इन है
     window.onload = function() {
         const savedUser = localStorage.getItem('jewellerUser');
         if (savedUser) {
@@ -163,11 +138,14 @@
         document.getElementById('displayMobile').innerText = data.mobile;
         document.getElementById('displayAddress').innerText = data.address;
 
-        // प्रोफाइल के लिए AI अवतार जनरेट करना
+        // Step 9: पेमेंट वैल्यू सेट करना
+        document.getElementById('displayJama').innerText = data.jama || "0";
+        document.getElementById('displayBaki').innerText = data.baki || "0";
+        document.getElementById('displayTotal').innerText = data.total || "0";
+
         document.getElementById('userAvatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.mobile}`;
     }
 
-    // बॉटम नेविगेशन बार में 👤 की जगह AI अवतार सेट करने का फंक्शन
     function updateNavAvatar(mobile) {
         const iconContainer = document.getElementById('navIconContainer');
         const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${mobile}`;
@@ -181,3 +159,4 @@
 </script>
 </body>
 </html>
+
