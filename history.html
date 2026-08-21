@@ -3,96 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मेरा इतिहास - NS Jewellers</title>
+    <title>इतिहास - NS Jewellers</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; text-align: center; padding: 20px; padding-bottom: 80px; }
-        .app-header { background-color: #fdfbf7; padding: 15px; border-bottom: 1px solid #e0d8c5; margin-bottom: 30px; }
-        .shop-name { font-size: 20px; font-weight: bold; color: #b8860b; }
-        .msg-box { max-width: 500px; margin: 40px auto; padding: 30px; border: 1px solid #e0d8c5; border-radius: 15px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .msg-box h2 { color: #b8860b; margin-bottom: 15px; font-size: 20px; }
-        .msg-box p { color: #555; line-height: 1.6; margin-bottom: 20px; }
-        .btn-login { display: inline-block; padding: 10px 25px; background: #b8860b; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f9f6f0; margin: 0; padding-bottom: 70px; }
+        .header-tabs { display: flex; background: #b8860b; color: white; justify-content: space-around; padding: 15px 0; font-weight: bold; cursor: pointer; }
+        .tab { flex: 1; text-align: center; padding: 5px; }
+        .tab.active { border-bottom: 3px solid white; }
+        .content-section { padding: 20px; max-width: 500px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 15px; }
         
         /* बॉटम नेविगेशन बार */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #fdfbf7;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #e0d8c5;
-            box-shadow: {0 -2px 5px rgba(0,0,0,0.05)};
-            z-index: 1000;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #555;
-            font-size: 12px;
-        }
-        .nav-icon { font-size: 18px; margin-bottom: 2px; }
-        .nav-text { font-weight: 500; }
-        .nav-item:hover { color: #b8860b; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #e0d8c5; z-index: 1000; }
+        .nav-item { text-decoration: none; color: #555; font-size: 13px; text-align: center; font-weight: 500; }
+        .nav-icon { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-avatar-img { width: 24px; height: 24px; border-radius: 50%; display: inline-block; border: 1.5px solid #b8860b; vertical-align: middle; }
     </style>
 </head>
 <body>
 
-    <header class="app-header">
-        <div class="shop-name">NS Jewellers 💍</div>
-    </header>
+    <!-- Step 7: इतिहास पेज के ऊपर दो विकल्प -->
+    <div class="header-tabs">
+        <div class="tab active" id="tabProduct" onclick="switchTab('product')">🛍️ उत्पाद सूची इतिहास</div>
+        <div class="tab" id="tabPayment" onclick="switchTab('payment')">💰 पेमेंट इतिहास</div>
+    </div>
 
-    <div id="content">
-        <!-- यहाँ जावास्क्रिप्ट से कंटेंट लोड होगा -->
+    <div class="content-section">
+        <!-- उत्पाद इतिहास सेक्शन -->
+        <div id="productHistory" class="card">
+            <h3>खरीदे गए उत्पादों का इतिहास</h3>
+            <p id="orderListContent">लोड हो रहा है...</p>
+        </div>
+
+        <!-- पेमेंट इतिहास सेक्शन (Step 8 के लिए तैयार) -->
+        <div id="paymentHistory" class="card" style="display: none;">
+            <h3>पेमेंट लेन-देन का इतिहास</h3>
+            <p><strong>कुल जमा राशि (Jama):</strong> ₹<span id="histJama">0</span></p>
+            <p><strong>कुल बाकी राशि (Baki):</strong> ₹<span id="histBaki">0</span></p>
+            <p><strong>कुल योग (Total):</strong> ₹<span id="histTotal">0</span></p>
+        </div>
     </div>
 
     <!-- बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">होम</span>
-        </a>
-        <a href="productlist.html" class="nav-item">
-            <span class="nav-icon">💍</span>
-            <span class="nav-text">उत्पाद सूची</span>
-        </a>
-        <a href="history.html" class="nav-item" style="color: #b8860b;">
-            <span class="nav-icon">📜</span>
-            <span class="nav-text">इतिहास</span>
-        </a>
-        <a href="login.html" class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span class="nav-text">लॉगिन</span>
-        </a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>होम</a>
+        <a href="productlist.html" class="nav-item"><span class="nav-icon">💍</span>सूची</a>
+        <a href="history.html" class="nav-item"><span class="nav-icon">📜</span>इतिहास</a>
+        <a href="login.html" class="nav-item"><span class="nav-icon" id="navIconContainer">👤</span>लॉगिन</a>
     </nav>
 
 <script>
-    // चेक करें कि क्या यूजर लॉगिन है (userNumber की जांच)
-    const userNumber = localStorage.getItem('userNumber'); 
-    const contentDiv = document.getElementById('content');
+    window.onload = function() {
+        const savedUser = localStorage.getItem('jewellerUser');
+        if (savedUser) {
+            const data = JSON.parse(savedUser);
+            // डेटा लोड करना
+            document.getElementById('orderListContent').innerText = data.orderList || "कोई ऑर्डर नहीं मिला।";
+            document.getElementById('histJama').innerText = data.jama || "0";
+            document.getElementById('histBaki').innerText = data.baki || "0";
+            document.getElementById('histTotal').innerText = data.total || "0";
 
-    if (!userNumber) {
-        // अगर यूजर लॉगिन नहीं है
-        contentDiv.innerHTML = `
-            <div class="msg-box">
-                <h2>लॉगिन आवश्यक है 🔒</h2>
-                <p>Please first step Login after seen your history.</p>
-                <a href="login.html" class="btn-login">लॉगिन करें 👤</a>
-            </div>
-        `;
-    } else {
-        // अगर यूजर लॉगिन है
-        contentDiv.innerHTML = `
-            <div class="msg-box">
-                <h2>स्वागत है, ${userNumber} ✨</h2>
-                <p>यहाँ आपके पुराने इतिहास और पसंदीदा उत्पादों का रिकॉर्ड दिखाई देगा।</p>
-            </div>
-        `;
+            // नेविगेशन बार में अवतार सेट करना
+            const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.mobile}`;
+            document.getElementById('navIconContainer').innerHTML = `<img src="${avatarUrl}" class="nav-avatar-img" alt="Avatar">`;
+        } else {
+            document.getElementById('orderListContent').innerText = "कृपया पहले लॉगिन करें!";
+        }
+    };
+
+    function switchTab(type) {
+        if (type === 'product') {
+            document.getElementById('productHistory').style.display = 'block';
+            document.getElementById('paymentHistory').style.display = 'none';
+            document.getElementById('tabProduct').classList.add('active');
+            document.getElementById('tabPayment').classList.remove('active');
+        } else {
+            document.getElementById('productHistory').style.display = 'none';
+            document.getElementById('paymentHistory').style.display = 'block';
+            document.getElementById('tabPayment').classList.add('active');
+            document.getElementById('tabProduct').classList.remove('active');
+        }
     }
 </script>
 </body>
