@@ -60,15 +60,6 @@
             color: var(--gold);
         }
 
-        .brand-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
         .header-icons {
             display: flex;
             gap: 20px;
@@ -81,7 +72,7 @@
             color: var(--gold);
         }
 
-        /* ✨ 2. Hero Section (Image 1 Style) */
+        /* ✨ 2. Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-main) 100%);
             padding: 40px 30px;
@@ -102,24 +93,28 @@
         }
 
         .badge-radiant {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 8px 16px;
-            border-radius: 30px;
             font-size: 12px;
             color: var(--gold);
             letter-spacing: 1px;
         }
 
         .community-box {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 13px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .community-box:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .hero-main-layout {
@@ -187,18 +182,19 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        /* 📦 3. Our Creations Section */
+        /* 📦 3. Our Creations Section (8 Cards) */
         .creations-section {
             background-color: var(--bg-light);
             color: var(--text-dark);
             padding: 50px 30px;
+            text-align: center;
         }
 
-        .section-header-title {
+        .section-title {
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             color: var(--emerald-main);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .section-subtitle {
@@ -219,35 +215,17 @@
             background-color: var(--white);
             border: 1px solid #e0d8c5;
             border-radius: 16px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .creation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.15);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.2);
             border-color: var(--gold);
-        }
-
-        .creation-img-box {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background-color: #f9f6f0;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-
-        .creation-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .creation-card h3 {
@@ -256,7 +234,7 @@
             color: var(--emerald-main);
         }
 
-        /* 👑 4. Icon Collections Section */
+        /* 👑 4. Icon Collections Section (8 Cards) */
         .icon-collections-section {
             background-color: var(--emerald-dark);
             color: var(--white);
@@ -266,7 +244,7 @@
 
         .icon-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 25px;
             max-width: 1200px;
             margin: 30px auto 0 auto;
@@ -276,17 +254,15 @@
             background: var(--emerald-main);
             border: 1px solid var(--gold);
             border-radius: 20px;
-            padding: 15px;
+            padding: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
-        .icon-box img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 12px;
+        .icon-box:hover {
+            transform: scale(1.03);
         }
 
         .icon-box h4 {
@@ -299,7 +275,7 @@
         .luxury-footer {
             background-color: var(--emerald-main);
             color: var(--gold-light);
-            padding: 50px 30px;
+            padding: 60px 30px;
             border-top: 3px solid var(--gold);
         }
 
@@ -307,54 +283,45 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            gap: 30px;
+            text-align: center;
         }
 
-        .footer-col h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
+        .footer-left {
+            text-align: left;
+        }
+
+        .footer-left a {
+            display: block;
             color: var(--gold);
-            margin-bottom: 15px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: color 0.3s;
         }
 
-        .footer-col p {
+        .footer-left a:hover {
+            color: var(--white);
+        }
+
+        .footer-center-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .footer-right {
+            text-align: right;
             font-size: 13px;
             color: #dcdcdc;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
-        .subscribe-input {
-            width: 100%;
-            padding: 12px 18px;
-            border-radius: 30px;
-            border: 1px solid var(--gold);
-            background: rgba(255,255,255,0.08);
-            color: white;
-            margin-bottom: 12px;
-            outline: none;
-        }
-
-        .subscribe-btn {
-            background-color: var(--gold);
-            color: var(--emerald-dark);
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-            font-size: 18px;
-        }
-
-        /* 📱 Bottom Navigation Bar */
+        /* 📱 Custom Image-Style Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -362,24 +329,42 @@
             width: 100%;
             background-color: var(--emerald-dark);
             display: flex;
-            justify-content: space-around;
-            padding: 12px 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
             border-top: 2px solid var(--gold);
             z-index: 1000;
         }
 
-        .nav-item {
+        .bottom-nav-left {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #b0c4de;
-            font-size: 11px;
-            gap: 2px;
+            gap: 15px;
         }
 
-        .nav-item.active, .nav-item:hover {
+        .bottom-nav-left a {
             color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .bottom-nav-left a:hover {
+            color: var(--white);
+        }
+
+        .bottom-nav-center {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--gold);
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .bottom-nav-right {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #dcdcdc;
         }
 
         @media(max-width: 768px) {
@@ -398,6 +383,22 @@
             .nav-menu {
                 display: none;
             }
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-left, .footer-right {
+                text-align: center;
+            }
+            .bottom-nav {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 10px;
+            }
+            .bottom-nav-left, .bottom-nav-right {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -408,11 +409,14 @@
         <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="productlist.html">Product</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#services">Service</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         
-        <div class="brand-logo">NS Jewellers</div>
+        <div class="brand-logo">
+            <span style="color: var(--gold); font-weight: 700; font-family: 'Cinzel', serif;">NS</span> 
+            <span style="color: var(--white); font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; margin-left: 4px;">Jewellers</span>
+        </div>
         
         <div class="header-icons">
             <span title="Wishlist">❤️</span>
@@ -421,19 +425,20 @@
         </div>
     </header>
 
-    <!-- ✨ 2. Hero Section (Image 1 Style) -->
+    <!-- ✨ 2. Hero Section -->
     <section class="hero-section">
         <div class="hero-top-bar">
-            <div class="badge-radiant">✨ Radiant Bloom Collection</div>
-            <div class="community-box">
+            <div class="badge-radiant">✨ Radiant Bloom</div>
+            <!-- Instagram redirect link -->
+            <a href="https://www.instagram.com" target="_blank" class="community-box">
                 <span>👥 Lovers & Supportive Community (4.5k)</span>
-            </div>
+            </a>
         </div>
 
         <div class="hero-main-layout">
             <div class="hero-left-content">
                 <h1>Embrace Luxury</h1>
-                <p>Discover the allure of exquisite jewelry, meticulously crafted to elevate every look with timeless elegance and royal heritage.</p>
+                <p>Discover the allure of exquisite jewelry, meticulously crafted to elevate every look with royal heritage.</p>
                 <a href="productlist.html" class="shop-btn">Shop Now</a>
             </div>
             <div class="hero-right-image">
@@ -445,98 +450,76 @@
     <!-- ⚜️ Gold Divider Line -->
     <div class="gold-divider"></div>
 
-    <!-- 📦 3. Our Creations Section -->
+    <!-- 📦 3. Our Creations Section (8 Cards) -->
     <section class="creations-section">
-        <h2 class="section-header-title">Our Creations</h2>
-        <p class="section-subtitle">Discover a variety of our exclusive luxury pieces.</p>
+        <h2 class="section-title">Our Creations 💍</h2>
+        <p class="section-subtitle">Discover a variety of our exclusive pieces.</p>
         
         <div class="creations-grid">
-            <div class="creation-card" onclick="location.href='productlist.html?cat=rings'">
-                <div class="creation-img-box">
-                    <img src="https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a08a61e03a54.jpg" alt="Rings">
-                </div>
-                <h3>Rings</h3>
-            </div>
-            <div class="creation-card" onclick="location.href='productlist.html?cat=earrings'">
-                <div class="creation-img-box">
-                    <img src="https://i.ibb.co/KjWzg0tZ/1787153923742.png" alt="Earrings">
-                </div>
-                <h3>Earrings</h3>
-            </div>
-            <div class="creation-card" onclick="location.href='productlist.html?cat=bracelets'">
-                <div class="creation-img-box">
-                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="Bracelets">
-                </div>
-                <h3>Bracelets</h3>
-            </div>
-            <div class="creation-card" onclick="location.href='productlist.html?cat=necklace'">
-                <div class="creation-img-box">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="Necklace">
-                </div>
-                <h3>Necklace</h3>
-            </div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=rings'"><h3>Rings</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=earrings'"><h3>Earrings</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=necklace'"><h3>Necklace</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=rakhdi'"><h3>Rakhdi</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=nosepin'"><h3>Nose Pin</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=bajuband'"><h3>Bajuband</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=payal'"><h3>Payal</h3></div>
+            <div class="creation-card" onclick="location.href='productlist.html?cat=bracelets'"><h3>Bracelets</h3></div>
         </div>
     </section>
 
-    <!-- 👑 4. Icon Collections Section -->
+    <!-- 👑 4. Icon Collections Section (8 Cards) -->
     <section class="icon-collections-section">
-        <h2 style="font-family: 'Playfair Display', serif; color: var(--gold); font-size: 30px;">Icon Collections</h2>
-        <p style="font-size: 13px; color: #bbb; margin-top: 5px;">Celebrating years of iconic heritage and craftsmanship.</p>
+        <h2 style="font-family: 'Playfair Display', serif; color: var(--gold); font-size: 32px;">Icon Collections 👑</h2>
+        <p style="font-size: 14px; color: #bbb; margin-top: 5px; margin-bottom: 30px;">Celebrating years of iconic heritage and craftsmanship.</p>
 
         <div class="icon-grid">
-            <div class="icon-box">
-                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="Icon 1">
-                <h4>Emerald Signature Rings</h4>
-            </div>
-            <div class="icon-box">
-                <img src="https://i.ibb.co/3550sv37/1786976021020.png" alt="Icon 2">
-                <h4>Royal Heritage Necklaces</h4>
-            </div>
-            <div class="icon-box">
-                <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=500&q=80" alt="Icon 3">
-                <h4>Diamond Drop Earrings</h4>
-            </div>
+            <div class="icon-box"><h4>Emerald Signature Rings</h4></div>
+            <div class="icon-box"><h4>Royal Heritage Necklaces</h4></div>
+            <div class="icon-box"><h4>Diamond Drop Earrings</h4></div>
+            <div class="icon-box"><h4>Traditional Rakhdi Set</h4></div>
+            <div class="icon-box"><h4>Gold Nose Pin</h4></div>
+            <div class="icon-box"><h4>Rajputi Bajuband</h4></div>
+            <div class="icon-box"><h4>Silver Payal</h4></div>
+            <div class="icon-box"><h4>Designer Bracelets</h4></div>
         </div>
     </section>
 
     <!-- 🌿 5. Rich Green Footer Section -->
     <footer class="luxury-footer">
         <div class="footer-container">
-            <div class="footer-col">
-                <h3>Embrace Luxury</h3>
-                <p>Yes, I would like to receive personalized information on products, discounts, special offers, and new collections.</p>
-                <input type="email" placeholder="Your email address..." class="subscribe-input">
-                <button class="subscribe-btn">Subscribe</button>
+            <!-- Left Side Links -->
+            <div class="footer-left">
+                <a href="about.html">About Us</a>
+                <a href="guide.html">Jewellery Guide</a>
+                <a href="privacy.html">Privacy Policy</a>
             </div>
-            <div class="footer-col">
-                <h3 style="font-size: 18px; color: var(--gold);">Customer Service</h3>
-                <p>Monday – Friday: 7:00am – 8:00pm<br>Saturday: 7:00am – 4:00pm (Sunday: Closed)</p>
-                <div class="social-icons">
-                    <span>🌐</span> <span>📸</span> <span>🐦</span> <span>▶️</span>
-                </div>
-                <p style="font-size: 11px; color: #888; margin-top: 15px;">&copy; 2026 NS Jewellers. Handcrafted with Love in India.</p>
+
+            <!-- Center Big Brand Name -->
+            <div class="footer-center-brand">
+                NS Jewellers
+            </div>
+
+            <!-- Right Side Details & Links -->
+            <div class="footer-right">
+                <p><strong>Customer Service:</strong></p>
+                <p>Mon–Fri: 7:00am–8:00pm</p>
+                <p>&copy; 2026 NS Jewellers. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- 📱 Bottom Navigation Bar -->
+    <!-- 📱 Custom Image-Style Bottom Bar -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active">
-            <span style="font-size: 16px;">🏠</span>
-            <span>होम</span>
-        </a>
-        <a href="productlist.html" class="nav-item">
-            <span style="font-size: 16px;">💍</span>
-            <span>उत्पाद</span>
-        </a>
-        <a href="history.html" class="nav-item">
-            <span style="font-size: 16px;">📜</span>
-            <span>इतिहास</span>
-        </a>
-        <a href="login.html" class="nav-item">
-            <span style="font-size: 16px;">👤</span>
-            <span>लॉगिन</span>
-        </a>
+        <div class="bottom-nav-left">
+            <a href="about.html">About</a>
+            <a href="contact.html">Service</a>
+        </div>
+        <div class="bottom-nav-center">
+            NS Jewellers ✨
+        </div>
+        <div class="bottom-nav-right">
+            <span>Support UK</span>
+        </div>
     </nav>
 
 </body>
