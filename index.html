@@ -7,26 +7,34 @@
     <!-- Google Fonts for Luxury Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --emerald-dark: #072e10;
+            --emerald-main: #0b4619;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --bg-light: #f9f6f0;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #072e10;
-            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            background-color: var(--emerald-dark);
+            color: var(--white);
             padding-bottom: 80px;
         }
 
-        /* 🏛️ New Luxury Header & Menu Style */
+        /* 🏛️ Header & Menu Section (Image Design) */
         .luxury-header {
-            background-color: #0b4619;
-            padding: 15px 25px;
+            background-color: var(--emerald-main);
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid var(--gold);
         }
         .nav-menu {
             display: flex;
@@ -34,32 +42,36 @@
             list-style: none;
         }
         .nav-menu a {
-            color: #ffffff;
+            color: var(--white);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             transition: color 0.3s;
         }
         .nav-menu a:hover {
-            color: #d4af37;
+            color: var(--gold);
         }
         .brand-logo {
             font-family: 'Cinzel', serif;
             font-size: 22px;
             font-weight: 700;
-            color: #d4af37;
+            color: var(--gold);
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-align: center;
         }
         .header-icons {
             display: flex;
             gap: 15px;
             font-size: 18px;
-            color: #ffffff;
+            color: var(--white);
             cursor: pointer;
         }
+        .header-icons span:hover {
+            color: var(--gold);
+        }
 
-        /* ✨ Luxury Hero Section */
+        /* ✨ Hero Section (Image Design) */
         .hero-section {
             background: linear-gradient(135deg, #072e10 0%, #0b4619 100%);
             padding: 30px 20px;
@@ -68,6 +80,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 420px;
+            overflow: hidden;
         }
         .hero-top-info {
             width: 100%;
@@ -75,7 +89,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding: 0 10px;
         }
         .community-badge {
@@ -87,6 +101,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            backdrop-filter: blur(5px);
+            color: var(--white);
         }
         .hero-main-content {
             display: grid;
@@ -96,19 +112,21 @@
             width: 100%;
             gap: 20px;
         }
-        @media (max-width: 768px) {
+        @media(max-width: 768px) {
             .hero-main-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            .hero-text-left p {
-                margin: 0 auto 20px auto;
+            .hero-text-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
         }
         .hero-text-left h1 {
             font-family: 'Playfair Display', serif;
             font-size: 40px;
-            color: #ffffff;
+            color: var(--white);
             margin-bottom: 15px;
         }
         .hero-text-left p {
@@ -119,8 +137,8 @@
             max-width: 350px;
         }
         .shop-now-btn {
-            background: linear-gradient(135deg, #d4af37, #aa771c);
-            color: #072e10;
+            background: linear-gradient(135deg, var(--gold), #aa771c);
+            color: var(--emerald-dark);
             border: none;
             padding: 12px 30px;
             border-radius: 30px;
@@ -131,10 +149,14 @@
             display: inline-block;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
+        .hero-image-right {
+            text-align: center;
+            position: relative;
+        }
         .hero-image-right img {
             max-width: 100%;
             height: auto;
-            max-height: 380px;
+            max-height: 350px;
             object-fit: contain;
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         }
@@ -143,14 +165,14 @@
         .gold-divider {
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
             margin: 0;
         }
 
         /* मुख्य सामग्री क्षेत्र और उत्पाद सूची स्टाइल */
         .main-content {
             padding: 20px;
-            background-color: #f9f6f0;
+            background-color: var(--bg-light);
             color: #333333;
         }
         .section-heading {
@@ -159,6 +181,7 @@
             font-size: 16px;
             border-bottom: 1px solid #e0d8c5;
             padding-bottom: 5px;
+            font-family: 'Playfair Display', serif;
         }
         .items-grid {
             display: grid;
@@ -244,11 +267,11 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #0b4619;
+            background-color: var(--emerald-main);
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            border-top: 2px solid #d4af37;
+            border-top: 2px solid var(--gold);
             box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
             z-index: 1000;
         }
@@ -268,7 +291,7 @@
             font-weight: 500;
         }
         .nav-item:hover {
-            color: #d4af37;
+            color: var(--gold);
         }
 
         /* Welcome Popup Modal Overlay */
@@ -348,7 +371,7 @@
         </div>
     </div>
     
-    <!-- 🏛️ 1, 2, 3. Header Section (Menu, Logo, Icons) -->
+    <!-- 🏛️ Header Section (Reference Image Design) -->
     <header class="luxury-header">
         <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
@@ -357,7 +380,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         
-        <div class="brand-logo">NS Jewellers 💍</div>
+        <div class="brand-logo">NS Jewellers</div>
         
         <div class="header-icons">
             <span title="Wishlist">❤️</span>
@@ -366,10 +389,10 @@
         </div>
     </header>
 
-    <!-- ✨ 4. Hero Section (Model, Background, Shop Now, Community 4.5k) -->
+    <!-- ✨ Hero Section (Reference Image Design) -->
     <section class="hero-section">
         <div class="hero-top-info">
-            <div style="font-size: 12px; color: #d4af37; letter-spacing: 1px;">✨ Radiant Bloom Collection</div>
+            <div style="font-size: 12px; color: var(--gold); letter-spacing: 1px;">✨ Radiant Bloom</div>
             <div class="community-badge">
                 <span>👥 Lovers & Supportive Community (4.5k)</span>
             </div>
@@ -381,20 +404,20 @@
                 <p>Discover the allure of exquisite jewelry, meticulously crafted to elevate every look.</p>
                 <a href="productlist.html" class="shop-now-btn">Shop Now</a>
             </div>
-            <div class="hero-image-right" style="text-align: center;">
+            <div class="hero-image-right">
                 <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" alt="Luxury Jewellery Model">
             </div>
         </div>
     </section>
 
-    <!-- ⚜️ 5. Gold Color Line Divider -->
+    <!-- ⚜️ Gold Border Line -->
     <div class="gold-divider"></div>
 
     <!-- मुख्य सामग्री - उत्पादों की सूची -->
-    <main class="main-content">
-        <h2 style="color: #b8860b; text-align: center; margin-bottom: 10px;">उत्पाद सूची 💍</h2>
+    <main class="main-content" style="padding-top: 20px;">
+        <h2 style="color: #b8860b; text-align: center; margin-bottom: 15px; font-family: 'Playfair Display', serif;">उत्पाद सूची 💍</h2>
         
-        <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी (Google Sheet 2 के कॉलम B के अनुसार 'cat' पैरामीटर सेट किए गए हैं) -->
+        <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी -->
         <h3 class="section-heading">गोल्ड और मुख्य आभूषण ✨</h3>
         <div class="items-grid">
             <div class="item-card" onclick="location.href='productlist.html?cat=lady%20ring'">
