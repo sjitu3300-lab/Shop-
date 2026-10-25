@@ -12,9 +12,7 @@
             --emerald-main: #0b4619;
             --gold: #d4af37;
             --gold-light: #fdfbf7;
-            --gold-border: #d4af37;
             --text-dark: #222222;
-            --bg-main: #072e10;
         }
 
         * {
@@ -25,42 +23,48 @@
 
         body {
             font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-            background-color: var(--bg-main);
+            background-color: var(--emerald-dark);
             color: var(--gold-light);
-            padding-bottom: 80px;
+            padding-bottom: 70px;
         }
 
-        /* 🏛️ Header & Hero Section with Hand & Bracelet Theme */
+        /* 🏛️ Top Header (Reference Image Style) */
         .app-header {
             background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-main) 100%);
-            padding: 25px 20px;
-            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 3px solid var(--gold);
-            position: relative;
-            overflow: hidden;
         }
 
-        .app-header h1 {
+        .app-logo {
             font-family: 'Cinzel', serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--gold);
-            text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            text-transform: uppercase;
         }
 
-        /* Hero Banner matching reference image */
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 18px;
+            color: var(--gold);
+        }
+
+        /* 📸 Hero Section (Hand holding bracelet like reference image) */
         .ns-hero-banner {
             position: relative;
-            background: var(--emerald-dark);
+            background: var(--emerald-main);
             border: 2px solid var(--gold);
-            border-radius: 16px;
-            margin: 20px;
+            border-radius: 14px;
+            margin: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: grid;
             grid-template-columns: 1fr;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
         @media(min-width: 768px) {
@@ -71,20 +75,20 @@
         }
 
         .ns-hero-content {
-            padding: 30px;
+            padding: 25px;
             text-align: left;
         }
 
         .ns-hero-content h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 30px;
             color: var(--gold);
             margin-bottom: 10px;
         }
 
         .ns-hero-content p {
-            font-size: 14px;
-            color: #e0e0e0;
+            font-size: 13px;
+            color: #dcdcdc;
             margin-bottom: 20px;
             line-height: 1.5;
         }
@@ -93,26 +97,20 @@
             background: linear-gradient(135deg, var(--gold), #aa771c);
             color: var(--emerald-dark);
             border: none;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
             font-family: 'Cinzel', serif;
             letter-spacing: 1px;
-            transition: transform 0.3s;
-            display: inline-block;
             text-decoration: none;
-        }
-
-        .ns-hero-btn:hover {
-            transform: scale(1.05);
+            display: inline-block;
         }
 
         .ns-hero-img-container {
             width: 100%;
-            height: 300px;
+            height: 280px;
             overflow: hidden;
-            position: relative;
         }
 
         .ns-hero-img-container img {
@@ -123,12 +121,9 @@
 
         /* 🔍 Search Bar */
         .search-container {
-            margin-top: 15px;
+            margin: 15px 20px;
             display: flex;
             gap: 8px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .search-input {
@@ -152,24 +147,22 @@
             font-weight: bold;
         }
 
-        /* 📦 Main Content & Grid Layout */
+        /* 📦 Main Content Area */
         .main-content {
             padding: 20px;
-            max-width: 900px;
-            margin: 0 auto;
             background-color: #fdfdfd;
             color: var(--text-dark);
-            border-radius: 16px 16px 0 0;
+            border-radius: 20px 20px 0 0;
+            margin-top: 10px;
         }
 
         .section-heading {
             font-family: 'Playfair Display', serif;
             color: var(--emerald-main);
-            margin: 25px 0 15px 0;
-            font-size: 20px;
+            margin: 20px 0 12px 0;
+            font-size: 18px;
             border-bottom: 2px solid var(--gold);
-            padding-bottom: 6px;
-            letter-spacing: 0.5px;
+            padding-bottom: 5px;
         }
 
         .items-grid {
@@ -191,14 +184,13 @@
             border-radius: 12px;
             padding: 12px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(11, 70, 25, 0.08);
+            box-shadow: 0 4px 12px rgba(11, 70, 25, 0.08);
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
         }
 
         .item-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.25);
+            transform: translateY(-3px);
         }
 
         .item-img-container {
@@ -217,11 +209,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .item-card:hover img {
-            transform: scale(1.05);
         }
 
         .item-card h3 {
@@ -230,53 +217,87 @@
             font-weight: 600;
         }
 
-        /* 👑 Owner & Review Info Card */
+        /* 👑 Owner Info Card */
         .info-card {
             background-color: var(--gold-light);
             border: 1px solid var(--gold);
             border-radius: 12px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .owner-img {
-            width: 80px;
-            height: 80px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--gold);
             margin: 0 auto 10px auto;
         }
 
-        .info-card h3 {
-            color: var(--emerald-main);
-            font-size: 18px;
-            margin-bottom: 5px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .info-card p {
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 12px;
-        }
-
         .review-btn {
             background-color: var(--emerald-main);
             color: var(--gold);
             border: 1px solid var(--gold);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
-            transition: background 0.3s;
         }
 
-        .review-btn:hover {
+        /* 🌿 Bottom Footer (Matching Reference Image Style) */
+        .ns-footer {
             background-color: var(--emerald-dark);
+            color: var(--gold-light);
+            padding: 30px 20px;
+            border-top: 3px solid var(--gold);
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .ns-footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media(min-width: 768px) {
+            .ns-footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .ns-footer h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .ns-footer-input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .ns-footer-btn {
+            background-color: var(--gold);
+            color: var(--emerald-dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         /* 📱 Bottom Navigation Bar */
@@ -290,7 +311,6 @@
             justify-content: space-around;
             padding: 10px 0;
             border-top: 2px solid var(--gold);
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
             z-index: 1000;
         }
 
@@ -301,23 +321,13 @@
             text-decoration: none;
             color: #b0c4de;
             font-size: 12px;
-            transition: color 0.2s;
         }
 
-        .nav-icon {
-            font-size: 18px;
-            margin-bottom: 2px;
-        }
-
-        .nav-text {
-            font-weight: 500;
-        }
-
-        .nav-item:hover, .nav-item.active {
+        .nav-item.active, .nav-item:hover {
             color: var(--gold);
         }
 
-        /* ✨ Welcome Popup Modal Overlay */
+        /* ✨ Welcome Popup Modal */
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -329,19 +339,17 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            backdrop-filter: blur(4px);
         }
 
         .welcome-box {
             background-color: var(--emerald-dark);
             border: 2px solid var(--gold);
             border-radius: 16px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             width: 90%;
-            max-width: 420px;
+            max-width: 400px;
             text-align: center;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             color: var(--gold-light);
         }
 
@@ -349,42 +357,11 @@
             position: absolute;
             top: 10px;
             right: 14px;
-            font-size: 26px;
+            font-size: 24px;
             color: var(--gold);
             cursor: pointer;
-            font-weight: bold;
-            line-height: 1;
             background: none;
             border: none;
-        }
-
-        .owner-img-container {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 12px auto;
-            border: 2px solid var(--gold);
-            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
-        }
-
-        .owner-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .welcome-box h2 {
-            color: var(--gold);
-            font-size: 20px;
-            margin-bottom: 8px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .welcome-tagline {
-            font-size: 13px;
-            color: #dcdcdc;
-            line-height: 1.5;
         }
     </style>
 </head>
@@ -393,27 +370,30 @@
     <div id="welcomeBanner" class="welcome-overlay">
         <div class="welcome-box">
             <button class="close-btn" onclick="closeWelcomeBanner()">&times;</button>
-            <div class="owner-img-container">
-                <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni">
+            <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 10px auto; border: 2px solid var(--gold);">
+                <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <h2>Nirmal ji Soni</h2>
-            <p class="welcome-tagline">पीढ़ियों का भरोसा, स्वर्ण की शुद्धता और हर रिश्ते की चमक को समर्पित एक अनमोल विरासत ✨</p>
+            <h2 style="color: var(--gold); font-family: 'Playfair Display', serif;">Nirmal ji Soni</h2>
+            <p style="font-size: 12px; color: #dcdcdc; line-height: 1.4;">पीढ़ियों का भरोसा, स्वर्ण की शुद्धता और हर रिश्ते की चमक को समर्पित एक अनमोल विरासत ✨</p>
         </div>
     </div>
     
-    <!-- हेडर और नाम -->
+    <!-- 🏛️ Top Header -->
     <header class="app-header">
-        <h1>NS Jewellers <span style="font-size: 20px;">💍</span></h1>
-        <p style="font-size: 12px; color: var(--gold); margin-top: 4px; letter-spacing: 1px;">पारंपरिक और आधुनिक स्वर्ण आभूषण</p>
-        
-        <!-- सर्च बार -->
-        <div class="search-container">
-            <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input">
-            <button class="search-btn">🔍</button>
+        <div class="app-logo">NS Jewellers 💍</div>
+        <div class="header-icons">
+            <span>🔍</span>
+            <span>🛒</span>
         </div>
     </header>
 
-    <!-- 1. Hero Banner (Reference Image Style: Hand holding Bracelet) -->
+    <!-- 🔍 Search Bar -->
+    <div class="search-container">
+        <input type="text" placeholder="ज्वेलरी खोजें (जैसे - अंगूठी, हार)..." class="search-input">
+        <button class="search-btn">🔍</button>
+    </div>
+
+    <!-- 📸 Hero Banner (Reference Image Style: Hand holding Bracelet) -->
     <section class="ns-hero-banner">
         <div class="ns-hero-content">
             <h2>Embrace Luxury</h2>
@@ -421,28 +401,20 @@
             <a href="#shop" class="ns-hero-btn">Explore Collection</a>
         </div>
         <div class="ns-hero-img-container">
-            <!-- Reference style hand holding emerald bracelet image -->
             <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Luxury Hand Bracelet">
         </div>
     </section>
 
-    <!-- 2. ऑटोमैटिक चलने वाली नोटिस पट्टी (Marquee) -->
-    <section style="background: var(--gold); color: var(--emerald-dark); padding: 8px 0; overflow: hidden; white-space: nowrap; margin-bottom: 0px; font-weight: bold;">
-        <marquee behavior="scroll" direction="left" scrollamount="5" style="font-size: 13px;">
-            ✨ NS Jewellers: 100% हॉलमार्क शुद्धता का भरोसा | 💍 नए डायमंड और गोल्ड कलेक्शन उपलब्ध | 📞 अधिक जानकारी के लिए संपर्क करें
-        </marquee>
-    </section>
-
-    <!-- मुख्य सामग्री - उत्पादों की सूची -->
+    <!-- 💍 मुख्य सामग्री - उत्पादों की सूची -->
     <main class="main-content">
-        <h2 style="color: var(--emerald-main); text-align: center; margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 24px;">उत्पाद सूची 💍</h2>
+        <h2 style="color: var(--emerald-main); text-align: center; margin-bottom: 15px; font-family: 'Playfair Display', serif;">उत्पाद सूची 💍</h2>
         
         <!-- गोल्ड / मुख्य ज्वेलरी कैटेगरी -->
         <h3 class="section-heading">गोल्ड और मुख्य आभूषण ✨</h3>
         <div class="items-grid">
             <div class="item-card" onclick="location.href='productlist.html?cat=lady%20ring'">
                 <div class="item-img-container">
-                    <img src="https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a08a61e03a54.jpg" alt="अंगूठी डिजाइन">
+                    <img src="https://cdn.phototourl.com/free/2026-08-16-e5d7c630-1f8d-4c6f-aa60-a08a61e03a54.jpg" alt="अंगूठी">
                 </div>
                 <h3>अंगूठी डिजाइन</h3>
             </div>
@@ -472,55 +444,20 @@
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=bangles'">
                 <div class="item-img-container">
-                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन और चूड़ियाँ">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80" alt="कंगन">
                 </div>
                 <h3>कंगन और चूड़ियाँ</h3>
             </div>
         </div>
 
-        <!-- पारंपरिक और विशेष आभूषण -->
-        <h3 class="section-heading">पारंपरिक और अन्य आभूषण 👑</h3>
-        <div class="items-grid">
-            <div class="item-card" onclick="location.href='productlist.html?cat=bazuband'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/Y7bkMqf4/IMG-20260821-121242.jpg" alt="बाजूबंद">
-                </div>
-                <h3>बाजूबंद</h3>
-            </div>
-            <div class="item-card" onclick="location.href='productlist.html?cat=puncha'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/S74jYq2t/1787295556529.png" alt="पोंछा">
-                </div>
-                <h3>पोंछा</h3>
-            </div>
-            <div class="item-card" onclick="location.href='productlist.html?cat=gants_chain'">
-                <div class="item-img-container">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80" alt="जेंट्स चेन">
-                </div>
-                <h3>जेंट्स चेन / कड़ा</h3>
-            </div>
-        </div>
-
-        <!-- सिल्वर (चांदी) प्रोडक्ट्स -->
+        <!-- चांदी के आभूषण -->
         <h3 class="section-heading">चांदी (Silver) के आभूषण 🪙</h3>
         <div class="items-grid">
-            <div class="item-card" onclick="location.href='productlist.html?cat=chian_payal'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/7d001nWz/sterling-silver-ring-women-1.jpg" alt="सिल्वर रिंग">
-                </div>
-                <h3>सिल्वर रिंग</h3>
-            </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=payal'">
                 <div class="item-img-container">
                     <img src="https://i.ibb.co/MDrXNX9s/612y7bv-V1-YL-AC-UY1100.jpg" alt="पायल">
                 </div>
                 <h3>पायल</h3>
-            </div>
-            <div class="item-card" onclick="location.href='productlist.html?cat=kada'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/QvdDWFDh/001-CNC-Customised-Name-Silver-Kada-Silveradda.jpg" alt="सिल्वर कड़ा">
-                </div>
-                <h3>सिल्वर कड़ा</h3>
             </div>
             <div class="item-card" onclick="location.href='productlist.html?cat=bracelet'">
                 <div class="item-img-container">
@@ -528,85 +465,56 @@
                 </div>
                 <h3>ब्रेसलेट</h3>
             </div>
-            <div class="item-card" onclick="location.href='productlist.html?cat=chain'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/fdyRBH0y/1787138319239.png" alt="सिल्वर चेन">
-                </div>
-                <h3>सिल्वर चेन</h3>
-            </div>
-            <div class="item-card" onclick="location.href='productlist.html?cat=bichhiya'">
-                <div class="item-img-container">
-                    <img src="https://i.ibb.co/Wv7spHG4/b2ac45-c59009f5b38e4dc897b8166afa10db71-mv2.jpg" alt="बिछिया">
-                </div>
-                <h3>बिछिया</h3>
-            </div>
         </div>
 
-        <!-- ओनर और विवरण सेक्शन -->
-        <div class="info-card" style="background: linear-gradient(135deg, #fdfbf7 0%, #fffaf0 100%); border: 1px solid var(--gold); box-shadow: 0 4px 15px rgba(184, 134, 11, 0.15);">
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; text-align: left;">
-                <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni" class="owner-img" style="margin: 0; border: 3px solid var(--gold);">
-                <div>
-                    <h3 style="margin: 0; font-size: 18px; color: var(--emerald-main);">Nirmal ji Soni</h3>
-                    <p style="margin: 0; font-size: 13px; color: #856404; font-weight: bold;">संस्थापक - NS Jewellers</p>
-                </div>
-            </div>
-            <p style="font-size: 14px; color: #444; line-height: 1.6; font-style: italic; border-top: 1px solid #e0d8c5; padding-top: 10px; text-align: left;">
-                "NS Jewellers में हम केवल आभूषण नहीं, बल्कि विश्वास और विरासत बेचते हैं। 
-                हमारी हर कृति में पीढ़ियों का अनुभव, शुद्धता और कलाकारी का संगम है। 
-                हमारा लक्ष्य आपकी हर खुशी और उत्सव को अपनी ज्वेलरी के माध्यम से यादगार बनाना है।"
-            </p>
-        </div>
-
+        <!-- ओनर विवरण -->
         <div class="info-card">
-            <h3>अपनी समीक्षा लिखें (Write a Review) ⭐</h3>
-            <p>हमारी सेवा या ज्वेलरी के बारे में अपना अनुभव साझा करें।</p>
-            <button class="review-btn" onclick="alert('रिव्यू फॉर्म जल्द यहाँ जुड़ेगा!')">रिव्यू लिखें</button>
+            <img src="https://i.ibb.co/bp7V5h8/IMG-20260423-WA0000.jpg" alt="Nirmal ji Soni" class="owner-img">
+            <h3 style="color: var(--emerald-main); font-family: 'Playfair Display', serif;">Nirmal ji Soni</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 10px;">संस्थापक - NS Jewellers</p>
+            <button class="review-btn" onclick="alert('रिव्यू फॉर्म जल्द जुड़ेगा!')">रिव्यू लिखें</button>
         </div>
-
-        <!-- Footer Section -->
-        <footer style="background-color: #fdfbf7; border-top: 1px solid #e0d8c5; padding: 25px 20px; margin-top: 30px; text-align: center; color: #555; border-radius: 12px 12px 0 0;">
-            <div style="max-width: 600px; margin: 0 auto;">
-                <h3 style="color: var(--emerald-main); font-size: 18px; margin-bottom: 8px; font-family: 'Playfair Display', serif;">NS Jewellers 💍</h3>
-                <p style="font-size: 12px; color: #666; margin-bottom: 20px;">पीढ़ियों का भरोसा, शुद्धता की पहचान ✨</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; margin-bottom: 20px; text-align: center;">
-                    <a href="about.html" style="color: var(--emerald-main); text-decoration: none; font-weight: bold;">हमारे बारे में (About Us)</a>
-                    <a href="guide.html" style="color: var(--emerald-main); text-decoration: none; font-weight: bold;">ज्वेलरी गाइड (Jewellery Guide)</a>
-                    <a href="privacy.html" style="color: var(--emerald-main); text-decoration: none; font-weight: bold;">प्राइवेसी पॉलिसी (Privacy Policy)</a>
-                    <a href="contact.html" style="color: var(--emerald-main); text-decoration: none; font-weight: bold;">संपर्क करें (Contact Us)</a>
-                    <a href="disclaimer.html" style="color: var(--emerald-main); text-decoration: none; font-weight: bold; grid-column: span 2;">डिस्क्लेमर (Disclaimer)</a>
-                </div>
-                
-                <p style="font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 15px;">
-                    &copy; 2026 NS Jewellers. All Rights Reserved.
-                </p>
-            </div>
-        </footer>
     </main>
 
-    <!-- बॉटम नेविगेशन बार -->
+    <!-- 🌿 Footer (Reference Image Style) -->
+    <footer class="ns-footer">
+        <div class="ns-footer-grid">
+            <div>
+                <h3>Embrace Luxury</h3>
+                <p style="color: #ccc; font-size: 12px; margin-bottom: 15px;">Yes, I would like to receive personalized information on products, discounts, and special offers.</p>
+                <input type="email" placeholder="Your email address..." class="ns-footer-input">
+                <button class="ns-footer-btn">Subscribe</button>
+            </div>
+            <div>
+                <p style="color: var(--gold); font-weight: bold; margin-bottom: 5px;">Customer Service Hours:</p>
+                <p style="font-size: 12px; color: #bbb;">Monday–Friday: 7:00am–8:00pm</p>
+                <p style="font-size: 12px; color: #bbb; margin-bottom: 15px;">Saturday: 7:00am–4:00pm (Sunday: Closed)</p>
+                <p style="font-size: 11px; color: #888;">&copy; 2026 NS Jewellers. Handcrafted with Love.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 📱 बॉटम नेविगेशन बार -->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
-            <span class="nav-icon">🏠</span>
-            <span class="nav-text">होम</span>
+            <span>🏠</span>
+            <span style="font-size: 10px;">होम</span>
         </a>
         <a href="productlist.html" class="nav-item">
-            <span class="nav-icon">💍</span>
-            <span class="nav-text">उत्पाद सूची</span>
+            <span>💍</span>
+            <span style="font-size: 10px;">उत्पाद</span>
         </a>
         <a href="history.html" class="nav-item">
-            <span class="nav-icon">📜</span>
-            <span class="nav-text">इतिहास</span>
+            <span>📜</span>
+            <span style="font-size: 10px;">इतिहास</span>
         </a>
         <a href="login.html" class="nav-item">
-            <span class="nav-icon">👤</span>
-            <span class="nav-text">लॉगिन</span>
+            <span>👤</span>
+            <span style="font-size: 10px;">लॉगिन</span>
         </a>
     </nav>
 
     <script>
-        // वेलकम बैनर बंद करने का फंक्शन
         function closeWelcomeBanner() {
             const banner = document.getElementById('welcomeBanner');
             if (banner) {
